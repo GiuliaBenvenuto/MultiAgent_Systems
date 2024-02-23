@@ -1,4 +1,4 @@
-// Agent bob in project example
+// Agent Bob in project example
 
 /* Initial beliefs and rules */
 

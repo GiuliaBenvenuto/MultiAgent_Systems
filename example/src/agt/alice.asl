@@ -1,4 +1,4 @@
-// Agent alice in project example
+// Agent Alice in project example
 
 /* Initial beliefs and rules */
 
