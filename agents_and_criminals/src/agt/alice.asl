@@ -1,4 +1,4 @@
-// Agent bob in project example
+// Agent alice in project agents_and_criminals
 
 /* Initial beliefs and rules */
 
