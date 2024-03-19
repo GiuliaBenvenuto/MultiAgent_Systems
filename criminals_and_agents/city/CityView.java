@@ -29,7 +29,7 @@ public class CityView extends GridWorldView {
     CityEnvironment city_env = null;
 
     public CityView(CityModel model) {
-        super(model, "City", 600);
+        super(model, "City", 800);
         city_env = new CityEnvironment();
         setVisible(true);
         repaint();

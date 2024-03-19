@@ -13,7 +13,7 @@
 MAS criminals_and_agents {
 
     // environment: example.Env(10)
-    environment: city.CityEnvironment(1)
+    environment: city.CityEnvironment(2)
 
     agents: bob;
             alice;

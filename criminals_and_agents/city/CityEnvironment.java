@@ -13,6 +13,7 @@ public class CityEnvironment extends jason.environment.Environment {
 
     // Type of city 
     int cityType = 1;
+    boolean gui = true;
 
     @Override
     public void init(String[] args) {   
@@ -31,7 +32,7 @@ public class CityEnvironment extends jason.environment.Environment {
                 city_model = CityModel.city1();
                 break;
             case 2:
-                //city_model = CityModel.city2();
+                city_model = CityModel.city2();
                 break;
             case 3:
                 //city_model = CityModel.city3();
