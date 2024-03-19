@@ -42,7 +42,13 @@ public class CityModel extends GridWorldModel {
         city_model.setAgPos(3, 29, 29);
         // Set walls
         city_model.add(CityModel.OBSTACLE, 4, 4);
-
+        city_model.add(CityModel.OBSTACLE, 4, 5);
+        city_model.add(CityModel.OBSTACLE, 4, 6);
+        city_model.add(CityModel.OBSTACLE, 4, 7);
+        city_model.add(CityModel.OBSTACLE, 4, 8);
+        city_model.add(CityModel.OBSTACLE, 4, 9);
+        city_model.add(CityModel.OBSTACLE, 4, 10);
+        city_model.add(CityModel.OBSTACLE, 4, 11);
         return city_model;
     }
 
