@@ -33,8 +33,15 @@ public class CityModel extends GridWorldModel {
 
     static CityModel city1() throws Exception {
         CityModel city_model = CityModel.create(30, 30, 4);
+        // Set the jail location
         city_model.setJail(15, 15);
-        //city_model.setCivilianPosition(0, 1, 1);
+        // Set the civilians location
+        city_model.setAgPos(0, 1, 1);
+        city_model.setAgPos(1, 1, 29);
+        city_model.setAgPos(2, 29, 1);
+        city_model.setAgPos(3, 29, 29);
+        // Set walls
+        city_model.add(CityModel.OBSTACLE, 4, 4);
 
         return city_model;
     }
