@@ -1,6 +1,7 @@
 package city;
 
 import jason.environment.grid.GridWorldModel;
+import jason.environment.grid.Location;
 import jason.environment.*;
 
 import java.util.HashSet;
@@ -24,6 +25,9 @@ public class CityModel extends GridWorldModel {
     // Set the jail location
     private void setJail(int i, int j) {
         this.jail = new Location(i, j);
+        // Print location
+        logger.info("Jail location: " + jail);
+
     }
 
 
