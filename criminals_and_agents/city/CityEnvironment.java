@@ -1,8 +1,9 @@
 package city;
 
 import jason.asSyntax.*;
-import jason.environment.grid.Location;
 import java.util.logging.*;
+import jason.environment.grid.Location;
+
 
 public class CityEnvironment extends jason.environment.Environment {
     private Logger logger = Logger.getLogger("criminals_and_agents.mas2j." + CityEnvironment.class.getName());
@@ -11,15 +12,19 @@ public class CityEnvironment extends jason.environment.Environment {
     CityView city_view;
 
     // Type of city 
-    int city_type = 1;
+    int cityType = 1;
 
     @Override
     public void init(String[] args) {   
         initCity(Integer.parseInt(args[0]));
     }
 
+    public int getCityType() {
+        return cityType;
+    }
+    
     private void initCity(int x) {
-        city_type = x;
+        cityType = x;
         try {
             switch (x) {
             case 1:
