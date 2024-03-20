@@ -39,4 +39,11 @@ public class CityView extends GridWorldView {
         this.city_env = env;
     }
 
+    @Override
+    public void draw(Graphics g, int x, int y, int object) {
+        switch (object) {
+
+        }
+    }
+
 }
