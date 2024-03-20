@@ -24,7 +24,7 @@ public class CityEnvironment extends jason.environment.Environment {
         return cityType;
     }
     
-    private void initCity(int x) {
+    public void initCity(int x) {
         cityType = x;
         try {
             switch (x) {

@@ -1,4 +1,4 @@
-// Agent bob in project criminals_and_agents
+// Agent police in project criminals_and_agents
 
 /* Initial beliefs and rules */
 

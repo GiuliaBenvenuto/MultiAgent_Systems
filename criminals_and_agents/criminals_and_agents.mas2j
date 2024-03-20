@@ -13,10 +13,12 @@
 MAS criminals_and_agents {
 
     // environment: example.Env(10)
-    environment: city.CityEnvironment(2)
+    environment: city.CityEnvironment(1)
 
-    agents: bob;
-            alice;
+    agents: police;
+            civilian;
+            criminal;
+            clue;
 
     aslSourcePath: "src/agt";
 }

@@ -1,4 +1,4 @@
-// Agent alice in project criminals_and_agents
+// Agent civilian in project criminals_and_agents
 
 /* Initial beliefs and rules */
 

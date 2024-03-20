@@ -11,6 +11,7 @@ public class CityModel extends GridWorldModel {
 
     private Logger logger = Logger.getLogger("criminals_and_agents.mas2j." + CityModel.class.getName());
 
+    public static final int JAIL = 0;
     protected static CityModel city_model = null;
     Location jail;
 
@@ -28,6 +29,10 @@ public class CityModel extends GridWorldModel {
         // Print location
         logger.info("Jail location: " + jail);
 
+    }
+
+    public Location getJail() {
+        return jail;
     }
 
 
