@@ -38,7 +38,7 @@ public class CityModel extends GridWorldModel {
 
     // City 1
     static CityModel city1() throws Exception {
-        CityModel city_model = CityModel.create(30, 30, 4);
+        CityModel city_model = CityModel.create(40, 40, 4);
         // ----- Set jail location -----
         city_model.setJail(15, 15);
         // ----- Set civilians location -----
@@ -130,6 +130,73 @@ public class CityModel extends GridWorldModel {
 
         return city_model;
     }
+
+    // City 3
+    static CityModel city3() throws Exception {
+        CityModel city_model = CityModel.create(40, 40, 4);
+        // Set the jail location
+        city_model.setJail(18, 18);
+        // Set the civilians' locations at different points, ensuring no conflict with obstacles
+        city_model.setAgPos(0, 2, 2);
+        city_model.setAgPos(1, 2, 37);
+        city_model.setAgPos(2, 37, 2);
+        city_model.setAgPos(3, 37, 37);
+
+
+        // Add intersections in the avenues
+        for (int i = 5; i < 40; i += 5) {
+            for (int j = 5; j < 40; j += 5) {
+                city_model.remove(CityModel.OBSTACLE, 19, j); // Horizontal street openings
+                city_model.remove(CityModel.OBSTACLE, i, 19); // Vertical street openings
+            }
+        }
+
+        // Create "parks" as open spaces in each quadrant
+        for (int i = 5; i <= 14; i++) {
+            for (int j = 5; j <= 14; j++) {
+                city_model.remove(CityModel.OBSTACLE, i, j);
+                city_model.remove(CityModel.OBSTACLE, i, 40 - 1 - j);
+                city_model.remove(CityModel.OBSTACLE, 40 - 1 - i, j);
+                city_model.remove(CityModel.OBSTACLE, 40 - 1 - i, 40 - 1 - j);
+            }
+        }
+
+
+        return city_model;
+    }
+
+    // City 4
+    static CityModel city4() throws Exception {
+        CityModel city_model = CityModel.create(40, 40, 4);
+        // Set the jail location
+        city_model.setJail(18, 18);
+        // Set the civilians' locations at different points, ensuring no conflict with obstacles
+        city_model.setAgPos(0, 2, 2);
+        city_model.setAgPos(1, 2, 37);
+        city_model.setAgPos(2, 37, 2);
+        city_model.setAgPos(3, 37, 37);
+
+        // Create two main avenues without blocking the whole row and column
+        for (int i = 0; i < 40; i++) {
+            if (i != 17 && i != 18 && i != 19 && i != 20 && i != 21 && i != 22) { // Leave space around the jail
+                city_model.add(CityModel.OBSTACLE, 19, i);
+                city_model.add(CityModel.OBSTACLE, i, 19);
+            }
+        }
+
+        // Create some decorative obstacles inside the parks
+        for (int i = 7; i <= 12; i += 2) {
+            for (int j = 7; j <= 12; j += 2) {
+                city_model.add(CityModel.OBSTACLE, i, j);
+                city_model.add(CityModel.OBSTACLE, i, 40 - 1 - j);
+                city_model.add(CityModel.OBSTACLE, 40 - 1 - i, j);
+                city_model.add(CityModel.OBSTACLE, 40 - 1 - i, 40 - 1 - j);
+            }
+        }
+
+        return city_model;
+    }
+
 
 
 

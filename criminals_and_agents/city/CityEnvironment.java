@@ -12,20 +12,25 @@ public class CityEnvironment extends jason.environment.Environment {
     CityView city_view;
 
     // Type of city 
-    int cityType = 1;
+    int cityType;
     boolean gui = true;
 
     @Override
     public void init(String[] args) {   
+
         initCity(Integer.parseInt(args[0]));
+        // print
+        logger.info("City type ARGS: " + Integer.parseInt(args[0]));
     }
 
     public int getCityType() {
+
         return cityType;
     }
-    
+
     public void initCity(int x) {
         cityType = x;
+        logger.info("Initializing city type  INITCITY" + x);
         try {
             switch (x) {
             case 1:
@@ -35,10 +40,10 @@ public class CityEnvironment extends jason.environment.Environment {
                 city_model = CityModel.city2();
                 break;
             case 3:
-                //city_model = CityModel.city3();
+                city_model = CityModel.city3();
                 break;
             case 4:
-                //city_model = CityModel.city4();
+                city_model = CityModel.city4();
                 break;
             default:
                 logger.info("Invalid city type");
@@ -47,7 +52,7 @@ public class CityEnvironment extends jason.environment.Environment {
             city_view = new CityView(city_model);
             city_view.setEnv(this);
         } catch (Exception e) {
-            logger.info("Error initializing city");
+            logger.log(Level.SEVERE, "Error initializing city: " + e.getMessage(), e);
         }
     }
 }

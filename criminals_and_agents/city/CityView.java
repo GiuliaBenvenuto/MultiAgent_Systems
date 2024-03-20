@@ -39,7 +39,9 @@ public class CityView extends GridWorldView {
 
     public void setEnv(CityEnvironment env) {
         this.city_env = env;
-        city_selection.setSelectedIndex(city_env.getCityType() - 1);
+        //System.out.println("setIndex" + city_env.getCityType());
+        // TODO: set the index of the city type
+        // city_selection.setSelectedIndex(city_env.getCityType() - 1);
     }
 
     @Override
@@ -55,14 +57,19 @@ public class CityView extends GridWorldView {
         city_selection.addItem("City 4");
         city_selection.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent e) {
-                if (e.getStateChange() == ItemEvent.SELECTED) {
-                    city_env.initCity(city_selection.getSelectedIndex() - 1);
+                if (e.getStateChange() == ItemEvent.SELECTED && city_env != null) {
+                    // Adjust the index to match the city type (1-indexed)
+                    city_env.initCity(city_selection.getSelectedIndex() + 1);
+                    System.out.println("City selected CITYVIEW: " + (city_selection.getSelectedIndex() + 1));
+                    System.out.println("City selected CITYVIEW INDEX: " + (city_selection.getSelectedIndex()));
+
                 }
             }
         });
         p.add(city_selection);
         getContentPane().add(BorderLayout.NORTH, p);
     }
+
 
     @Override
     public void draw(Graphics g, int x, int y, int object) {
