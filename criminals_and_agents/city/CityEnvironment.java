@@ -35,22 +35,34 @@ public class CityEnvironment extends jason.environment.Environment {
             switch (x) {
             case 1:
                 city_model = CityModel.city1();
+                System.out.println("City 1");
                 break;
             case 2:
                 city_model = CityModel.city2();
+                System.out.println("City 2");
                 break;
             case 3:
                 city_model = CityModel.city3();
+                System.out.println("City 3");
                 break;
             case 4:
                 city_model = CityModel.city4();
+                System.out.println("City 4");
                 break;
             default:
                 logger.info("Invalid city type");
                 return;
             }
-            city_view = new CityView(city_model);
-            city_view.setEnv(this);
+
+            //city_view = new CityView(city_model);
+            //city_view.setEnv(this);
+
+            if(city_view == null) {
+                city_view = new CityView(city_model);
+                city_view.setEnv(this);
+            } else {
+                city_view.updateView(city_model);
+            }
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Error initializing city: " + e.getMessage(), e);
         }
