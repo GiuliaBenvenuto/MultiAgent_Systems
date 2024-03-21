@@ -33,27 +33,24 @@ public class CityView extends GridWorldView {
 
     CityEnvironment city_env = null;
     CityModel city_model = null;
-    JComboBox city_selection;
+
+
+    private JComboBox city_selection;
     private JRadioButton city1Button, city2Button, city3Button, city4Button;
     private ButtonGroup cityGroup;
 
     public CityView(CityModel model) {
         super(model, "City", 800);
         this.city_model = model;
-        // city_env = new CityEnvironment();
         setVisible(true);
         repaint();
     }
 
     public void setEnv(CityEnvironment env) {
         this.city_env = env;
-        // TODO: set the index of the city type
         if (city_env != null) {
-            // Get the current city type from the environment (assuming a getter method exists)
             int currentCityType = city_env.getCityType();
             System.out.println("Current city type: " + currentCityType);
-            // Update the selected index (0-based indexing)
-            // city_selection.setSelectedIndex(currentCityType - 1);
         }
     }
 
@@ -63,33 +60,7 @@ public class CityView extends GridWorldView {
     }
 
 
-//    @Override
-//    public void initComponents(int width) {
-//        super.initComponents(width);
-//        JPanel p = new JPanel();
-//        p.setLayout(new FlowLayout());
-//        p.add(new JLabel("City:"));
-//        city_selection = new JComboBox();
-//        city_selection.addItem("City 1");
-//        city_selection.addItem("City 2");
-//        city_selection.addItem("City 3");
-//        city_selection.addItem("City 4");
-//        city_selection.addItemListener(new ItemListener() {
-//            public void itemStateChanged(ItemEvent e) {
-//                if (e.getStateChange() == ItemEvent.SELECTED && city_env != null) {
-//                    // Adjust the index to match the city type (1-indexed)
-//                    city_env.initCity(city_selection.getSelectedIndex() + 1);
-//                    //city_selection.setSelectedIndex(city_selection.getSelectedIndex());
-//                    //city_selection.repaint();
-//                    System.out.println("City selected CITYVIEW: " + (city_selection.getSelectedIndex() + 1));
-//                    System.out.println("City selected CITYVIEW INDEX: " + (city_selection.getSelectedIndex()));
-//
-//                }
-//            }
-//        });
-//        p.add(city_selection);
-//        getContentPane().add(BorderLayout.NORTH, p);
-//    }
+// RadioButtons for city selection
 @Override
 public void initComponents(int width) {
     super.initComponents(width);
@@ -97,26 +68,25 @@ public void initComponents(int width) {
     p.setLayout(new FlowLayout());
     p.add(new JLabel("City:"));
 
-    // Create a ButtonGroup to group the radio buttons
+    // ButtonGroup
     ButtonGroup cityGroup = new ButtonGroup();
 
-    // Create radio buttons for each city
+    // RadioButton for each city
     JRadioButton city1Button = new JRadioButton("City 1");
     JRadioButton city2Button = new JRadioButton("City 2");
     JRadioButton city3Button = new JRadioButton("City 3");
     JRadioButton city4Button = new JRadioButton("City 4");
 
-    // Add the radio buttons to the ButtonGroup
     cityGroup.add(city1Button);
     cityGroup.add(city2Button);
     cityGroup.add(city3Button);
     cityGroup.add(city4Button);
 
-    // Add an ActionListener to the radio buttons
+    // ActionListener to the radio buttons
     ActionListener actionListener = new ActionListener() {
         public void actionPerformed(ActionEvent e) {
             JRadioButton source = (JRadioButton) e.getSource();
-            System.out.println("Action performed on: " + source.getText()); // Debug print statement
+
             int index = -1;
             if (source == city1Button) {
                 index = 1;
@@ -134,21 +104,18 @@ public void initComponents(int width) {
         }
     };
 
-    // Assign the ActionListener to the radio buttons
     city1Button.addActionListener(actionListener);
     city2Button.addActionListener(actionListener);
     city3Button.addActionListener(actionListener);
     city4Button.addActionListener(actionListener);
 
-    // Add the radio buttons to the panel
+    // Add RadioButtons to the panel
     p.add(city1Button);
     p.add(city2Button);
     p.add(city3Button);
     p.add(city4Button);
 
-    // Set a default selection if desired
     city1Button.setSelected(true);
-
     getContentPane().add(BorderLayout.NORTH, p);
 }
 
