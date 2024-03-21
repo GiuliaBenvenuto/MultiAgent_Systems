@@ -4,19 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="00d8691c-ffb7-48ea-91eb-b8f0e1060a88" name="Changes" comment="Update">
+    <list default="true" id="00d8691c-ffb7-48ea-91eb-b8f0e1060a88" name="Changes" comment="Comments on CityView Class">
       <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/xd.lck" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/xd.lck" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/.gradle/8.0.2/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/.gradle/8.0.2/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/.gradle/8.0.2/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/.gradle/8.0.2/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/.gradle/8.0.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/.gradle/8.0.2/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/.gradle/8.0.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/.gradle/8.0.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/.gradle/8.0.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/.gradle/8.0.2/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/.gradle/8.0.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/.gradle/8.0.2/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/.gradle/8.0.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/.gradle/8.0.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/criminals_and_agents/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/city/CityEnvironment.class" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/city/CityEnvironment.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/city/CityModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/city/CityModel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/city/CityView.class" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/city/CityView.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/city/CityEnvironment.java" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/city/CityEnvironment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/city/CityModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/city/CityModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/city/CityView.java" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/city/CityView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -94,6 +99,8 @@
       <workItem from="1710938957630" duration="6620000" />
       <workItem from="1710946391587" duration="187000" />
       <workItem from="1711010391331" duration="503000" />
+      <workItem from="1711010897186" duration="4594000" />
+      <workItem from="1711023311878" duration="658000" />
     </task>
     <task id="LOCAL-00001" summary="Commit from Intellij">
       <option name="closed" value="true" />
@@ -151,7 +158,23 @@
       <option name="project" value="LOCAL" />
       <updated>1710946564175</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Radio button for city selection">
+      <option name="closed" value="true" />
+      <created>1711013542109</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1711013542109</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Comments on CityView Class">
+      <option name="closed" value="true" />
+      <created>1711015417151</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1711015417151</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -181,7 +204,9 @@
     <MESSAGE value="Draw the jail" />
     <MESSAGE value="Dropdown list of cities to change scenario" />
     <MESSAGE value="Update" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update" />
+    <MESSAGE value="Radio button for city selection" />
+    <MESSAGE value="Comments on CityView Class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Comments on CityView Class" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

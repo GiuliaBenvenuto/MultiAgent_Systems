@@ -59,6 +59,16 @@ public class CityView extends GridWorldView {
         repaint();
     }
 
+//    public void clearObstacles() {
+//        for (int i = 0; i < city_model.getWidth(); i++) {
+//            for (int j = 0; j < city_model.getHeight(); j++) {
+//                if (city_model.hasObject(CityModel.OBSTACLE, i, j)) {
+//                    city_model.remove(CityModel.OBSTACLE, i, j);
+//                }
+//            }
+//        }
+//    }
+
 
 // RadioButtons for city selection
 @Override

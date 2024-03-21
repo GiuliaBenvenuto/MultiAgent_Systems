@@ -19,8 +19,6 @@ public class CityEnvironment extends jason.environment.Environment {
     public void init(String[] args) {   
 
         initCity(Integer.parseInt(args[0]));
-        // print
-        logger.info("City type ARGS: " + Integer.parseInt(args[0]));
     }
 
     public int getCityType() {
@@ -28,10 +26,17 @@ public class CityEnvironment extends jason.environment.Environment {
         return cityType;
     }
 
+
+
     public void initCity(int x) {
         cityType = x;
         logger.info("Initializing city type  INITCITY" + x);
         try {
+            // Clear obstacles if city_model is already initialized
+            if (city_model != null) {
+                city_model.clearObstacles();
+            }
+
             switch (x) {
             case 1:
                 city_model = CityModel.city1();
@@ -54,13 +59,12 @@ public class CityEnvironment extends jason.environment.Environment {
                 return;
             }
 
-            //city_view = new CityView(city_model);
-            //city_view.setEnv(this);
-
             if(city_view == null) {
                 city_view = new CityView(city_model);
                 city_view.setEnv(this);
             } else {
+                // Before to update the view clear the obstacles
+                // city_view.clearObstacles();
                 city_view.updateView(city_model);
             }
         } catch (Exception e) {
