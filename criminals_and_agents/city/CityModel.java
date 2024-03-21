@@ -12,6 +12,8 @@ public class CityModel extends GridWorldModel {
     private Logger logger = Logger.getLogger("criminals_and_agents.mas2j." + CityModel.class.getName());
 
     public static final int JAIL = 128;
+    public static final int CLUE_AGENT = 256;
+
     protected static CityModel city_model = null;
     Location jail;
 
@@ -34,6 +36,11 @@ public class CityModel extends GridWorldModel {
 
     public Location getJail() {
         return jail;
+    }
+
+    // Clear jail
+    public void clearJail() {
+        remove(JAIL, jail.x, jail.y);
     }
 
     public void clearObstacles() {
@@ -59,18 +66,28 @@ public class CityModel extends GridWorldModel {
         }
     }
 
-    // Clear jail
-    public void clearJail() {
-        remove(JAIL, jail.x, jail.y);
+    private boolean isInGrid(int x, int y) {
+        return x >= 0 && x < 40 && y >= 0 && y < 40;
     }
 
+    public boolean setClueAgentPos(int agId, int x, int y) {
+        if (isInGrid(x, y)) {
+            setAgPos(agId, x, y);
+            add(CLUE_AGENT, x, y); // Mark the cell with the CLUE_AGENT identifier
+            return true;
+        }
+        return false;
+    }
 
 
     //  --------------- City 1 ---------------
     static CityModel city1() throws Exception {
-        CityModel city_model = CityModel.create(40, 40, 4);
+        CityModel city_model = CityModel.create(40, 40, 5);
         // ----- Set jail location -----
         city_model.setJail(35, 35);
+
+        // ----- Set clues location -----
+        city_model.setClueAgentPos(4, 13, 10);
 
         // ----- Set civilians location -----
         city_model.setAgPos(0, 1, 1);

@@ -42,6 +42,7 @@ public class CityView extends GridWorldView {
     public CityView(CityModel model) {
         super(model, "City", 800);
         this.city_model = model;
+
         setVisible(true);
         repaint();
     }
@@ -161,6 +162,17 @@ public class CityView extends GridWorldView {
     public void drawObstacle(Graphics g, int x, int y) {
         g.setColor(Color.GRAY);
         g.fillRect(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
+    }
+
+    @Override
+    public void drawAgent(Graphics g, int x, int y, Color c, int id) {
+        super.drawAgent(g, x, y, c, id);
+        if (city_model.hasObject(city_model.CLUE_AGENT, x, y)) {
+            // Draw something specific for clue agents
+            // For example, draw a blue circle inside the agent's cell
+            g.setColor(Color.GREEN);
+            g.fillOval(x * cellSizeW + cellSizeW / 4, y * cellSizeH + cellSizeH / 4, cellSizeW / 2, cellSizeH / 2);
+        }
     }
 
 }
