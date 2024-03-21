@@ -11,7 +11,7 @@ public class CityModel extends GridWorldModel {
 
     private Logger logger = Logger.getLogger("criminals_and_agents.mas2j." + CityModel.class.getName());
 
-    public static final int JAIL = 0;
+    public static final int JAIL = 10;
     protected static CityModel city_model = null;
     Location jail;
 
@@ -25,7 +25,8 @@ public class CityModel extends GridWorldModel {
 
     // Set the jail location
     private void setJail(int i, int j) {
-        this.jail = new Location(i, j);
+        jail = new Location(i, j);
+        data[i][j] = JAIL;
         // Print location
         logger.info("Jail location: " + jail);
 
@@ -46,6 +47,18 @@ public class CityModel extends GridWorldModel {
         }
     }
 
+    // Clear agents from the grid
+    public void clearAgents() {
+        for (int i = 0; i < 40; i++) {
+            for (int j = 0; j < 40; j++) {
+                if (hasObject(AGENT, i, j)) {
+                    System.out.println("Removing agent at " + i + ", " + j);
+                    remove(AGENT, i, j);
+                }
+            }
+        }
+    }
+
 
 
     //  --------------- City 1 ---------------
@@ -53,6 +66,7 @@ public class CityModel extends GridWorldModel {
         CityModel city_model = CityModel.create(40, 40, 4);
         // ----- Set jail location -----
         city_model.setJail(15, 15);
+
         // ----- Set civilians location -----
         city_model.setAgPos(0, 1, 1);
         city_model.setAgPos(1, 1, 29);

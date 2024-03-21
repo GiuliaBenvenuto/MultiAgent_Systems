@@ -35,6 +35,7 @@ public class CityEnvironment extends jason.environment.Environment {
             // Clear obstacles if city_model is already initialized
             if (city_model != null) {
                 city_model.clearObstacles();
+                city_model.clearAgents();
             }
 
             switch (x) {
@@ -66,6 +67,7 @@ public class CityEnvironment extends jason.environment.Environment {
                 // Before to update the view clear the obstacles
                 // city_view.clearObstacles();
                 city_view.updateView(city_model);
+                city_view.repaint();
             }
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Error initializing city: " + e.getMessage(), e);

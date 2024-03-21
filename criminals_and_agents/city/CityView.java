@@ -59,89 +59,107 @@ public class CityView extends GridWorldView {
         repaint();
     }
 
-//    public void clearObstacles() {
-//        for (int i = 0; i < city_model.getWidth(); i++) {
-//            for (int j = 0; j < city_model.getHeight(); j++) {
-//                if (city_model.hasObject(CityModel.OBSTACLE, i, j)) {
-//                    city_model.remove(CityModel.OBSTACLE, i, j);
-//                }
-//            }
+
+    // RadioButtons for city selection
+    @Override
+    public void initComponents(int width) {
+        super.initComponents(width);
+        JPanel p = new JPanel();
+        p.setLayout(new FlowLayout());
+        p.add(new JLabel("City:"));
+
+        // ButtonGroup
+        ButtonGroup cityGroup = new ButtonGroup();
+
+        // RadioButton for each city
+        JRadioButton city1Button = new JRadioButton("City 1");
+        JRadioButton city2Button = new JRadioButton("City 2");
+        JRadioButton city3Button = new JRadioButton("City 3");
+        JRadioButton city4Button = new JRadioButton("City 4");
+
+        cityGroup.add(city1Button);
+        cityGroup.add(city2Button);
+        cityGroup.add(city3Button);
+        cityGroup.add(city4Button);
+
+        // ActionListener to the radio buttons
+        ActionListener actionListener = new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JRadioButton source = (JRadioButton) e.getSource();
+
+                int index = -1;
+                if (source == city1Button) {
+                    index = 1;
+                } else if (source == city2Button) {
+                    index = 2;
+                } else if (source == city3Button) {
+                    index = 3;
+                } else if (source == city4Button) {
+                    index = 4;
+                }
+                if (index != -1 && city_env != null) {
+                    city_env.initCity(index);
+                    System.out.println("City selected CITYVIEW: " + index);
+                }
+            }
+        };
+
+        city1Button.addActionListener(actionListener);
+        city2Button.addActionListener(actionListener);
+        city3Button.addActionListener(actionListener);
+        city4Button.addActionListener(actionListener);
+
+        // Add RadioButtons to the panel
+        p.add(city1Button);
+        p.add(city2Button);
+        p.add(city3Button);
+        p.add(city4Button);
+
+        city1Button.setSelected(true);
+        getContentPane().add(BorderLayout.NORTH, p);
+    }
+
+
+
+//    @Override
+//    public void draw(Graphics g, int x, int y, int object) {
+//        super.draw(g, x, y, object);
+//
+//        // Debugging output
+//        System.out.println("Drawing cell at (" + x + ", " + y + "), Jail at (" + city_model.getJail().x + ", " + city_model.getJail().y + ")");
+//
+//        if(city_model.getJail().x == x && city_model.getJail().y == y) {
+//            //print
+//            System.out.println("Drawing jail");
+//            drawJail(g, x, y);
+//        } else if (object == CityModel.OBSTACLE) {
+//            drawObstacle(g, x, y);
 //        }
 //    }
 
-
-// RadioButtons for city selection
-@Override
-public void initComponents(int width) {
-    super.initComponents(width);
-    JPanel p = new JPanel();
-    p.setLayout(new FlowLayout());
-    p.add(new JLabel("City:"));
-
-    // ButtonGroup
-    ButtonGroup cityGroup = new ButtonGroup();
-
-    // RadioButton for each city
-    JRadioButton city1Button = new JRadioButton("City 1");
-    JRadioButton city2Button = new JRadioButton("City 2");
-    JRadioButton city3Button = new JRadioButton("City 3");
-    JRadioButton city4Button = new JRadioButton("City 4");
-
-    cityGroup.add(city1Button);
-    cityGroup.add(city2Button);
-    cityGroup.add(city3Button);
-    cityGroup.add(city4Button);
-
-    // ActionListener to the radio buttons
-    ActionListener actionListener = new ActionListener() {
-        public void actionPerformed(ActionEvent e) {
-            JRadioButton source = (JRadioButton) e.getSource();
-
-            int index = -1;
-            if (source == city1Button) {
-                index = 1;
-            } else if (source == city2Button) {
-                index = 2;
-            } else if (source == city3Button) {
-                index = 3;
-            } else if (source == city4Button) {
-                index = 4;
-            }
-            if (index != -1 && city_env != null) {
-                city_env.initCity(index);
-                System.out.println("City selected CITYVIEW: " + index);
-            }
-        }
-    };
-
-    city1Button.addActionListener(actionListener);
-    city2Button.addActionListener(actionListener);
-    city3Button.addActionListener(actionListener);
-    city4Button.addActionListener(actionListener);
-
-    // Add RadioButtons to the panel
-    p.add(city1Button);
-    p.add(city2Button);
-    p.add(city3Button);
-    p.add(city4Button);
-
-    city1Button.setSelected(true);
-    getContentPane().add(BorderLayout.NORTH, p);
-}
-
-
-
     @Override
     public void draw(Graphics g, int x, int y, int object) {
+        super.draw(g, x, y, object);
+        System.out.println("Drawing");
         switch (object) {
-        case CityModel.JAIL:
-            drawJail(g, x, y);
-            break;
+            case CityModel.OBSTACLE:
+                System.out.println("Draw obstacle");
+                drawObstacle(g, x, y);
+                break;
+            case CityModel.JAIL:
+                System.out.println("Draw jail");
+                drawJail(g, x, y);
+                break;
         }
     }
 
     public void drawJail(Graphics g, int x, int y) {
-        g.setColor(Color.RED);
+        g.setColor(Color.red);
+        g.fillRect(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
+    }
+
+    public void drawObstacle(Graphics g, int x, int y) {
+        g.setColor(Color.GRAY);
         g.fillRect(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
     }
 
