@@ -36,6 +36,7 @@ public class CityEnvironment extends jason.environment.Environment {
             if (city_model != null) {
                 city_model.clearObstacles();
                 city_model.clearAgents();
+                city_model.clearJail();
             }
 
             switch (x) {
