@@ -13,6 +13,9 @@ public class CityModel extends GridWorldModel {
 
     public static final int JAIL = 128;
     public static final int CLUE_AGENT = 256;
+    public static final int POLICE_AGENT = 512;
+    public static final int CIVILIAN_AGENT = 1024;
+    public static final int CRIMINAL_AGENT = 2048;
 
     protected static CityModel city_model = null;
     Location jail;
@@ -70,10 +73,41 @@ public class CityModel extends GridWorldModel {
         return x >= 0 && x < 40 && y >= 0 && y < 40;
     }
 
+    // Set position of the clue agent
     public boolean setClueAgentPos(int agId, int x, int y) {
-        if (isInGrid(x, y)) {
+        if (isInGrid(x, y) && !hasObject(OBSTACLE, x, y) && !hasObject(JAIL, x, y) && !hasObject(AGENT, x, y)) {
             setAgPos(agId, x, y);
             add(CLUE_AGENT, x, y); // Mark the cell with the CLUE_AGENT identifier
+            return true;
+        }
+        return false;
+    }
+
+    // Set position of the police agent
+    public boolean setPoliceAgentPos(int agId, int x, int y) {
+        if (isInGrid(x, y) && !hasObject(OBSTACLE, x, y) && !hasObject(JAIL, x, y) && !hasObject(AGENT, x, y)) {
+            setAgPos(agId, x, y);
+            add(POLICE_AGENT, x, y);  // Mark the cell with the POLICE_AGENT identifier
+            return true;
+        }
+        return false;
+    }
+
+    // Set position of the civilian agent
+    public boolean setCivilianAgentPos(int agId, int x, int y) {
+        if (isInGrid(x, y) && !hasObject(OBSTACLE, x, y) && !hasObject(JAIL, x, y) && !hasObject(AGENT, x, y)) {
+            setAgPos(agId, x, y);
+            add(CIVILIAN_AGENT, x, y);  // Mark the cell with the POLICE_AGENT identifier
+            return true;
+        }
+        return false;
+    }
+
+    // Set position of the criminal agent
+    public boolean setCriminalAgentPos(int agId, int x, int y) {
+        if (isInGrid(x, y) && !hasObject(OBSTACLE, x, y) && !hasObject(JAIL, x, y) && !hasObject(AGENT, x, y)) {
+            setAgPos(agId, x, y);
+            add(CRIMINAL_AGENT, x, y);  // Mark the cell with the POLICE_AGENT identifier
             return true;
         }
         return false;
@@ -82,7 +116,7 @@ public class CityModel extends GridWorldModel {
 
     //  --------------- City 1 ---------------
     static CityModel city1() throws Exception {
-        CityModel city_model = CityModel.create(40, 40, 5);
+        CityModel city_model = CityModel.create(40, 40, 7);
         // ----- Set jail location -----
         city_model.setJail(35, 35);
 
@@ -90,10 +124,21 @@ public class CityModel extends GridWorldModel {
         city_model.setClueAgentPos(4, 13, 10);
 
         // ----- Set civilians location -----
-        city_model.setAgPos(0, 1, 1);
-        city_model.setAgPos(1, 1, 29);
-        city_model.setAgPos(2, 29, 1);
-        city_model.setAgPos(3, 29, 29);
+        city_model.setCivilianAgentPos(0, 1, 1);
+        city_model.setCivilianAgentPos(1, 1, 29);
+        city_model.setCivilianAgentPos(2, 29, 1);
+        city_model.setCivilianAgentPos(3, 29, 29);
+
+//        city_model.setAgPos(0, 1, 1);
+//        city_model.setAgPos(1, 1, 29);
+//        city_model.setAgPos(2, 29, 1);
+//        city_model.setAgPos(3, 29, 29);
+
+        // ----- Set police location -----
+        city_model.setPoliceAgentPos(5, 10, 20);
+
+        // ----- Set criminals location -----
+        city_model.setCriminalAgentPos(6, 10, 10);
 
         // ----- Set walls -----
         for (int i = 4; i <= 11; i++) {

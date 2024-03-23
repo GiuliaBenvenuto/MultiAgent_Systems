@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="00d8691c-ffb7-48ea-91eb-b8f0e1060a88" name="Changes" comment="Creation of the cities">
+    <list default="true" id="00d8691c-ffb7-48ea-91eb-b8f0e1060a88" name="Changes" comment="Clue agent added">
+      <change beforePath="$PROJECT_DIR$/.idea/MultiAgent_Systems.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MultiAgent_Systems.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/xd.lck" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/xd.lck" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/.gradle/8.0.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/.gradle/8.0.2/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/.gradle/8.0.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/.gradle/8.0.2/executionHistory/executionHistory.lock" afterDir="false" />
@@ -12,11 +15,19 @@
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/.gradle/8.0.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/.gradle/8.0.2/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/.gradle/8.0.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/.gradle/8.0.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/city/CityEnvironment.class" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/city/CityEnvironment.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/bin/default/city/CityEnvironment.class" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/bin/default/city/CityEnvironment.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/bin/default/city/CityModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/bin/default/city/CityModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/bin/default/city/CityView.class" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/bin/default/city/CityView.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/city/CityModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/city/CityModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/city/CityView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/city/CityView$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/city/CityView.class" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/city/CityView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/tmp/compileJava/compileTransaction/stash-dir/CityEnvironment.class.uniqueId1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/tmp/compileJava/compileTransaction/stash-dir/CityModel.class.uniqueId0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/tmp/compileJava/compileTransaction/stash-dir/CityView$1.class.uniqueId3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/tmp/compileJava/compileTransaction/stash-dir/CityView.class.uniqueId2" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/criminals_and_agents/city/CityEnvironment.java" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/city/CityEnvironment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/city/CityModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/city/CityModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/city/CityView.java" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/city/CityView.java" afterDir="false" />
     </list>
@@ -27,6 +38,20 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "GiuliaBenvenuto"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="b12e5361-0ac5-47c7-82ad-50b2d755fd27" />
+        <option name="url" value="https://github.com/GiuliaBenvenuto/MultiAgent_Systems.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -71,6 +96,14 @@
       <ReportDescription localRun="true" path="/private/var/folders/dj/11z4t1pj5fdg30g3y63y9gqw0000gn/T/qodana_output/qodana.sarif.json" reportGuid="52dcd1ea-e3d9-4583-a603-67b19dd8c2b0" reportId="MultiAgent_Systems/qodana/2024-03-19" />
     </option>
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/criminals_and_agents/images" />
+      <recent name="$PROJECT_DIR$/criminals_and_agents/city" />
+      <recent name="$PROJECT_DIR$/criminals_and_agents" />
+      <recent name="$PROJECT_DIR$/criminals_and_agents/city/images" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -97,6 +130,8 @@
       <workItem from="1711010391331" duration="503000" />
       <workItem from="1711010897186" duration="4594000" />
       <workItem from="1711023311878" duration="2499000" />
+      <workItem from="1711025815475" duration="5585000" />
+      <workItem from="1711209617530" duration="3988000" />
     </task>
     <task id="LOCAL-00001" summary="Commit from Intellij">
       <option name="closed" value="true" />
@@ -178,7 +213,31 @@
       <option name="project" value="LOCAL" />
       <updated>1711024194225</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Clearing agents when city changes">
+      <option name="closed" value="true" />
+      <created>1711029332149</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1711029332149</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Red jail visible on the grid">
+      <option name="closed" value="true" />
+      <created>1711029768834</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1711029768834</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Clue agent added">
+      <option name="closed" value="true" />
+      <created>1711032294113</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1711032294113</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -211,7 +270,10 @@
     <MESSAGE value="Radio button for city selection" />
     <MESSAGE value="Comments on CityView Class" />
     <MESSAGE value="Creation of the cities" />
-    <option name="LAST_COMMIT_MESSAGE" value="Creation of the cities" />
+    <MESSAGE value="Clearing agents when city changes" />
+    <MESSAGE value="Red jail visible on the grid" />
+    <MESSAGE value="Clue agent added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Clue agent added" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -166,13 +166,34 @@ public class CityView extends GridWorldView {
 
     @Override
     public void drawAgent(Graphics g, int x, int y, Color c, int id) {
-        super.drawAgent(g, x, y, c, id);
+        // Remove default drawing of agents
+        g.setColor(getBackground());
+        g.fillRect(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
+
+        // Color of agents based on their type
         if (city_model.hasObject(city_model.CLUE_AGENT, x, y)) {
-            // Draw something specific for clue agents
-            // For example, draw a blue circle inside the agent's cell
+            // CLUE_AGENT
             g.setColor(Color.GREEN);
-            g.fillOval(x * cellSizeW + cellSizeW / 4, y * cellSizeH + cellSizeH / 4, cellSizeW / 2, cellSizeH / 2);
+            g.fillOval(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
+        } else if (city_model.hasObject(city_model.POLICE_AGENT, x, y)) {
+            // POLICE_AGENT
+            g.setColor(Color.ORANGE);
+            g.fillOval(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
+        } else if (city_model.hasObject(city_model.CIVILIAN_AGENT, x, y)) {
+            // CRIMINAL_AGENT
+            g.setColor(Color.BLUE);
+            g.fillOval(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
+        } else if (city_model.hasObject(city_model.CRIMINAL_AGENT, x, y)) {
+            // CRIMINAL_AGENT
+            g.setColor(Color.CYAN);
+            g.fillOval(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
+        }
+        else {
+            // Default agent
+            g.setColor(c);
+            g.fillOval(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
         }
     }
+
 
 }
