@@ -27,7 +27,6 @@ public class CityEnvironment extends jason.environment.Environment {
     }
 
 
-
     public void initCity(int x) {
         cityType = x;
         logger.info("Initializing city type  INITCITY" + x);

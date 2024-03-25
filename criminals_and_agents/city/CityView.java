@@ -29,6 +29,11 @@ import java.awt.event.ActionEvent;
 
 import city.CityEnvironment;
 
+// Icon
+import javax.swing.ImageIcon;
+import java.awt.Image;
+import java.net.URL;
+
 public class CityView extends GridWorldView {
 
     CityEnvironment city_env = null;
@@ -39,9 +44,14 @@ public class CityView extends GridWorldView {
     private JRadioButton city1Button, city2Button, city3Button, city4Button;
     private ButtonGroup cityGroup;
 
+    private Image policeImage;
+
     public CityView(CityModel model) {
         super(model, "City", 800);
         this.city_model = model;
+
+        ImageIcon icon = new ImageIcon("images/badge.png");
+        policeImage = icon.getImage();
 
         setVisible(true);
         repaint();
@@ -177,10 +187,11 @@ public class CityView extends GridWorldView {
             g.fillOval(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
         } else if (city_model.hasObject(city_model.POLICE_AGENT, x, y)) {
             // POLICE_AGENT
-            g.setColor(Color.ORANGE);
-            g.fillOval(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
+            //g.setColor(Color.ORANGE);
+            //g.fillOval(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
+            g.drawImage(policeImage, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
         } else if (city_model.hasObject(city_model.CIVILIAN_AGENT, x, y)) {
-            // CRIMINAL_AGENT
+            // CIVILIANL_AGENT
             g.setColor(Color.BLUE);
             g.fillOval(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
         } else if (city_model.hasObject(city_model.CRIMINAL_AGENT, x, y)) {

@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="00d8691c-ffb7-48ea-91eb-b8f0e1060a88" name="Changes" comment="Clue agent added">
-      <change beforePath="$PROJECT_DIR$/.idea/MultiAgent_Systems.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MultiAgent_Systems.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/xd.lck" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/xd.lck" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/.gradle/8.0.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/.gradle/8.0.2/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/.gradle/8.0.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/.gradle/8.0.2/executionHistory/executionHistory.lock" afterDir="false" />
@@ -15,20 +13,15 @@
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/.gradle/8.0.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/.gradle/8.0.2/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/.gradle/8.0.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/.gradle/8.0.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/criminals_and_agents/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/criminals_and_agents/bin/default/city/CityEnvironment.class" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/bin/default/city/CityEnvironment.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/criminals_and_agents/bin/default/city/CityModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/bin/default/city/CityModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/criminals_and_agents/bin/default/city/CityView.class" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/bin/default/city/CityView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/city/CityModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/city/CityModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/city/CityEnvironment.class" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/city/CityEnvironment.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/city/CityView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/city/CityView$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/city/CityView.class" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/city/CityView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/tmp/compileJava/compileTransaction/stash-dir/CityEnvironment.class.uniqueId1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/tmp/compileJava/compileTransaction/stash-dir/CityModel.class.uniqueId0" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/tmp/compileJava/compileTransaction/stash-dir/CityView$1.class.uniqueId3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/tmp/compileJava/compileTransaction/stash-dir/CityView.class.uniqueId2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/tmp/compileJava/compileTransaction/stash-dir/CityEnvironment.class.uniqueId0" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/build/tmp/compileJava/compileTransaction/stash-dir/CityEnvironment.class.uniqueId0" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/tmp/compileJava/compileTransaction/stash-dir/CityView$1.class.uniqueId2" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/build/tmp/compileJava/compileTransaction/stash-dir/CityView$1.class.uniqueId2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/tmp/compileJava/compileTransaction/stash-dir/CityView.class.uniqueId1" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/build/tmp/compileJava/compileTransaction/stash-dir/CityView.class.uniqueId1" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/criminals_and_agents/city/CityModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/city/CityModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/city/CityEnvironment.java" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/city/CityEnvironment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/city/CityView.java" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/city/CityView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,12 +32,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "GiuliaBenvenuto"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;GiuliaBenvenuto&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -70,27 +63,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/giuliabenvenuto/Documents/GitHub/MultiAgent_Systems&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.ide.FileNotInSourceRootChecker.no.check": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/giuliabenvenuto/Documents/GitHub/MultiAgent_Systems",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="QodanaReportsService">
     <option name="descriptions">
       <ReportDescription localRun="true" path="/private/var/folders/dj/11z4t1pj5fdg30g3y63y9gqw0000gn/T/qodana_output/qodana.sarif.json" reportGuid="52dcd1ea-e3d9-4583-a603-67b19dd8c2b0" reportId="MultiAgent_Systems/qodana/2024-03-19" />
@@ -131,7 +125,8 @@
       <workItem from="1711010897186" duration="4594000" />
       <workItem from="1711023311878" duration="2499000" />
       <workItem from="1711025815475" duration="5585000" />
-      <workItem from="1711209617530" duration="3988000" />
+      <workItem from="1711209617530" duration="4280000" />
+      <workItem from="1711357218736" duration="1271000" />
     </task>
     <task id="LOCAL-00001" summary="Commit from Intellij">
       <option name="closed" value="true" />
