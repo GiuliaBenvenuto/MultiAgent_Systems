@@ -44,14 +44,33 @@ public class CityView extends GridWorldView {
     private JRadioButton city1Button, city2Button, city3Button, city4Button;
     private ButtonGroup cityGroup;
 
+    // Icons for agents
+    ImageIcon icon;
     private Image policeImage;
+    private Image civilianImage;
+    private Image clueImage;
+    private Image criminalImage;
+    private Image jailImage;
+    private Image obstacleImage;
+
 
     public CityView(CityModel model) {
-        super(model, "City", 800);
+        super(model, "City", 900);
         this.city_model = model;
 
-        ImageIcon icon = new ImageIcon("images/badge.png");
+        icon = new ImageIcon("images/police.png");
         policeImage = icon.getImage();
+        icon = new ImageIcon("images/man.png");
+        civilianImage = icon.getImage();
+        icon = new ImageIcon("images/green_clue.png");
+        clueImage = icon.getImage();
+        icon = new ImageIcon("images/criminal.png");
+        criminalImage = icon.getImage();
+        icon = new ImageIcon("images/jail.png");
+        jailImage = icon.getImage();
+        icon = new ImageIcon("images/brick-wall.png");
+        obstacleImage = icon.getImage();
+
 
         setVisible(true);
         repaint();
@@ -165,13 +184,15 @@ public class CityView extends GridWorldView {
     }
 
     public void drawJail(Graphics g, int x, int y) {
-        g.setColor(Color.red);
-        g.fillRect(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
+        //g.setColor(Color.red);
+        //g.fillRect(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
+        g.drawImage(jailImage, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
     }
 
     public void drawObstacle(Graphics g, int x, int y) {
-        g.setColor(Color.GRAY);
-        g.fillRect(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
+        //g.setColor(Color.GRAY);
+        //g.fillRect(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
+        g.drawImage(obstacleImage, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
     }
 
     @Override
@@ -183,8 +204,9 @@ public class CityView extends GridWorldView {
         // Color of agents based on their type
         if (city_model.hasObject(city_model.CLUE_AGENT, x, y)) {
             // CLUE_AGENT
-            g.setColor(Color.GREEN);
-            g.fillOval(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
+            //g.setColor(Color.GREEN);
+            //g.fillOval(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
+            g.drawImage(clueImage, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
         } else if (city_model.hasObject(city_model.POLICE_AGENT, x, y)) {
             // POLICE_AGENT
             //g.setColor(Color.ORANGE);
@@ -192,12 +214,14 @@ public class CityView extends GridWorldView {
             g.drawImage(policeImage, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
         } else if (city_model.hasObject(city_model.CIVILIAN_AGENT, x, y)) {
             // CIVILIANL_AGENT
-            g.setColor(Color.BLUE);
-            g.fillOval(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
+            //g.setColor(Color.BLUE);
+            //g.fillOval(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
+            g.drawImage(civilianImage, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
         } else if (city_model.hasObject(city_model.CRIMINAL_AGENT, x, y)) {
             // CRIMINAL_AGENT
-            g.setColor(Color.CYAN);
-            g.fillOval(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
+            //g.setColor(Color.CYAN);
+            //g.fillOval(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
+            g.drawImage(criminalImage, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
         }
         else {
             // Default agent
