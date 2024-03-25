@@ -2,10 +2,8 @@
 
 /* Initial beliefs and rules */
 
-/* Initial goals */
-
 !start.
 
 /* Plans */
 
-+!start : true <- .print("hello world.").
++!start : true <- .print("I'm a criminal.").

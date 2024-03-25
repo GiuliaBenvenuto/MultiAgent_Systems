@@ -3,9 +3,9 @@
 /* Initial beliefs and rules */
 
 /* Initial goals */
-
 !start.
 
-/* Plans */
 
-+!start : true <- .print("hello world.").
+/* Plans */
++!start : true <- .print("I'm a civilian.").
+

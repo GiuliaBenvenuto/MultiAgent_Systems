@@ -151,26 +151,10 @@ public class CityView extends GridWorldView {
 
 
 
-//    @Override
-//    public void draw(Graphics g, int x, int y, int object) {
-//        super.draw(g, x, y, object);
-//
-//        // Debugging output
-//        System.out.println("Drawing cell at (" + x + ", " + y + "), Jail at (" + city_model.getJail().x + ", " + city_model.getJail().y + ")");
-//
-//        if(city_model.getJail().x == x && city_model.getJail().y == y) {
-//            //print
-//            System.out.println("Drawing jail");
-//            drawJail(g, x, y);
-//        } else if (object == CityModel.OBSTACLE) {
-//            drawObstacle(g, x, y);
-//        }
-//    }
-
     @Override
     public void draw(Graphics g, int x, int y, int object) {
         super.draw(g, x, y, object);
-        System.out.println("Drawing");
+        //System.out.println("Drawing");
         switch (object) {
             case CityModel.OBSTACLE:
                 System.out.println("Draw obstacle");

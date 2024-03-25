@@ -116,29 +116,38 @@ public class CityModel extends GridWorldModel {
 
     //  --------------- City 1 ---------------
     static CityModel city1() throws Exception {
-        CityModel city_model = CityModel.create(40, 40, 7);
+        CityModel city_model = CityModel.create(40, 40, 13);
         // ----- Set jail location -----
         city_model.setJail(35, 35);
 
-        // ----- Set clues location -----
-        city_model.setClueAgentPos(4, 13, 10);
+        // ----- Set police location -----
+        // set three agents near the jail position
+        city_model.setPoliceAgentPos(0, 35, 34);
+        city_model.setPoliceAgentPos(1, 34, 35);
+        city_model.setPoliceAgentPos(2, 34, 34);
 
         // ----- Set civilians location -----
-        city_model.setCivilianAgentPos(0, 1, 1);
-        city_model.setCivilianAgentPos(1, 1, 29);
-        city_model.setCivilianAgentPos(2, 29, 1);
-        city_model.setCivilianAgentPos(3, 29, 29);
+        city_model.setCivilianAgentPos(3, 1, 1);
+        city_model.setCivilianAgentPos(4, 1, 29);
+        city_model.setCivilianAgentPos(5, 29, 1);
+        city_model.setCivilianAgentPos(6, 29, 29);
+
+        // ----- Set criminals location -----
+        city_model.setCriminalAgentPos(7, 10, 10);
+        city_model.setCriminalAgentPos(8, 10, 20);
+
+        // ----- Set clues location -----
+        // four clues outside walls
+        city_model.setClueAgentPos(9, 5, 5);
+        city_model.setClueAgentPos(10, 5, 35);
+        city_model.setClueAgentPos(11, 35, 5);
+        city_model.setClueAgentPos(12, 35, 35);
 
 //        city_model.setAgPos(0, 1, 1);
 //        city_model.setAgPos(1, 1, 29);
 //        city_model.setAgPos(2, 29, 1);
 //        city_model.setAgPos(3, 29, 29);
 
-        // ----- Set police location -----
-        city_model.setPoliceAgentPos(5, 10, 20);
-
-        // ----- Set criminals location -----
-        city_model.setCriminalAgentPos(6, 10, 10);
 
         // ----- Set walls -----
         for (int i = 4; i <= 11; i++) {
