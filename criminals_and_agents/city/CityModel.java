@@ -31,6 +31,10 @@ public class CityModel extends GridWorldModel {
         return city_model;
     }
 
+    public CityModel getCityModel() {
+        return city_model;
+    }
+
     // Set the jail location
     private void setJail(int i, int j) {
         jail = new Location(i, j);
@@ -324,6 +328,8 @@ public class CityModel extends GridWorldModel {
     }
 
 
+
+    // ---------- Methods for A* algorithm ----------
     public List<Location> getNeighbors(Location loc) {
         List<Location> neighbors = new ArrayList<>();
 
@@ -339,14 +345,12 @@ public class CityModel extends GridWorldModel {
                 neighbors.add(new Location(newX, newY));
             }
         }
-
         return neighbors;
     }
 
     // Method to check if a location is free of obstacles and agents
     public boolean isFree(int x, int y) {
-        // You must make sure to check against all defined objects that could occupy a cell.
-        // In your case, it could be OBSTACLE, JAIL, or any AGENT types.
+        // Chek over OBSTACLE, JAIL, or any AGENT types.
         return isInGrid(x, y) && !(hasObject(OBSTACLE, x, y) || hasObject(JAIL, x, y) ||
                 hasObject(CLUE_AGENT, x, y) || hasObject(POLICE_AGENT, x, y) ||
                 hasObject(CIVILIAN_AGENT, x, y) || hasObject(CRIMINAL_AGENT, x, y));

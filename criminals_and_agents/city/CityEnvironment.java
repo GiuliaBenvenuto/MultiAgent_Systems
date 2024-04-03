@@ -22,9 +22,13 @@ public class CityEnvironment extends jason.environment.Environment {
     }
 
     public int getCityType() {
-
         return cityType;
     }
+
+    public CityModel getCityModel() {
+        return this.city_model;
+    }
+
 
 
     public void initCity(int x) {

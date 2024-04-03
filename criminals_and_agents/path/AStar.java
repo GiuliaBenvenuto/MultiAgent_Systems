@@ -1,13 +1,12 @@
-package city;
+package path;
 
+import city.CityModel;
 import jason.environment.grid.Location;
-
 import java.util.*;
 
 public class AStar {
 
     private CityModel cityModel;
-
     public AStar(CityModel cityModel) {
         this.cityModel = cityModel;
     }
