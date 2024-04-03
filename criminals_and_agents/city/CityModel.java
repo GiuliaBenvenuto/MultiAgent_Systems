@@ -7,6 +7,9 @@ import jason.environment.*;
 import java.util.HashSet;
 import java.util.logging.*;
 
+import java.util.List;
+import java.util.ArrayList;
+
 public class CityModel extends GridWorldModel {
 
     private Logger logger = Logger.getLogger("criminals_and_agents.mas2j." + CityModel.class.getName());
@@ -318,6 +321,35 @@ public class CityModel extends GridWorldModel {
             }
         }
         return city_model;
+    }
+
+
+    public List<Location> getNeighbors(Location loc) {
+        List<Location> neighbors = new ArrayList<>();
+
+        int[] dx = {-1, 1, 0, 0}; // Change in x (left, right)
+        int[] dy = {0, 0, -1, 1}; // Change in y (up, down)
+
+        for (int i = 0; i < dx.length; i++) {
+            int newX = loc.x + dx[i];
+            int newY = loc.y + dy[i];
+
+            // Check if new location is within grid bounds and not an obstacle
+            if (isInGrid(newX, newY) && isFree(newX, newY)) {
+                neighbors.add(new Location(newX, newY));
+            }
+        }
+
+        return neighbors;
+    }
+
+    // Method to check if a location is free of obstacles and agents
+    public boolean isFree(int x, int y) {
+        // You must make sure to check against all defined objects that could occupy a cell.
+        // In your case, it could be OBSTACLE, JAIL, or any AGENT types.
+        return isInGrid(x, y) && !(hasObject(OBSTACLE, x, y) || hasObject(JAIL, x, y) ||
+                hasObject(CLUE_AGENT, x, y) || hasObject(POLICE_AGENT, x, y) ||
+                hasObject(CIVILIAN_AGENT, x, y) || hasObject(CRIMINAL_AGENT, x, y));
     }
 
 
