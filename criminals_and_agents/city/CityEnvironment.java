@@ -1,5 +1,6 @@
 package city;
 
+import helper.AgentIdMapper;
 import jason.asSyntax.*;
 import java.util.logging.*;
 import jason.environment.grid.Location;
@@ -86,13 +87,29 @@ public class CityEnvironment extends jason.environment.Environment {
     }
 
 
-    public void updateAgentPercepts(String agentType, int agId, int x, int y) {
+//    public void updateAgentPercepts(String agentType, int agId, int x, int y) {
+//        Literal positionPercept = ASSyntax.createLiteral("at",
+//                ASSyntax.createNumber(x),
+//                ASSyntax.createNumber(y));
+//
+//        //System.out.println("agent type: " + agentType + String.valueOf(agId + 1));
+//        //addPercept("police" + String.valueOf(agId + 1), positionPercept);
+//        addPercept(agentType + String.valueOf(agId + 1), positionPercept);
+//    }
+    public void updateAgentPercepts(int globalId, int x, int y) {
+        AgentIdMapper mapper = new AgentIdMapper();
+        String agentType = mapper.getType(globalId);
+        System.out.println("Agent type: " + agentType);
+        int localId = mapper.getLocalId(globalId);
+        System.out.println("Local ID: " + localId);
+
         Literal positionPercept = ASSyntax.createLiteral("at",
                 ASSyntax.createNumber(x),
                 ASSyntax.createNumber(y));
 
-        //System.out.println("agent type: " + agentType + String.valueOf(agId + 1));
-        //addPercept("police" + String.valueOf(agId + 1), positionPercept);
-        addPercept(agentType + String.valueOf(agId + 1), positionPercept);
+        addPercept(agentType + String.valueOf(localId), positionPercept);
+
+        // Print the map
+        // mapper.printMap();
     }
 }
