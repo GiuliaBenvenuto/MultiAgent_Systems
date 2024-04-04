@@ -27,12 +27,14 @@ import javax.swing.JRadioButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import city.CityEnvironment;
-
 // Icon
 import javax.swing.ImageIcon;
 import java.awt.Image;
 import java.net.URL;
+
+
+import city.CityEnvironment;
+
 
 public class CityView extends GridWorldView {
 
@@ -157,11 +159,9 @@ public class CityView extends GridWorldView {
         //System.out.println("Drawing");
         switch (object) {
             case CityModel.OBSTACLE:
-                System.out.println("Draw obstacle");
                 drawObstacle(g, x, y);
                 break;
             case CityModel.JAIL:
-                System.out.println("Draw jail");
                 drawJail(g, x, y);
                 break;
         }

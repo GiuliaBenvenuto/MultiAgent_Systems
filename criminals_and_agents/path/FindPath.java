@@ -26,11 +26,12 @@ public class FindPath extends DefaultInternalAction {
             // Cast the environment to your specific environment class to access the city model
             // get the environment
             // TODO: fix this
-            Environment env = ts.getUserAgArch().getArchInfraTier().getEnvironment();
-
+            // Environment env = ts.getAgArch().getAgArchClassesChain().getEnvironment();
+            CityEnvironment env = CityEnvironment.getInstance();
 
             if (env instanceof CityEnvironment) { // Ensure this matches the name of your environment class
-                CityModel cityModel = ((CityEnvironment) env).getCityModel(); // Assuming getCityModel() is a method in CityEnvironment
+                // CityModel cityModel = ((CityEnvironment) env).getCityModel(); // Assuming getCityModel() is a method in CityEnvironment
+                CityModel cityModel = env.getCityModel();
 
                 // Create an instance of AStar with the city model
                 AStar aStar = new AStar(cityModel);
