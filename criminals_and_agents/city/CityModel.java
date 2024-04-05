@@ -35,7 +35,7 @@ public class CityModel extends GridWorldModel {
         return city_model;
     }
 
-    public CityModel getCityModel() {
+    public static CityModel getCityModel() {
         return city_model;
     }
 
@@ -44,7 +44,7 @@ public class CityModel extends GridWorldModel {
         jail = new Location(i, j);
         data[i][j] = JAIL;
         // Print location
-        logger.info("Jail location: " + jail);
+        // logger.info("Jail location: " + jail);
 
     }
 
@@ -141,48 +141,29 @@ public class CityModel extends GridWorldModel {
     //  --------------- City 1 ---------------
     static CityModel city1() throws Exception {
         CityModel city_model = CityModel.create(40, 40, 13);
-        // ----- Set jail location -----
 
         // ----- Set police location -----
-        // set three agents near the jail position
         city_model.setPoliceAgentPos(0, 35, 34);
         city_model.setPoliceAgentPos(1, 34, 35);
         city_model.setPoliceAgentPos(2, 34, 34);
 
         // ----- Set civilians location -----
-        // per far funzionare il print in.asl devo ripartire da id 0
         city_model.setCivilianAgentPos(3, 1, 1);
         city_model.setCivilianAgentPos(4, 1, 29);
         city_model.setCivilianAgentPos(5, 29, 1);
         city_model.setCivilianAgentPos(6, 29, 29);
-//        city_model.setCivilianAgentPos(0, 1, 1);
-//        city_model.setCivilianAgentPos(1, 1, 29);
-//        city_model.setCivilianAgentPos(2, 29, 1);
-//        city_model.setCivilianAgentPos(3, 29, 29);
 
         // ----- Set criminals location -----
-        // per far funzionare il print in.asl devo ripartire da id 0
         city_model.setCriminalAgentPos(7, 10, 10);
         city_model.setCriminalAgentPos(8, 10, 20);
-//        city_model.setCriminalAgentPos(0, 10, 10);
-//        city_model.setCriminalAgentPos(1, 10, 20);
 
         // ----- Set clues location -----
-        // four clues outside walls
         city_model.setClueAgentPos(9, 5, 5);
         city_model.setClueAgentPos(10, 5, 35);
         city_model.setClueAgentPos(11, 35, 5);
         city_model.setClueAgentPos(12, 35, 30);
-//        city_model.setClueAgentPos(0, 5, 5);
-//        city_model.setClueAgentPos(1, 5, 35);
-//        city_model.setClueAgentPos(2, 35, 5);
-//        city_model.setClueAgentPos(3, 35, 35);
 
-//        city_model.setAgPos(0, 1, 1);
-//        city_model.setAgPos(1, 1, 29);
-//        city_model.setAgPos(2, 29, 1);
-//        city_model.setAgPos(3, 29, 29);
-
+        // ----- Set jail location -----
         city_model.setJail(35, 35);
 
         // ----- Set walls -----
@@ -384,8 +365,6 @@ public class CityModel extends GridWorldModel {
                 hasObject(CLUE_AGENT, x, y) || hasObject(POLICE_AGENT, x, y) ||
                 hasObject(CIVILIAN_AGENT, x, y) || hasObject(CRIMINAL_AGENT, x, y));
     }
-
-
 
 
     private CityModel(int width, int height, int agents_number) {

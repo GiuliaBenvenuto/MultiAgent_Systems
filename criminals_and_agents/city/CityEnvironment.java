@@ -1,5 +1,6 @@
 package city;
 
+import java.util.Random;
 import helper.AgentIdMapper;
 import jason.asSyntax.*;
 import java.util.logging.*;
@@ -98,6 +99,30 @@ public class CityEnvironment extends jason.environment.Environment {
 
         //System.out.println("(agent type: " + agentType + String.valueOf(localId) + ", position: " + positionPercept + ")");
         addPercept(agentType + String.valueOf(localId + 1), positionPercept);
+
+
+        initCity(1);
+        if(agentType.equals("police")) {
+            int endX, endY;
+            Random random = new Random();
+            do {
+                endX = random.nextInt(39) + 1; // Generates a number between 1 and 39
+                endY = random.nextInt(39) + 1;
+            } while (!city_model.isFree(endX, endY));
+            System.out.println("POLICE " + localId + " MOVING TO: " + endX + ", " + endY);
+
+            Literal policeStart = ASSyntax.createLiteral("startPos",
+                    ASSyntax.createNumber(x),
+                    ASSyntax.createNumber(y));
+
+            Literal policeEnd = ASSyntax.createLiteral("endPos",
+                    ASSyntax.createNumber(endX),
+                    ASSyntax.createNumber(endY));
+
+            addPercept(agentType + String.valueOf(localId + 1), policeStart);
+            addPercept(agentType + String.valueOf(localId + 1), policeEnd);
+
+        }
     }
 
 } //CityEnvironment

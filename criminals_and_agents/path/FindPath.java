@@ -17,7 +17,7 @@ public class FindPath extends DefaultInternalAction {
     @Override
     public Object execute(TransitionSystem ts, Unifier un, Term[] args) throws Exception {
         // Check the argument length
-        if (args.length == 4) {
+        if (args.length == 5) {
             int startX = (int)((NumberTerm) args[0]).solve();
             int startY = (int)((NumberTerm) args[1]).solve();
             int endX = (int)((NumberTerm) args[2]).solve();
