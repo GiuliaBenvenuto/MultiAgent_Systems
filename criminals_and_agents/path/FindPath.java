@@ -1,5 +1,6 @@
 package path;
 
+import city.CityEnvironment;
 import jason.asSemantics.*;
 import jason.asSyntax.*;
 import jason.environment.*;
@@ -38,6 +39,9 @@ public class FindPath extends DefaultInternalAction {
 
                 // Execute the pathfinding
                 List<Location> path = aStar.findPath(0, new Location(startX, startY), new Location(endX, endY));
+
+                //CityEnvironment env = CityEnvironment.getInstance();
+                //env.handlePathFindingResult(policeId, path);
 
                 // Convert the path (a List of Locations) into a Jason ListTerm
                 ListTerm pathList = new ListTermImpl();

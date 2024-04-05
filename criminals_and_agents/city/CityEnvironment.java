@@ -93,12 +93,19 @@ public class CityEnvironment extends jason.environment.Environment {
         String agentType = mapper.getType(globalId);
         int localId = mapper.getLocalId(globalId);
 
+        // Position
         Literal positionPercept = ASSyntax.createLiteral("at",
                 ASSyntax.createNumber(x),
                 ASSyntax.createNumber(y));
 
         //System.out.println("(agent type: " + agentType + String.valueOf(localId) + ", position: " + positionPercept + ")");
         addPercept(agentType + String.valueOf(localId + 1), positionPercept);
+
+        // Id
+        Literal idPercept = ASSyntax.createLiteral("myId",
+                ASSyntax.createNumber(localId));
+        addPercept(agentType + String.valueOf(localId + 1), idPercept);
+
 
 
         initCity(1);

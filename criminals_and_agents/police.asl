@@ -22,6 +22,8 @@
     .print("*** Final position : endPos(", A, ",", B, ").");
     !explore.
 
++myId(ID) : true <- .print("My ID is: ", ID).
+
 
 
 
