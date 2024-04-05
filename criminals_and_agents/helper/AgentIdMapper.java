@@ -49,9 +49,4 @@ public class AgentIdMapper {
         return localId.intValue();
     }
 
-    // I want to see wht's inside the map printing it
-    public void printMap() {
-        System.out.println("idToType: " + idToType);
-        System.out.println("idToLocalId: " + idToLocalId);
-    }
 }
