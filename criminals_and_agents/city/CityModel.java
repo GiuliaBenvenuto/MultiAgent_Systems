@@ -1,5 +1,7 @@
 package city;
 
+import helper.AgentIdMapper;
+
 import jason.environment.grid.GridWorldModel;
 import jason.environment.grid.Location;
 import jason.environment.*;
@@ -85,11 +87,10 @@ public class CityModel extends GridWorldModel {
     // Set position of the clue agent
     public boolean setClueAgentPos(int agId, int x, int y) {
         if (isInGrid(x, y) && !hasObject(OBSTACLE, x, y) && !hasObject(JAIL, x, y) && !hasObject(AGENT, x, y)) {
+
+            System.out.println("Clue id: " + agId);
             setAgPos(agId, x, y);
             add(CLUE_AGENT, x, y); // Mark the cell with the CLUE_AGENT identifier
-
-            // Add percept of self position for the agent
-            //System.out.println("Clue agent " + agId + " is at " + x + ", " + y);
             CityEnvironment.getInstance().updateAgentPercepts(agId, x, y);
 
             return true;
@@ -100,13 +101,10 @@ public class CityModel extends GridWorldModel {
     // Set position of the police agent
     public boolean setPoliceAgentPos(int agId, int x, int y) {
         if (isInGrid(x, y) && !hasObject(OBSTACLE, x, y) && !hasObject(JAIL, x, y) && !hasObject(AGENT, x, y)) {
-            setAgPos(agId, x, y);
-            add(POLICE_AGENT, x, y);  // Mark the cell with the POLICE_AGENT identifier
 
-            // Debug print
-            // logger.info("Police agent " + agId + " is at " + x + ", " + y);
-            // Add percept of self position for the agent
-            //System.out.println("Police agent " + agId + " is at " + x + ", " + y);
+            System.out.println("Police id: " + agId);
+            setAgPos(agId, x, y);
+            add(POLICE_AGENT, x, y); // Mark the cell with the POLICE_AGENT identifier
             CityEnvironment.getInstance().updateAgentPercepts(agId, x, y);
             return true;
         }
@@ -116,11 +114,10 @@ public class CityModel extends GridWorldModel {
     // Set position of the civilian agent
     public boolean setCivilianAgentPos(int agId, int x, int y) {
         if (isInGrid(x, y) && !hasObject(OBSTACLE, x, y) && !hasObject(JAIL, x, y) && !hasObject(AGENT, x, y)) {
+
+            System.out.println("Civilian id: " + agId);
             setAgPos(agId, x, y);
             add(CIVILIAN_AGENT, x, y);  // Mark the cell with the POLICE_AGENT identifier
-
-            // Add percept of self position for the agent
-            //System.out.println("Civilian agent " + agId + " is at " + x + ", " + y);
             CityEnvironment.getInstance().updateAgentPercepts(agId, x, y);
             return true;
         }
@@ -130,11 +127,10 @@ public class CityModel extends GridWorldModel {
     // Set position of the criminal agent
     public boolean setCriminalAgentPos(int agId, int x, int y) {
         if (isInGrid(x, y) && !hasObject(OBSTACLE, x, y) && !hasObject(JAIL, x, y) && !hasObject(AGENT, x, y)) {
+
+            System.out.println("Criminal id: " + agId);
             setAgPos(agId, x, y);
             add(CRIMINAL_AGENT, x, y);  // Mark the cell with the POLICE_AGENT identifier
-
-            // Add percept of self position for the agent
-            //System.out.println("Criminal agent " + agId + " is at " + x + ", " + y);
             CityEnvironment.getInstance().updateAgentPercepts(agId, x, y);
             return true;
         }
@@ -144,9 +140,8 @@ public class CityModel extends GridWorldModel {
 
     //  --------------- City 1 ---------------
     static CityModel city1() throws Exception {
-        CityModel city_model = CityModel.create(40, 40, 12);
+        CityModel city_model = CityModel.create(40, 40, 13);
         // ----- Set jail location -----
-        city_model.setJail(35, 35);
 
         // ----- Set police location -----
         // set three agents near the jail position
@@ -177,7 +172,7 @@ public class CityModel extends GridWorldModel {
         city_model.setClueAgentPos(9, 5, 5);
         city_model.setClueAgentPos(10, 5, 35);
         city_model.setClueAgentPos(11, 35, 5);
-        city_model.setClueAgentPos(12, 35, 35);
+        city_model.setClueAgentPos(12, 35, 30);
 //        city_model.setClueAgentPos(0, 5, 5);
 //        city_model.setClueAgentPos(1, 5, 35);
 //        city_model.setClueAgentPos(2, 35, 5);
@@ -188,6 +183,7 @@ public class CityModel extends GridWorldModel {
 //        city_model.setAgPos(2, 29, 1);
 //        city_model.setAgPos(3, 29, 29);
 
+        city_model.setJail(35, 35);
 
         // ----- Set walls -----
         for (int i = 4; i <= 11; i++) {

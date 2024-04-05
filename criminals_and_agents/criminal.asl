@@ -10,4 +10,4 @@
 +!start : true <- .print("I'm a criminal.").
 
 // Plan triggered when the agent's position is updated
-+at(X,Y) : true <- .print("Updated position: at(", X, ",", Y, ").").
++at(X,Y) : true <- .print("---> Updated position: at(", X, ",", Y, ").").
