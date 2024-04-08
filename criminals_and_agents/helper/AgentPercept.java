@@ -78,7 +78,7 @@ public class AgentPercept {
         Literal positionPercept = ASSyntax.createLiteral("closeAgentAt",
                 ASSyntax.createNumber(x),
                 ASSyntax.createNumber(y),
-                ASSyntax.createNumber(localAgentId),
+                ASSyntax.createNumber(localAgentId + 1),
                 ASSyntax.createAtom(foundAgentType));
 
 
