@@ -32,8 +32,8 @@
     .print("AGENT TYPE: ", D);
     .concat(D, C, AgentName);
     //.concat(D, StrID, AgentName); // Concatenate D and the string representation of C
-    .print("Sending message to ", AgentName).
-    //.send(C, tell, foundYouAt(A, B)).
+    .print("Sending message to ", AgentName);
+    .send(AgentName, tell, foundYouAt(A, B)).
 
 
 

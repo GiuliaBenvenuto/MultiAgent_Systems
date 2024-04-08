@@ -203,6 +203,7 @@ public class CityModel extends GridWorldModel {
         // ----- Set criminals location -----
         city_model.setCriminalAgentPos(7, 10, 10);
         city_model.setCriminalAgentPos(8, 10, 20);
+        //city_model.setCriminalAgentPos(8, 20, 32);
 
         // ----- Set clues location -----
         city_model.setClueAgentPos(9, 5, 5);

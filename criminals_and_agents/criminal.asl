@@ -13,3 +13,6 @@
 +at(X,Y) : true <- .print("---> Updated position: at(", X, ",", Y, ").").
 
 //+myId(ID) : true <- .print("My ID is: ", ID).
+
++foundYouAt(X, Y) : true <-
+    .print("You found a criminal!").

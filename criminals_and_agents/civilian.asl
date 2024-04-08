@@ -10,3 +10,6 @@
 
 //+myId(ID) : true <- .print("My ID is: ", ID).
 
++foundYouAt(X, Y) : true <-
+    .print("You found a civilian!").
+
