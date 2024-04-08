@@ -12,17 +12,14 @@
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/.gradle/8.0.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/.gradle/8.0.2/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/.gradle/8.0.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/.gradle/8.0.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/city/CityEnvironment.class" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/city/CityEnvironment.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/city/CityModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/city/CityModel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/city/CityView.class" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/city/CityView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/path/FindPath.class" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/path/FindPath.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/tmp/compileJava/compileTransaction/stash-dir/CityEnvironment.class.uniqueId2" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/build/tmp/compileJava/compileTransaction/stash-dir/CityEnvironment.class.uniqueId2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/tmp/compileJava/compileTransaction/stash-dir/CityModel.class.uniqueId0" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/build/tmp/compileJava/compileTransaction/stash-dir/CityModel.class.uniqueId0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/tmp/compileJava/compileTransaction/stash-dir/CityView.class.uniqueId5" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/build/tmp/compileJava/compileTransaction/stash-dir/CityView.class.uniqueId5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/tmp/compileJava/compileTransaction/stash-dir/FindPath.class.uniqueId4" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/build/tmp/compileJava/compileTransaction/stash-dir/FindPath.class.uniqueId4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/tmp/compileJava/compileTransaction/stash-dir/FindPath.class.uniqueId0" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/city/CityEnvironment.java" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/city/CityEnvironment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/city/CityModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/city/CityModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/city/CityView.java" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/city/CityView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/criminals_and_agents/path/FindPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/path/FindPath.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/criminals_and_agents/police.asl" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/police.asl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,7 +139,7 @@
       <workItem from="1712224982688" duration="416000" />
       <workItem from="1712225476383" duration="12675000" />
       <workItem from="1712301939911" duration="16605000" />
-      <workItem from="1712559755207" duration="1982000" />
+      <workItem from="1712559755207" duration="3106000" />
     </task>
     <task id="LOCAL-00001" summary="Commit from Intellij">
       <option name="closed" value="true" />

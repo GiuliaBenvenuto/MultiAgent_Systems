@@ -37,6 +37,10 @@ public class CityModel extends GridWorldModel {
         return city_model;
     }
 
+    private CityModel(int width, int height, int agents_number) {
+        super(width, height, agents_number);
+    }
+
     public static CityModel getCityModel() {
         return city_model;
     }
@@ -82,7 +86,7 @@ public class CityModel extends GridWorldModel {
         }
     }
 
-    private boolean isInGrid(int x, int y) {
+    public boolean isInGrid(int x, int y) {
         return x >= 0 && x < 40 && y >= 0 && y < 40;
     }
 
@@ -369,11 +373,7 @@ public class CityModel extends GridWorldModel {
     }
 
 
-    private CityModel(int width, int height, int agents_number) {
-        super(width, height, agents_number);
-    }
-
-    // ------ NEW ------
+    // Update the position of the police agent following the path
     public void updatePoliceAgentPosition(int agId, int x, int y) {
         if (isFree(x, y)) {
             Location currentLoc = getAgPos(agId);

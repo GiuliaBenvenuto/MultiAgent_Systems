@@ -1,12 +1,17 @@
 package city;
 
+import helper.LookAround;
+import helper.AgentIdMapper;
+
+import java.util.logging.*;
 import java.util.List;
 import java.util.Random;
-import helper.AgentIdMapper;
-import jason.asSyntax.*;
-import java.util.logging.*;
-import jason.environment.grid.Location;
+
 import javax.swing.SwingUtilities;
+
+import jason.asSyntax.*;
+import jason.environment.grid.Location;
+
 
 
 public class CityEnvironment extends jason.environment.Environment {
@@ -133,15 +138,37 @@ public class CityEnvironment extends jason.environment.Environment {
         }
     } //updateAgentPercepts
 
+
     // Process the path to move the police agent icons
+//    public void processPath(int agId, List<Location> path) {
+//        new Thread(() -> {
+//            for (Location step : path) {
+//                try {
+//                    // Wait before moving to the next step to visualize the movement
+//                    Thread.sleep(500); // 500 milliseconds delay for visualization
+//                    SwingUtilities.invokeLater(() -> city_model.updatePoliceAgentPosition(agId, step.x, step.y));
+//                    city_view.updateView(city_model); // Update the view with the new agent position
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }).start();
+//    }
     public void processPath(int agId, List<Location> path) {
         new Thread(() -> {
             for (Location step : path) {
                 try {
-                    // Wait before moving to the next step to visualize the movement
-                    Thread.sleep(500); // 500 milliseconds delay for visualization
-                    SwingUtilities.invokeLater(() -> city_model.updatePoliceAgentPosition(agId, step.x, step.y));
-                    city_view.updateView(city_model); // Update the view with the new agent position
+                    Thread.sleep(500); // Delay for visualization
+                    SwingUtilities.invokeLater(() -> {
+                        city_model.updatePoliceAgentPosition(agId, step.x, step.y);
+                        city_view.updateView(city_model);
+
+                        // Look around at the new position
+                        List<String> agentsAround = LookAround.checkSurroundings(city_model, step.x, step.y);
+                        if (!agentsAround.isEmpty()) {
+                            System.out.println("Police Agent " + agId + " at (" + step.x + ", " + step.y + ") found: " + String.join(", ", agentsAround));
+                        }
+                    });
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
