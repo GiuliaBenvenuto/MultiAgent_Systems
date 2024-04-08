@@ -95,48 +95,57 @@ public class CityEnvironment extends jason.environment.Environment {
     }
 
 
-    public void updateAgentPercepts(int globalId, int x, int y) {
-        AgentIdMapper mapper = new AgentIdMapper();
-        String agentType = mapper.getType(globalId);
-        int localId = mapper.getLocalId(globalId);
-
-        // Position
-        Literal positionPercept = ASSyntax.createLiteral("at",
-                ASSyntax.createNumber(x),
-                ASSyntax.createNumber(y));
-
-        //System.out.println("(agent type: " + agentType + String.valueOf(localId) + ", position: " + positionPercept + ")");
-        addPercept(agentType + String.valueOf(localId + 1), positionPercept);
-
-        // Id
-        Literal idPercept = ASSyntax.createLiteral("myId",
-                ASSyntax.createNumber(localId));
-        addPercept(agentType + String.valueOf(localId + 1), idPercept);
-
-
-
-        initCity(1);
-        if(agentType.equals("police")) {
-            int endX, endY;
-            Random random = new Random();
-            do {
-                endX = random.nextInt(39) + 1; // Generates a number between 1 and 39
-                endY = random.nextInt(39) + 1;
-            } while (!city_model.isFree(endX, endY));
-            System.out.println("POLICE " + localId + " MOVING TO: " + endX + ", " + endY);
-
-            Literal policeStart = ASSyntax.createLiteral("startPos",
-                    ASSyntax.createNumber(x),
-                    ASSyntax.createNumber(y));
-
-            Literal policeEnd = ASSyntax.createLiteral("endPos",
-                    ASSyntax.createNumber(endX),
-                    ASSyntax.createNumber(endY));
-
-            addPercept(agentType + String.valueOf(localId + 1), policeStart);
-            addPercept(agentType + String.valueOf(localId + 1), policeEnd);
-        }
-    } //updateAgentPercepts
+//    public void updateAgentPercepts(int globalId, int x, int y) {
+//        AgentIdMapper mapper = new AgentIdMapper();
+//        String agentType = mapper.getType(globalId);
+//        int localId = mapper.getLocalId(globalId);
+//
+//        // Position
+//        Literal positionPercept = ASSyntax.createLiteral("at",
+//                ASSyntax.createNumber(x),
+//                ASSyntax.createNumber(y));
+//
+//        //System.out.println("(agent type: " + agentType + String.valueOf(localId) + ", position: " + positionPercept + ")");
+//        addPercept(agentType + String.valueOf(localId + 1), positionPercept);
+//
+//        // Id
+//        Literal idPercept = ASSyntax.createLiteral("myId",
+//                ASSyntax.createNumber(localId));
+//        addPercept(agentType + String.valueOf(localId + 1), idPercept);
+//
+//
+//
+//        initCity(1);
+//        if(agentType.equals("police")) {
+//            // Add final end position for police agents
+//            int endX, endY;
+//            Random random = new Random();
+//            do {
+//                endX = random.nextInt(39) + 1; // Generates a number between 1 and 39
+//                endY = random.nextInt(39) + 1;
+//            } while (!city_model.isFree(endX, endY));
+//            System.out.println("POLICE " + localId + " MOVING TO: " + endX + ", " + endY);
+//
+//            Literal policeStart = ASSyntax.createLiteral("startPos",
+//                    ASSyntax.createNumber(x),
+//                    ASSyntax.createNumber(y));
+//
+//            Literal policeEnd = ASSyntax.createLiteral("endPos",
+//                    ASSyntax.createNumber(endX),
+//                    ASSyntax.createNumber(endY));
+//
+//            addPercept(agentType + String.valueOf(localId + 1), policeStart);
+//            addPercept(agentType + String.valueOf(localId + 1), policeEnd);
+//
+//            // Add jail position for police agents
+//            Location jail = city_model.getJail();
+//            Literal jailPercept = ASSyntax.createLiteral("jailPos",
+//                    ASSyntax.createNumber(jail.x),
+//                    ASSyntax.createNumber(jail.y));
+//            addPercept(agentType + String.valueOf(localId + 1), jailPercept);
+//
+//        }
+//    } //updateAgentPercepts
 
 
     // Process the path to move the police agent icons

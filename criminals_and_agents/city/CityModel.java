@@ -1,6 +1,7 @@
 package city;
 
 import helper.AgentIdMapper;
+import helper.AgentPercept;
 
 import jason.environment.grid.GridWorldModel;
 import jason.environment.grid.Location;
@@ -97,7 +98,9 @@ public class CityModel extends GridWorldModel {
             System.out.println("Clue id: " + agId);
             setAgPos(agId, x, y);
             add(CLUE_AGENT, x, y); // Mark the cell with the CLUE_AGENT identifier
-            CityEnvironment.getInstance().updateAgentPercepts(agId, x, y);
+            //CityEnvironment.getInstance().updateAgentPercepts(agId, x, y);
+            AgentPercept.updateAgentPercepts(CityEnvironment.getInstance(), agId, x, y);
+
 
             return true;
         }
@@ -111,7 +114,9 @@ public class CityModel extends GridWorldModel {
             System.out.println("Police id: " + agId);
             setAgPos(agId, x, y);
             add(POLICE_AGENT, x, y); // Mark the cell with the POLICE_AGENT identifier
-            CityEnvironment.getInstance().updateAgentPercepts(agId, x, y);
+            //CityEnvironment.getInstance().updateAgentPercepts(agId, x, y);
+            AgentPercept.updateAgentPercepts(CityEnvironment.getInstance(), agId, x, y);
+
             return true;
         }
         return false;
@@ -124,7 +129,9 @@ public class CityModel extends GridWorldModel {
             System.out.println("Civilian id: " + agId);
             setAgPos(agId, x, y);
             add(CIVILIAN_AGENT, x, y);  // Mark the cell with the POLICE_AGENT identifier
-            CityEnvironment.getInstance().updateAgentPercepts(agId, x, y);
+            //CityEnvironment.getInstance().updateAgentPercepts(agId, x, y);
+            AgentPercept.updateAgentPercepts(CityEnvironment.getInstance(), agId, x, y);
+
             return true;
         }
         return false;
@@ -137,7 +144,9 @@ public class CityModel extends GridWorldModel {
             System.out.println("Criminal id: " + agId);
             setAgPos(agId, x, y);
             add(CRIMINAL_AGENT, x, y);  // Mark the cell with the POLICE_AGENT identifier
-            CityEnvironment.getInstance().updateAgentPercepts(agId, x, y);
+            //CityEnvironment.getInstance().updateAgentPercepts(agId, x, y);
+            AgentPercept.updateAgentPercepts(CityEnvironment.getInstance(), agId, x, y);
+
             return true;
         }
         return false;

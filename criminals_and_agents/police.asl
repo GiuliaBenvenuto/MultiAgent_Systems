@@ -24,6 +24,8 @@
 
 +myId(ID) : true <- .print("My ID is: ", ID).
 
++jailPos(A,B) : true <- .print("Jail position : jailPos(", A, ",", B, ").").
+
 
 
 
