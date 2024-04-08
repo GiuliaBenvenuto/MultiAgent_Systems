@@ -182,6 +182,36 @@ public class CityEnvironment extends jason.environment.Environment {
                     e.printStackTrace();
                 }
             }
+
+            // ------- RECURSION OF EXPLORATION -------
+            SwingUtilities.invokeLater(() -> {
+                // add percept to inform that the police agent has arrived at the destination
+                instance.addPercept("police" + (agId + 1) , ASSyntax.createLiteral("arrivedAtDestination"));
+                // take last location in path as the current location
+                Location currentLocation = path.get(path.size() - 1);
+                // add percept to inform the current location in the new startPos removing the one already present in the agent
+                Literal newStartPos = ASSyntax.createLiteral("startPos",
+                        ASSyntax.createNumber(currentLocation.x),
+                        ASSyntax.createNumber(currentLocation.y));
+
+                // new end position for police agents
+                Random random = new Random();
+                int endX, endY;
+                do {
+                    endX = random.nextInt(39) + 1; // Generates a number between 1 and 39
+                    endY = random.nextInt(39) + 1;
+                } while (!instance.getCityModel().isFree(endX, endY));
+
+                Literal newEndPos = ASSyntax.createLiteral("endPos",
+                        ASSyntax.createNumber(endX),
+                        ASSyntax.createNumber(endY));
+
+                instance.addPercept("police" + (agId + 1), newStartPos);
+                instance.addPercept("police" + (agId + 1), newEndPos);
+
+
+            });
+
         }).start();
     }
 

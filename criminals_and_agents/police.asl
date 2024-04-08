@@ -4,12 +4,17 @@
 
 /* Plans */
 +!start : true <- .print("I'm a police agent.").
+
 +!explore : startPos(A,B) & endPos(C,D) & myId(ID) <-
     .print("!!!! ---- Starting exploration.");
     .print("A: ", A, " B: ", B, " C: ", C, " D: ", D);
     // call to FindPath internal action and print the path
     path.FindPath(ID, A, B, C, D, Path);
-    .print("Path found: ", Path).
+    .print("Path found: ", Path);
+    // Create a new belief "arrivedAtDestination" to signal the agent has arrived at the destination
+    +arrivedAtDestination(Path).
+
+
 
 
 // Plan triggered when the agent's position is updated
@@ -34,6 +39,10 @@
     //.concat(D, StrID, AgentName); // Concatenate D and the string representation of C
     .print("Sending message to ", AgentName);
     .send(AgentName, tell, foundYouAt(A, B)).
+
++arrivedAtDestination : true <-
+    .print("Arrived at the destination, generating new path.").
+
 
 
 
