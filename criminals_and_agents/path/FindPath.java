@@ -18,11 +18,14 @@ public class FindPath extends DefaultInternalAction {
     @Override
     public Object execute(TransitionSystem ts, Unifier un, Term[] args) throws Exception {
         // Check the argument length
-        if (args.length == 5) {
-            int startX = (int)((NumberTerm) args[0]).solve();
-            int startY = (int)((NumberTerm) args[1]).solve();
-            int endX = (int)((NumberTerm) args[2]).solve();
-            int endY = (int)((NumberTerm) args[3]).solve();
+        if (args.length == 6) {
+            int policeId = (int)((NumberTerm) args[0]).solve(); // Get the police ID
+            int startX = (int)((NumberTerm) args[1]).solve();
+            int startY = (int)((NumberTerm) args[2]).solve();
+            int endX = (int)((NumberTerm) args[3]).solve();
+            int endY = (int)((NumberTerm) args[4]).solve();
+
+            System.out.println("Finding path for police " + policeId + " from (" + startX + ", " + startY + ") to (" + endX + ", " + endY + ")");
 
             // Cast the environment to your specific environment class to access the city model
             // get the environment
@@ -38,7 +41,13 @@ public class FindPath extends DefaultInternalAction {
                 AStar aStar = new AStar(cityModel);
 
                 // Execute the pathfinding
-                List<Location> path = aStar.findPath(0, new Location(startX, startY), new Location(endX, endY));
+                // List<Location> path = aStar.findPath(0, new Location(startX, startY), new Location(endX, endY));
+
+                List<Location> path = aStar.findPath(policeId, new Location(startX, startY), new Location(endX, endY));
+                if (path != null) {
+                    CityEnvironment.getInstance().processPath(policeId, path);
+                }
+
 
                 //CityEnvironment env = CityEnvironment.getInstance();
                 //env.handlePathFindingResult(policeId, path);
@@ -52,8 +61,11 @@ public class FindPath extends DefaultInternalAction {
                     pathList.add(ASSyntax.createStructure("location", locationTerms));
                 }
 
+                // print the path
+                System.out.println("Path: " + pathList);
+
                 // Return the result as the next argument (which should be a var)
-                return un.unifies(pathList, args[4]);
+                return un.unifies(pathList, args[5]);
             } else {
                 throw new JasonException("The environment is not an instance of CityEnvironment.");
             }

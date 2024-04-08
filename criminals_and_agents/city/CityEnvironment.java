@@ -1,10 +1,12 @@
 package city;
 
+import java.util.List;
 import java.util.Random;
 import helper.AgentIdMapper;
 import jason.asSyntax.*;
 import java.util.logging.*;
 import jason.environment.grid.Location;
+import javax.swing.SwingUtilities;
 
 
 public class CityEnvironment extends jason.environment.Environment {
@@ -42,7 +44,7 @@ public class CityEnvironment extends jason.environment.Environment {
 
     public void initCity(int x) {
         cityType = x;
-        logger.info("Initializing city type  INITCITY" + x);
+        //logger.info("Initializing city type  INITCITY" + x);
         try {
             // Clear obstacles if city_model is already initialized
             if (city_model != null) {
@@ -128,8 +130,24 @@ public class CityEnvironment extends jason.environment.Environment {
 
             addPercept(agentType + String.valueOf(localId + 1), policeStart);
             addPercept(agentType + String.valueOf(localId + 1), policeEnd);
-
         }
+    } //updateAgentPercepts
+
+    // ------ NEW ------
+    public void processPath(int agId, List<Location> path) {
+        new Thread(() -> {
+            for (Location step : path) {
+                try {
+                    // Wait for a bit before moving to the next step to visualize the movement
+                    Thread.sleep(500); // 500 milliseconds delay for visualization
+                    SwingUtilities.invokeLater(() -> city_model.updatePoliceAgentPosition(agId, step.x, step.y));
+                    city_view.updateView(city_model); // Update the view with the new agent position
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
+
 
 } //CityEnvironment

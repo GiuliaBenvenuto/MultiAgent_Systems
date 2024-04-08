@@ -7,6 +7,7 @@ import jason.environment.grid.Location;
 import jason.environment.*;
 import jason.asSyntax.*;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.logging.*;
 import java.util.List;
@@ -26,6 +27,7 @@ public class CityModel extends GridWorldModel {
 
     protected static CityModel city_model = null;
     Location jail;
+
 
     // Create the city model
     synchronized public static CityModel create(int width, int height, int agents_number) {
@@ -370,5 +372,17 @@ public class CityModel extends GridWorldModel {
     private CityModel(int width, int height, int agents_number) {
         super(width, height, agents_number);
     }
+
+    // ------ NEW ------
+    public void updatePoliceAgentPosition(int agId, int x, int y) {
+        if (isFree(x, y)) {
+            Location currentLoc = getAgPos(agId);
+            remove(POLICE_AGENT, currentLoc.x, currentLoc.y);
+            setAgPos(agId, x, y);
+            add(POLICE_AGENT, x, y);
+        }
+    }
+
+
 
 }

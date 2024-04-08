@@ -1,6 +1,7 @@
 package city;
 
 import jason.environment.grid.GridWorldView;
+import jason.environment.grid.Location;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -31,6 +32,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import java.awt.Image;
 import java.net.URL;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 
 import city.CityEnvironment;
