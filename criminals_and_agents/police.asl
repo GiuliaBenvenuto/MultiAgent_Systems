@@ -26,6 +26,15 @@
 
 +jailPos(A,B) : true <- .print("Jail position : jailPos(", A, ",", B, ").").
 
++closeAgentAt(A,B,C,D) : true <-
+    .print("Close  clue agent at: closeAgentAt(", A, ",", B, ").");
+    .print("ID: ", C);
+    .print("AGENT TYPE: ", D);
+    .concat(D, C, AgentName);
+    //.concat(D, StrID, AgentName); // Concatenate D and the string representation of C
+    .print("Sending message to ", AgentName).
+    //.send(C, tell, foundYouAt(A, B)).
+
 
 
 

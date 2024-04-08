@@ -173,7 +173,7 @@ public class CityEnvironment extends jason.environment.Environment {
                         city_view.updateView(city_model);
 
                         // Look around at the new position
-                        List<String> agentsAround = LookAround.checkSurroundings(city_model, step.x, step.y);
+                        List<String> agentsAround = LookAround.checkSurroundings(city_model, step.x, step.y, agId);
                         if (!agentsAround.isEmpty()) {
                             System.out.println("Police Agent " + agId + " at (" + step.x + ", " + step.y + ") found: " + String.join(", ", agentsAround));
                         }

@@ -31,6 +31,7 @@ public class AgentPercept {
                 ASSyntax.createNumber(localId));
         environment.addPercept(agentType + (localId + 1), idPercept);
 
+        // ------ Police agents' percepts ------
         environment.initCity(1);
         if (agentType.equals("police")) {
             // Add final end position for police agents
@@ -62,4 +63,28 @@ public class AgentPercept {
             environment.addPercept(agentType + (localId + 1), jailPercept);
         }
     }
+
+    public static void foundAgent(CityEnvironment environment, int globalPoliceId, int globalAgentId, int x, int y) {
+        AgentIdMapper mapper = new AgentIdMapper();
+        String agentType = mapper.getType(globalPoliceId);
+        int localPoliceId = mapper.getLocalId(globalPoliceId);
+
+        String foundAgentType = mapper.getType(globalAgentId);
+        int localAgentId = mapper.getLocalId(globalAgentId);
+
+        System.out.println("FOUND AGENT TYPE: " + foundAgentType);
+
+        // Position
+        Literal positionPercept = ASSyntax.createLiteral("closeAgentAt",
+                ASSyntax.createNumber(x),
+                ASSyntax.createNumber(y),
+                ASSyntax.createNumber(localAgentId + 1),
+                ASSyntax.createAtom(foundAgentType));
+
+
+        environment.addPercept(agentType + (localPoliceId + 1), positionPercept);
+
+    }
+
+
 }

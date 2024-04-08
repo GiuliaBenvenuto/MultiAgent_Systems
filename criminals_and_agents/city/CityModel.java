@@ -14,11 +14,13 @@ import java.util.logging.*;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public class CityModel extends GridWorldModel {
 
     private Logger logger = Logger.getLogger("criminals_and_agents.mas2j." + CityModel.class.getName());
-
 
     public static final int JAIL = 128;
     public static final int CLUE_AGENT = 256;
@@ -28,6 +30,32 @@ public class CityModel extends GridWorldModel {
 
     protected static CityModel city_model = null;
     Location jail;
+
+    private Map<Pair<Location, Integer>, Integer> agentLocationMap = new HashMap<>();
+
+    private static class Pair<L, R> {
+        private final L left;
+        private final R right;
+
+        public Pair(L left, R right) {
+            this.left = left;
+            this.right = right;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Pair<?, ?> pair = (Pair<?, ?>) o;
+            return Objects.equals(left, pair.left) &&
+                    Objects.equals(right, pair.right);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(left, right);
+        }
+    }
 
 
     // Create the city model
@@ -98,6 +126,7 @@ public class CityModel extends GridWorldModel {
             System.out.println("Clue id: " + agId);
             setAgPos(agId, x, y);
             add(CLUE_AGENT, x, y); // Mark the cell with the CLUE_AGENT identifier
+            agentLocationMap.put(new Pair<>(new Location(x, y), CLUE_AGENT), agId);
             //CityEnvironment.getInstance().updateAgentPercepts(agId, x, y);
             AgentPercept.updateAgentPercepts(CityEnvironment.getInstance(), agId, x, y);
 
@@ -114,6 +143,7 @@ public class CityModel extends GridWorldModel {
             System.out.println("Police id: " + agId);
             setAgPos(agId, x, y);
             add(POLICE_AGENT, x, y); // Mark the cell with the POLICE_AGENT identifier
+            agentLocationMap.put(new Pair<>(new Location(x, y), POLICE_AGENT), agId);
             //CityEnvironment.getInstance().updateAgentPercepts(agId, x, y);
             AgentPercept.updateAgentPercepts(CityEnvironment.getInstance(), agId, x, y);
 
@@ -129,6 +159,7 @@ public class CityModel extends GridWorldModel {
             System.out.println("Civilian id: " + agId);
             setAgPos(agId, x, y);
             add(CIVILIAN_AGENT, x, y);  // Mark the cell with the POLICE_AGENT identifier
+            agentLocationMap.put(new Pair<>(new Location(x, y), CIVILIAN_AGENT), agId);
             //CityEnvironment.getInstance().updateAgentPercepts(agId, x, y);
             AgentPercept.updateAgentPercepts(CityEnvironment.getInstance(), agId, x, y);
 
@@ -144,6 +175,7 @@ public class CityModel extends GridWorldModel {
             System.out.println("Criminal id: " + agId);
             setAgPos(agId, x, y);
             add(CRIMINAL_AGENT, x, y);  // Mark the cell with the POLICE_AGENT identifier
+            agentLocationMap.put(new Pair<>(new Location(x, y), CRIMINAL_AGENT), agId);
             //CityEnvironment.getInstance().updateAgentPercepts(agId, x, y);
             AgentPercept.updateAgentPercepts(CityEnvironment.getInstance(), agId, x, y);
 
@@ -390,6 +422,11 @@ public class CityModel extends GridWorldModel {
             setAgPos(agId, x, y);
             add(POLICE_AGENT, x, y);
         }
+    }
+
+    public int getAgentId(int agentType, int x, int y) {
+        // using agentLocationMap
+        return agentLocationMap.getOrDefault(new Pair<>(new Location(x, y), agentType), -1);
     }
 
 
