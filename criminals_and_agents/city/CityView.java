@@ -160,6 +160,7 @@ public class CityView extends GridWorldView {
     @Override
     public void draw(Graphics g, int x, int y, int object) {
         super.draw(g, x, y, object);
+
         //System.out.println("Drawing");
         switch (object) {
             case CityModel.OBSTACLE:

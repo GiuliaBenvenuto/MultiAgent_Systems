@@ -13,44 +13,36 @@ import java.util.*;
 
 public class FindPath extends DefaultInternalAction {
 
-    private static final long serialVersionUID = 1L;
+    //private static final long serialVersionUID = 1L;
 
     @Override
     public Object execute(TransitionSystem ts, Unifier un, Term[] args) throws Exception {
-        // Check the argument length
+        // Check argument length
         if (args.length == 6) {
-            int policeId = (int)((NumberTerm) args[0]).solve(); // Get the police ID
-            int startX = (int)((NumberTerm) args[1]).solve();
-            int startY = (int)((NumberTerm) args[2]).solve();
-            int endX = (int)((NumberTerm) args[3]).solve();
-            int endY = (int)((NumberTerm) args[4]).solve();
+            int policeId = (int)((NumberTerm) args[0]).solve();     // Get police agent ID
+            int startX = (int)((NumberTerm) args[1]).solve();       // Get start X coordinate
+            int startY = (int)((NumberTerm) args[2]).solve();       // Get start Y coordinate
+            int endX = (int)((NumberTerm) args[3]).solve();         // Get end X coordinate
+            int endY = (int)((NumberTerm) args[4]).solve();         // Get end Y coordinate
 
             System.out.println("Finding path for police " + policeId + " from (" + startX + ", " + startY + ") to (" + endX + ", " + endY + ")");
 
-            // Cast the environment to your specific environment class to access the city model
-            // get the environment
-            // TODO: fix this
-            // Environment env = ts.getAgArch().getAgArchClassesChain().getEnvironment();
+            // Get the city environment
             CityEnvironment env = CityEnvironment.getInstance();
 
-            if (env instanceof CityEnvironment) { // Ensure this matches the name of your environment class
-                // CityModel cityModel = ((CityEnvironment) env).getCityModel(); // Assuming getCityModel() is a method in CityEnvironment
+            if (env instanceof CityEnvironment) {
+                // Get the city model
                 CityModel cityModel = env.getCityModel();
 
-                // Create an instance of AStar with the city model
+                // Create an instance of AStar to perform pathfinding
                 AStar aStar = new AStar(cityModel);
 
                 // Execute the pathfinding
-                // List<Location> path = aStar.findPath(0, new Location(startX, startY), new Location(endX, endY));
-
                 List<Location> path = aStar.findPath(policeId, new Location(startX, startY), new Location(endX, endY));
+                // Process the path to move police agents icons
                 if (path != null) {
                     CityEnvironment.getInstance().processPath(policeId, path);
                 }
-
-
-                //CityEnvironment env = CityEnvironment.getInstance();
-                //env.handlePathFindingResult(policeId, path);
 
                 // Convert the path (a List of Locations) into a Jason ListTerm
                 ListTerm pathList = new ListTermImpl();
@@ -61,10 +53,7 @@ public class FindPath extends DefaultInternalAction {
                     pathList.add(ASSyntax.createStructure("location", locationTerms));
                 }
 
-                // print the path
-                System.out.println("Path: " + pathList);
-
-                // Return the result as the next argument (which should be a var)
+                // Return the result
                 return un.unifies(pathList, args[5]);
             } else {
                 throw new JasonException("The environment is not an instance of CityEnvironment.");

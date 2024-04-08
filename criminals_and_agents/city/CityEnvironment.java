@@ -133,12 +133,12 @@ public class CityEnvironment extends jason.environment.Environment {
         }
     } //updateAgentPercepts
 
-    // ------ NEW ------
+    // Process the path to move the police agent icons
     public void processPath(int agId, List<Location> path) {
         new Thread(() -> {
             for (Location step : path) {
                 try {
-                    // Wait for a bit before moving to the next step to visualize the movement
+                    // Wait before moving to the next step to visualize the movement
                     Thread.sleep(500); // 500 milliseconds delay for visualization
                     SwingUtilities.invokeLater(() -> city_model.updatePoliceAgentPosition(agId, step.x, step.y));
                     city_view.updateView(city_model); // Update the view with the new agent position

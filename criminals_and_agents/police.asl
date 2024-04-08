@@ -8,8 +8,8 @@
     .print("!!!! ---- Starting exploration.");
     .print("A: ", A, " B: ", B, " C: ", C, " D: ", D);
     // call to FindPath internal action and print the path
-    path.FindPath(ID, A, B, C, D, Path).
-    //.print("Path found: ", Path).
+    path.FindPath(ID, A, B, C, D, Path);
+    .print("Path found: ", Path).
 
 
 // Plan triggered when the agent's position is updated
