@@ -146,7 +146,7 @@ public class CityModel extends GridWorldModel {
             agentLocationMap.put(new Pair<>(new Location(x, y), POLICE_AGENT), agId);
             //CityEnvironment.getInstance().updateAgentPercepts(agId, x, y);
             AgentPercept.updateAgentPercepts(CityEnvironment.getInstance(), agId, x, y);
-            AgentPercept.policeAgentPercept(CityEnvironment.getInstance(), agId, x, y);
+            AgentPercept.addPolicePercept(CityEnvironment.getInstance(), agId, x, y);
             //policeAgentPercept
 
             return true;
@@ -158,11 +158,11 @@ public class CityModel extends GridWorldModel {
     public boolean setCivilianAgentPos(int agId, int x, int y) {
         if (isInGrid(x, y) && !hasObject(OBSTACLE, x, y) && !hasObject(JAIL, x, y) && !hasObject(AGENT, x, y)) {
 
-            //System.out.println("Civilian id: " + agId);
+            // System.out.println("Civilian id: " + agId);
             setAgPos(agId, x, y);
             add(CIVILIAN_AGENT, x, y);  // Mark the cell with the POLICE_AGENT identifier
             agentLocationMap.put(new Pair<>(new Location(x, y), CIVILIAN_AGENT), agId);
-            //CityEnvironment.getInstance().updateAgentPercepts(agId, x, y);
+            // CityEnvironment.getInstance().updateAgentPercepts(agId, x, y);
             AgentPercept.updateAgentPercepts(CityEnvironment.getInstance(), agId, x, y);
 
             return true;
@@ -433,7 +433,6 @@ public class CityModel extends GridWorldModel {
         // using agentLocationMap
         return agentLocationMap.getOrDefault(new Pair<>(new Location(x, y), agentType), -1);
     }
-
 
 
 }
