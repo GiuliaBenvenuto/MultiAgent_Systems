@@ -165,6 +165,20 @@ public class CityModel extends GridWorldModel {
             // CityEnvironment.getInstance().updateAgentPercepts(agId, x, y);
             AgentPercept.updateAgentPercepts(CityEnvironment.getInstance(), agId, x, y);
 
+            // for this civlian agent at position x, y find the closest clue agent
+
+
+            for (int i = 0; i < getWidth(); i++) {
+                for (int j = 0; j < getHeight(); j++) {
+                    if (hasObject(CLUE_AGENT, i, j)) {
+                        // find the clue agent id
+                        int clueId = getAgentId(CLUE_AGENT, i, j);
+                        //System.out.println("Clue agent found at " + i + ", " + j + " with id: " + clueId);
+                        AgentPercept.addCivilianPercept(CityEnvironment.getInstance(), agId, x, y, clueId, i, j, city_model);
+                    }
+                }
+            }
+
             return true;
         }
         return false;
@@ -191,29 +205,47 @@ public class CityModel extends GridWorldModel {
     static CityModel city1() throws Exception {
         CityModel city_model = CityModel.create(40, 40, 13);
 
-        // ----- Set police location -----
+//        // ----- Set police location -----
+//        city_model.setPoliceAgentPos(0, 35, 34);
+//        city_model.setPoliceAgentPos(1, 34, 35);
+//        city_model.setPoliceAgentPos(2, 34, 34);
+//
+//        // ----- Set civilians location -----
+//        city_model.setCivilianAgentPos(3, 1, 1);
+//        city_model.setCivilianAgentPos(4, 1, 29);
+//        city_model.setCivilianAgentPos(5, 29, 1);
+//        city_model.setCivilianAgentPos(6, 29, 29);
+//
+//
+//        // ----- Set criminals location -----
+//        city_model.setCriminalAgentPos(7, 10, 10);
+//        city_model.setCriminalAgentPos(8, 10, 20);
+//        //city_model.setCriminalAgentPos(7, 25, 33);
+//        //city_model.setCriminalAgentPos(8, 35, 32);
+//
+//        // ----- Set clues location -----
+//        city_model.setClueAgentPos(9, 5, 5);
+//        city_model.setClueAgentPos(10, 5, 35);
+//        city_model.setClueAgentPos(11, 35, 5);
+//        city_model.setClueAgentPos(12, 35, 30);
+
         city_model.setPoliceAgentPos(0, 35, 34);
         city_model.setPoliceAgentPos(1, 34, 35);
         city_model.setPoliceAgentPos(2, 34, 34);
 
-        // ----- Set civilians location -----
-        city_model.setCivilianAgentPos(3, 1, 1);
-        city_model.setCivilianAgentPos(4, 1, 29);
-        city_model.setCivilianAgentPos(5, 29, 1);
-        city_model.setCivilianAgentPos(6, 29, 29);
+        city_model.setCriminalAgentPos(3, 10, 10);
+        city_model.setCriminalAgentPos(4, 10, 20);
 
+        city_model.setClueAgentPos(5, 5, 5);
+        city_model.setClueAgentPos(6, 5, 35);
+        city_model.setClueAgentPos(7, 35, 5);
+        city_model.setClueAgentPos(8, 35, 30);
 
-        // ----- Set criminals location -----
-        city_model.setCriminalAgentPos(7, 10, 10);
-        city_model.setCriminalAgentPos(8, 10, 20);
-        //city_model.setCriminalAgentPos(7, 25, 33);
-        //city_model.setCriminalAgentPos(8, 35, 32);
+        city_model.setCivilianAgentPos(9, 1, 1);
+        city_model.setCivilianAgentPos(10, 1, 29);
+        city_model.setCivilianAgentPos(11, 29, 1);
+        city_model.setCivilianAgentPos(12, 29, 29);
 
-        // ----- Set clues location -----
-        city_model.setClueAgentPos(9, 5, 5);
-        city_model.setClueAgentPos(10, 5, 35);
-        city_model.setClueAgentPos(11, 35, 5);
-        city_model.setClueAgentPos(12, 35, 30);
 
         // ----- Set jail location -----
         city_model.setJail(35, 35);
@@ -433,6 +465,26 @@ public class CityModel extends GridWorldModel {
         // using agentLocationMap
         return agentLocationMap.getOrDefault(new Pair<>(new Location(x, y), agentType), -1);
     }
+
+    // Find closest clue agent
+    public Location findClosestClueAgent(int x, int y) {
+        Location closestClue = null;
+        double minDistance = Double.MAX_VALUE;
+
+        for (Map.Entry<Pair<Location, Integer>, Integer> entry : agentLocationMap.entrySet()) {
+            if (entry.getKey().right.equals(CLUE_AGENT)) {
+                Location clueLocation = entry.getKey().left;
+                double distance = Math.sqrt(Math.pow(clueLocation.x - x, 2) + Math.pow(clueLocation.y - y, 2));
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    closestClue = clueLocation;
+                }
+            }
+        }
+        return closestClue;
+    }
+
+
 
 
 }

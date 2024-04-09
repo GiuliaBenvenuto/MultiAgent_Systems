@@ -11,6 +11,29 @@ public class AgentIdMapper {
         idToType = new HashMap<>();
         idToLocalId = new HashMap<>();
 
+//        // Initialize mappings for police
+//        for (int i = 0; i < 3; i++) {
+//            idToType.put(i, "police");
+//            idToLocalId.put(i, i);
+//        }
+//
+//        // Initialize mappings for civilians
+//        for (int i = 3; i < 7; i++) {
+//            idToType.put(i, "civilian");
+//            idToLocalId.put(i, i - 3);
+//        }
+//
+//        // Initialize mappings for criminals
+//        for (int i = 7; i < 9; i++) {
+//            idToType.put(i, "criminal");
+//            idToLocalId.put(i, i - 7);
+//        }
+//
+//        for (int i = 9; i < 13; i++) {
+//            idToType.put(i, "clue");
+//            idToLocalId.put(i, i - 9);
+//        }
+
         // Initialize mappings for police
         for (int i = 0; i < 3; i++) {
             idToType.put(i, "police");
@@ -18,19 +41,19 @@ public class AgentIdMapper {
         }
 
         // Initialize mappings for civilians
-        for (int i = 3; i < 7; i++) {
-            idToType.put(i, "civilian");
+        for (int i = 3; i < 5; i++) {
+            idToType.put(i, "criminal");
             idToLocalId.put(i, i - 3);
         }
 
         // Initialize mappings for criminals
-        for (int i = 7; i < 9; i++) {
-            idToType.put(i, "criminal");
-            idToLocalId.put(i, i - 7);
+        for (int i = 5; i < 9; i++) {
+            idToType.put(i, "clue");
+            idToLocalId.put(i, i - 5);
         }
 
         for (int i = 9; i < 13; i++) {
-            idToType.put(i, "clue");
+            idToType.put(i, "civilian");
             idToLocalId.put(i, i - 9);
         }
 

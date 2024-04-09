@@ -14,8 +14,11 @@
 
 // +myId(ID) : true <- .print("My ID is: ", ID).
 
-+foundYouAt(X, Y) : true <-
-    .print("You found a criminal!").
+//+foundYouAt(X, Y) : true <-
+//  .print("You found a criminal!").
+
++foundYouAt(X,Y)[source(AgentId)] : true <-
+    .print("Found at: ", X, ",", Y, " from agent: ", AgentId).
 
 // print agent name
 +myName(NAME) : true <- .print("My name is: ", NAME).

@@ -10,6 +10,12 @@
 
 //+myId(ID) : true <- .print("My ID is: ", ID).
 
-+foundYouAt(X, Y) : true <-
-    .print("You found a civilian!").
++closeClueAgent(A,B,C,D) : true <-
+    .print("I have a close clue at: ", A, ",", B, " with ID: ", C, " and type: ", D);
+    +lastClueLocation(A, B, C, D).
+
++foundYouAt(X,Y)[source(AgentId)] : true <-
+    .print("Found at: ", X, ",", Y, " from agent: ", AgentId);
+    ?lastClueLocation(A, B, C, D);
+    .send(AgentId, tell, clueInfo(A, B, C, D)).
 

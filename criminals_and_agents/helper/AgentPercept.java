@@ -73,16 +73,31 @@ public class AgentPercept {
     }
 
 
-    public static void addCivilianPercept(CityEnvironment environment, int globalId, int x, int y) {
+    public static void addCivilianPercept(CityEnvironment environment, int civilianId, int x, int y, int clueId, int i, int j, CityModel cityModel) {
+        // x,y civilian agent position
+        // i,j clue agent position
         AgentIdMapper mapper = new AgentIdMapper();
-        String agentType = mapper.getType(globalId);
-        int localId = mapper.getLocalId(globalId);
 
-        System.out.println("Clue " + localId + " AT: " + x + ", " + y);
+        String agentType_civ = mapper.getType(civilianId);
+        int localCivId = mapper.getLocalId(civilianId);
 
-        if (agentType.equals("civilian")) {
+        String agentType_clue = mapper.getType(clueId);
+        int localClueId = mapper.getLocalId(clueId);
 
+
+        Location closestClue = cityModel.findClosestClueAgent(x, y);
+        if (closestClue != null) {
+            System.out.println("Closest clue agent to civilian " + localCivId + " is at " + closestClue.x + ", " + closestClue.y);
+
+            Literal cluePositionPercept = ASSyntax.createLiteral("closeClueAgent",
+                    ASSyntax.createNumber(closestClue.x),
+                    ASSyntax.createNumber(closestClue.y),
+                    ASSyntax.createNumber(localClueId + 1),
+                    ASSyntax.createAtom(agentType_clue));
+
+            environment.addPercept(agentType_civ + (localCivId + 1), cluePositionPercept);
         }
+
     }
 
 

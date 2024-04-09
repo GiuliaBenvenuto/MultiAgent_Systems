@@ -40,11 +40,18 @@
     .print("Close agent - ID: ", C, " Type: ", D);
     .concat(D, C, AgentName);
     .print("Sending message to ", AgentName);
-    .send(AgentName, tell, foundYouAt(A, B)).
+    .send(AgentName, tell, foundYouAt(A,B)).
 
 
 +arrivedAtDestination : true <-
     .print("Arrived at the destination, generating new path.").
+
+
+// ------ Police agent got a clue from a civilian ------
++clueInfo(A, B, C, D) : true <-
+    .print("A civlian gave me a clue.");
+    .print("Clue position: ", A, ", ", B, " Agent ID: ", C, " Type: ", D).
+
 
 
 

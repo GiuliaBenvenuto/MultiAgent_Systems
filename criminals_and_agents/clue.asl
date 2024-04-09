@@ -15,5 +15,8 @@
 
 // +myId(ID) : true <- .print("My ID is: ", ID).
 
-+foundYouAt(X, Y) : true <-
-    .print("You found a clue!").
+//+foundYouAt(X, Y) : true <-
+//    .print("You found a clue!").
+
++foundYouAt(X,Y)[source(AgentId)] : true <-
+    .print("Found at: ", X, ",", Y, " from agent: ", AgentId).
