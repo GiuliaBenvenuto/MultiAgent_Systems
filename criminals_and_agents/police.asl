@@ -17,6 +17,10 @@
     +arrivedAtDestination(Path).
 
 
++arrivedAtDestination(Path) : true <-
+    .print("Arrived at the destination, generating new path.").
+
+
 // Plan triggered when the agent's position is updated
 // +at(X,Y) : true <- .print("---> Updated position: at(", X, ",", Y, ").").
 
@@ -43,13 +47,9 @@
     .send(AgentName, tell, foundYouAt(A,B)).
 
 
-+arrivedAtDestination : true <-
-    .print("Arrived at the destination, generating new path.").
-
-
-// ------ Police agent got a clue from a civilian ------
+// Police agent got a clue from a civilian
 +clueInfo(A, B, C, D) : true <-
-    .print("A civlian gave me a clue.");
+    .print("A civilian gave me a clue.");
     .print("Clue position: ", A, ", ", B, " Agent ID: ", C, " Type: ", D).
 
 

@@ -56,7 +56,6 @@ public class AgentIdMapper {
             idToType.put(i, "civilian");
             idToLocalId.put(i, i - 9);
         }
-
     }
 
     public String getType(int globalId) {
