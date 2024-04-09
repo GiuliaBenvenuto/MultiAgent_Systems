@@ -25,7 +25,7 @@ public class FindPath extends DefaultInternalAction {
             int endX = (int)((NumberTerm) args[3]).solve();         // Get end X coordinate
             int endY = (int)((NumberTerm) args[4]).solve();         // Get end Y coordinate
 
-            System.out.println("Finding path for police " + policeId + " from (" + startX + ", " + startY + ") to (" + endX + ", " + endY + ")");
+            //System.out.println("Finding path for police " + policeId + " from (" + startX + ", " + startY + ") to (" + endX + ", " + endY + ")");
 
             // Get the city environment
             CityEnvironment env = CityEnvironment.getInstance();

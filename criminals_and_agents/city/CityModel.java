@@ -123,7 +123,7 @@ public class CityModel extends GridWorldModel {
     public boolean setClueAgentPos(int agId, int x, int y) {
         if (isInGrid(x, y) && !hasObject(OBSTACLE, x, y) && !hasObject(JAIL, x, y) && !hasObject(AGENT, x, y)) {
 
-            System.out.println("Clue id: " + agId);
+            //System.out.println("Clue id: " + agId);
             setAgPos(agId, x, y);
             add(CLUE_AGENT, x, y); // Mark the cell with the CLUE_AGENT identifier
             agentLocationMap.put(new Pair<>(new Location(x, y), CLUE_AGENT), agId);
@@ -140,7 +140,7 @@ public class CityModel extends GridWorldModel {
     public boolean setPoliceAgentPos(int agId, int x, int y) {
         if (isInGrid(x, y) && !hasObject(OBSTACLE, x, y) && !hasObject(JAIL, x, y) && !hasObject(AGENT, x, y)) {
 
-            System.out.println("Police id: " + agId);
+            //System.out.println("Police id: " + agId);
             setAgPos(agId, x, y);
             add(POLICE_AGENT, x, y); // Mark the cell with the POLICE_AGENT identifier
             agentLocationMap.put(new Pair<>(new Location(x, y), POLICE_AGENT), agId);
@@ -156,7 +156,7 @@ public class CityModel extends GridWorldModel {
     public boolean setCivilianAgentPos(int agId, int x, int y) {
         if (isInGrid(x, y) && !hasObject(OBSTACLE, x, y) && !hasObject(JAIL, x, y) && !hasObject(AGENT, x, y)) {
 
-            System.out.println("Civilian id: " + agId);
+            //System.out.println("Civilian id: " + agId);
             setAgPos(agId, x, y);
             add(CIVILIAN_AGENT, x, y);  // Mark the cell with the POLICE_AGENT identifier
             agentLocationMap.put(new Pair<>(new Location(x, y), CIVILIAN_AGENT), agId);
@@ -172,7 +172,7 @@ public class CityModel extends GridWorldModel {
     public boolean setCriminalAgentPos(int agId, int x, int y) {
         if (isInGrid(x, y) && !hasObject(OBSTACLE, x, y) && !hasObject(JAIL, x, y) && !hasObject(AGENT, x, y)) {
 
-            System.out.println("Criminal id: " + agId);
+            //System.out.println("Criminal id: " + agId);
             setAgPos(agId, x, y);
             add(CRIMINAL_AGENT, x, y);  // Mark the cell with the POLICE_AGENT identifier
             agentLocationMap.put(new Pair<>(new Location(x, y), CRIMINAL_AGENT), agId);

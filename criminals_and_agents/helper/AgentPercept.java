@@ -43,6 +43,7 @@ public class AgentPercept {
             } while (!environment.getCityModel().isFree(endX, endY));
 
             System.out.println("POLICE " + localId + " MOVING TO: " + endX + ", " + endY);
+            System.out.println("");
 
             Literal policeStart = ASSyntax.createLiteral("startPos",
                     ASSyntax.createNumber(x),
@@ -72,7 +73,7 @@ public class AgentPercept {
         String foundAgentType = mapper.getType(globalAgentId);
         int localAgentId = mapper.getLocalId(globalAgentId);
 
-        System.out.println("FOUND AGENT TYPE: " + foundAgentType);
+        // System.out.println("FOUND AGENT TYPE: " + foundAgentType);
 
         // Position
         Literal positionPercept = ASSyntax.createLiteral("closeAgentAt",

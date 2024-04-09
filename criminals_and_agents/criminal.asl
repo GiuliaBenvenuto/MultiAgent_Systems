@@ -10,9 +10,9 @@
 +!start : true <- .print("I'm a criminal.").
 
 // Plan triggered when the agent's position is updated
-+at(X,Y) : true <- .print("---> Updated position: at(", X, ",", Y, ").").
+// +at(X,Y) : true <- .print("---> Updated position: at(", X, ",", Y, ").").
 
-+myId(ID) : true <- .print("My ID is: ", ID).
+// +myId(ID) : true <- .print("My ID is: ", ID).
 
 +foundYouAt(X, Y) : true <-
     .print("You found a criminal!").
