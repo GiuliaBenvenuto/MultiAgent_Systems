@@ -146,6 +146,8 @@ public class CityModel extends GridWorldModel {
             agentLocationMap.put(new Pair<>(new Location(x, y), POLICE_AGENT), agId);
             //CityEnvironment.getInstance().updateAgentPercepts(agId, x, y);
             AgentPercept.updateAgentPercepts(CityEnvironment.getInstance(), agId, x, y);
+            AgentPercept.policeAgentPercept(CityEnvironment.getInstance(), agId, x, y);
+            //policeAgentPercept
 
             return true;
         }
