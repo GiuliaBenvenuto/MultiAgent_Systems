@@ -17,10 +17,6 @@
     +arrivedAtDestination(Path).
 
 
-+arrivedAtDestination(Path) : true <-
-    .print("Arrived at the destination, generating new path.").
-
-
 // Plan triggered when the agent's position is updated
 // +at(X,Y) : true <- .print("---> Updated position: at(", X, ",", Y, ").").
 
@@ -51,7 +47,25 @@
 +clueInfo(A, B, C, D) : true <-
     .print("A civilian gave me a clue.");
     .print("Clue position: ", A, ", ", B, " Agent ID: ", C, " Type: ", D).
+    //+haveClue(A, B);
+    //+goToClue.
 
+
++arrivedAtDestination(Path) : true <-
+    .print("Arrived at the destination, generating new path.").
+
+
+/*
++arrivedAtDestination(Path) : not goToClue <-
+    .print("Arrived at the destination, generating new path.").
+
++arrivedAtDestination(Path) : goToClue & haveClue(X, Y) <-
+    .print("I HAVE A CLUE AND I WANT TO MOVE THERE");
+    -goToClue;
+    -haveClue(X, Y);
+    -+endPos(X,Y);
+    !explore.
+*/
 
 
 

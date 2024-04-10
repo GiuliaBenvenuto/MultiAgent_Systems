@@ -90,7 +90,7 @@ public class AgentPercept {
             System.out.println("Closest clue agent to civilian " + localCivId + " is at " + closestClue.x + ", " + closestClue.y);
 
             Literal cluePositionPercept = ASSyntax.createLiteral("closeClueAgent",
-                    ASSyntax.createNumber(closestClue.x),
+                    ASSyntax.createNumber(closestClue.x + 1), // add +1 such that I'm moving in a neighboring cell
                     ASSyntax.createNumber(closestClue.y),
                     ASSyntax.createNumber(localClueId + 1),
                     ASSyntax.createAtom(agentType_clue));

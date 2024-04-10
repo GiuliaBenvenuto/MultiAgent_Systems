@@ -25,7 +25,7 @@ public class FindPath extends DefaultInternalAction {
             int endX = (int)((NumberTerm) args[3]).solve();         // Get end X coordinate
             int endY = (int)((NumberTerm) args[4]).solve();         // Get end Y coordinate
 
-            //System.out.println("Finding path for police " + policeId + " from (" + startX + ", " + startY + ") to (" + endX + ", " + endY + ")");
+            System.out.println("Finding path for police " + policeId + " from (" + startX + ", " + startY + ") to (" + endX + ", " + endY + ")");
 
             // Get the city environment
             CityEnvironment env = CityEnvironment.getInstance();
@@ -40,7 +40,12 @@ public class FindPath extends DefaultInternalAction {
                 // Execute the pathfinding
                 List<Location> path = aStar.findPath(policeId, new Location(startX, startY), new Location(endX, endY));
                 // Process the path to move police agents icons
-                if (path != null) {
+                if (path == null || path.isEmpty()) {
+                    System.out.println("No path found for police " + policeId + " from (" + startX + ", " + startY + ") to (" + endX + ", " + endY + ")");
+                    return un.unifies(ASSyntax.createList(), args[5]); // Return an empty list if no path is found
+                } else {
+                    // If a path is found, process it
+                    System.out.println("Path found for police " + policeId + ": " + path.toString());
                     CityEnvironment.getInstance().processPath(policeId, path);
                 }
 

@@ -61,7 +61,7 @@ public class CityView extends GridWorldView {
 
 
     public CityView(CityModel model) {
-        super(model, "City", 900);
+        super(model, "City", 700);
         this.city_model = model;
 
         icon = new ImageIcon("images/police.png");
@@ -76,8 +76,7 @@ public class CityView extends GridWorldView {
         jailImage = icon.getImage();
         icon = new ImageIcon("images/brick-wall.png");
         obstacleImage = icon.getImage();
-
-
+        
         setVisible(true);
         repaint();
     }
