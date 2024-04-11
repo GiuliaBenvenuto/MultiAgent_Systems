@@ -172,9 +172,9 @@ public class CityEnvironment extends jason.environment.Environment {
                         city_model.updatePoliceAgentPosition(agId, step.x, step.y);
                         city_view.updateView(city_model);
 
-                        instance.removePercept("police" + agId, Literal.parseLiteral("currentPos(_,_)"));
+                        instance.removePercept("police" + (agId + 1), Literal.parseLiteral("currentPos(_,_)"));
                         // Add the new currentPos belief with the updated location
-                        instance.addPercept("police" + agId, Literal.parseLiteral("currentPos(" + step.x + "," + step.y + ")"));
+                        instance.addPercept("police" + (agId + 1), Literal.parseLiteral("currentPos(" + step.x + "," + step.y + ")"));
 
                         // Look around at the new position
                         List<String> agentsAround = LookAround.checkSurroundings(city_model, step.x, step.y, agId);
@@ -217,6 +217,31 @@ public class CityEnvironment extends jason.environment.Environment {
             });
 
         }).start();
+    }
+
+    public void processCriminalEscape(int agId, List<Location> path) {
+        new Thread(() -> {
+            for (Location step : path) {
+                try {
+                    Thread.sleep(300); // Delay for visualization
+                    SwingUtilities.invokeLater(() -> {
+                        city_model.updateCriminalAgentPosition(agId, step.x, step.y);
+                        city_view.updateView(city_model);
+
+                        instance.removePercept("criminal" + (agId + 1), Literal.parseLiteral("currentPos(_,_)"));
+                        instance.addPercept("criminal" + (agId + 1), Literal.parseLiteral("currentPos(" + step.x + "," + step.y + ")"));
+                        instance.removePercept("criminal" + (agId + 1), Literal.parseLiteral("at(_,_)"));
+                        instance.addPercept("criminal" + (agId + 1), Literal.parseLiteral("at(" + step.x + "," + step.y + ")"));
+
+
+                        // Look around at the new position
+                        //List<String> agentsAround = LookAround.checkSurroundings(city_model, step.x, step.y, agId);
+                        });
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
     }
 
 

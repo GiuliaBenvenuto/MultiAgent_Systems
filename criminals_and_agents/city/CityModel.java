@@ -461,6 +461,16 @@ public class CityModel extends GridWorldModel {
         }
     }
 
+    // Update the position of the criminal agent following the path
+    public void updateCriminalAgentPosition(int agId, int x, int y) {
+        if (isFree(x, y)) {
+            Location currentLoc = getAgPos(agId);
+            remove(CRIMINAL_AGENT, currentLoc.x, currentLoc.y);
+            setAgPos(agId, x, y);
+            add(CRIMINAL_AGENT, x, y);
+        }
+    }
+
     public int getAgentId(int agentType, int x, int y) {
         // using agentLocationMap
         return agentLocationMap.getOrDefault(new Pair<>(new Location(x, y), agentType), -1);
