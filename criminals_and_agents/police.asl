@@ -7,6 +7,7 @@
 +!start : true <- .print("I'm a police agent.").
 
 
+/*
 +!explore : startPos(A,B) & endPos(C,D) & myId(ID) & not haveClue(X,Y) <-
     .print("Starting exploration.");
     .print("Finding path for police ", ID, " from (", A, ", ", B, ") to (", C, ", ", D, ")");
@@ -25,6 +26,24 @@
     -haveClue(X,Y);
     // Create a new belief "arrivedAtDestination" to signal the agent has arrived at the destination
     +arrivedAtDestination.
+*/
+
++!explore : startPos(A,B) & endPos(C,D) & myId(ID) <-
+    .print("Starting exploration.");
+    if (haveClue(X,Y)) {
+        .print("----- POLICE GOING TO CLUE ------ ", ID, " from (", A, ", ", B, ") to (", X, ", ", Y, ")");
+        // call to FindPath internal action towards the clue and print the path
+        path.FindPath(ID, A, B, X, Y, Path);
+        -haveClue(X,Y); // Remove the clue after moving towards it
+    } else {
+        .print("Finding path for police ", ID, " from (", A, ", ", B, ") to (", C, ", ", D, ")");
+        // call to FindPath internal action for normal exploration and print the path
+        path.FindPath(ID, A, B, C, D, Path);
+    }
+    .print("Path found: ", Path);
+    // Create a new belief "arrivedAtDestination" to signal the agent has arrived at the destination
+    +arrivedAtDestination.
+
 
 
 // Plan triggered when the agent's position is updated
