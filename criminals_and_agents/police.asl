@@ -7,19 +7,31 @@
 +!start : true <- .print("I'm a police agent.").
 
 
-+!explore : startPos(A,B) & endPos(C,D) & myId(ID) <-
++!explore : startPos(A,B) & endPos(C,D) & myId(ID) & not haveClue(X,Y) <-
     .print("Starting exploration.");
     .print("Finding path for police ", ID, " from (", A, ", ", B, ") to (", C, ", ", D, ")");
     // call to FindPath internal action and print the path
     path.FindPath(ID, A, B, C, D, Path);
     .print("Path found: ", Path);
     // Create a new belief "arrivedAtDestination" to signal the agent has arrived at the destination
-    +arrivedAtDestination(Path).
+    +arrivedAtDestination.
+
++!explore : startPos(A,B) & endPos(C,D) & myId(ID) & haveClue(X,Y) <-
+    .print("Starting exploration.");
+    .print("----- POLICE GOING TO CLUE ------ ", ID, " from (", A, ", ", B, ") to (", X, ", ", Y, ")");
+    // call to FindPath internal action and print the path
+    path.FindPath(ID, A, B, X, Y, Path);
+    .print("Path found: ", Path);
+    -haveClue(X,Y);
+    // Create a new belief "arrivedAtDestination" to signal the agent has arrived at the destination
+    +arrivedAtDestination.
 
 
 // Plan triggered when the agent's position is updated
 // +at(X,Y) : true <- .print("---> Updated position: at(", X, ",", Y, ").").
 
+//+currentPos(A,B) : true <-
+//    .print("#############Current position : currentPos(", A, ",", B, ").").
 
 +startPos(A,B) : true <-
     .print("Initial position : startPos(", A, ",", B, ").").
@@ -44,14 +56,16 @@
 
 
 // Police agent got a clue from a civilian
-+clueInfo(A, B, C, D) : true <-
++clueInfo(X, Y, C, D) : true <-
     .print("A civilian gave me a clue.");
-    .print("Clue position: ", A, ", ", B, " Agent ID: ", C, " Type: ", D).
+    .print("Clue position: ", X, ", ", Y, " Agent ID: ", C, " Type: ", D);
+    +haveClue(X, Y).
     //+haveClue(A, B);
     //+goToClue.
 
 
-+arrivedAtDestination(Path) : true <-
+
++arrivedAtDestination : true <-
     .print("Arrived at the destination, generating new path.").
 
 

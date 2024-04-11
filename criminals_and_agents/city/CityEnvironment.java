@@ -172,6 +172,10 @@ public class CityEnvironment extends jason.environment.Environment {
                         city_model.updatePoliceAgentPosition(agId, step.x, step.y);
                         city_view.updateView(city_model);
 
+                        instance.removePercept("police" + agId, Literal.parseLiteral("currentPos(_,_)"));
+                        // Add the new currentPos belief with the updated location
+                        instance.addPercept("police" + agId, Literal.parseLiteral("currentPos(" + step.x + "," + step.y + ")"));
+
                         // Look around at the new position
                         List<String> agentsAround = LookAround.checkSurroundings(city_model, step.x, step.y, agId);
 //                        if (!agentsAround.isEmpty()) {

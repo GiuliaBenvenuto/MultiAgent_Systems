@@ -234,16 +234,16 @@ public class CityModel extends GridWorldModel {
         city_model.setPoliceAgentPos(2, 34, 34);
 
         city_model.setCriminalAgentPos(3, 10, 10);
-        city_model.setCriminalAgentPos(4, 10, 20);
+        city_model.setCriminalAgentPos(4, 15, 25);
 
         city_model.setClueAgentPos(5, 5, 5);
         city_model.setClueAgentPos(6, 5, 35);
         city_model.setClueAgentPos(7, 35, 5);
         city_model.setClueAgentPos(8, 35, 30);
 
-        city_model.setCivilianAgentPos(9, 1, 1);
-        city_model.setCivilianAgentPos(10, 1, 29);
-        city_model.setCivilianAgentPos(11, 29, 1);
+        city_model.setCivilianAgentPos(9, 9, 4);
+        city_model.setCivilianAgentPos(10, 10, 35);
+        city_model.setCivilianAgentPos(11, 31, 9);
         city_model.setCivilianAgentPos(12, 29, 29);
 
 
