@@ -219,6 +219,7 @@ public class CityEnvironment extends jason.environment.Environment {
         }).start();
     }
 
+    /*
     public void processCriminalEscape(int agId, List<Location> path) {
         new Thread(() -> {
             for (Location step : path) {
@@ -226,6 +227,7 @@ public class CityEnvironment extends jason.environment.Environment {
                     Thread.sleep(300); // Delay for visualization
                     SwingUtilities.invokeLater(() -> {
                         city_model.updateCriminalAgentPosition(agId, step.x, step.y);
+                        System.out.println("????????? CRIMINAL ID: " + agId);
                         city_view.updateView(city_model);
 
                         instance.removePercept("criminal" + (agId + 1), Literal.parseLiteral("currentPos(_,_)"));
@@ -242,7 +244,7 @@ public class CityEnvironment extends jason.environment.Environment {
                     }
                 }
             }).start();
-    }
+    }*/
 
 
 } //CityEnvironment

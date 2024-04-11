@@ -13,6 +13,7 @@ import java.util.*;
 
 public class Escape extends DefaultInternalAction {
 
+    /*
     @Override
     public Object execute(TransitionSystem ts, Unifier un, Term[] args) throws Exception {
         // Check argument length
@@ -32,8 +33,8 @@ public class Escape extends DefaultInternalAction {
 
                 // Generate random escape coordinates
                 Random rand = new Random();
-                int endX = rand.nextInt(11) - 5 + startX;
-                int endY = rand.nextInt(11) - 5 + startY;
+                int endX = rand.nextInt(7) - 3 + startX;
+                int endY = rand.nextInt(7) - 3 + startY;
 
                 List<Location> path = aStar.findPath(criminalId, new Location(startX, startY), new Location(endX, endY));
 
@@ -121,7 +122,6 @@ public class Escape extends DefaultInternalAction {
         } else {
             throw new JasonException("Incorrect number of arguments. Expected 5, received " + args.length);
         }
-    }
+    }*/
 }
 
- */

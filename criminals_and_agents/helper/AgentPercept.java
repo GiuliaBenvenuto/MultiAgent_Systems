@@ -66,7 +66,7 @@ public class AgentPercept {
             // Add jail position for police agents
             Location jail = environment.getCityModel().getJail();
             Literal jailPercept = ASSyntax.createLiteral("jailPos",
-                    ASSyntax.createNumber(jail.x),
+                    ASSyntax.createNumber(jail.x - 1),
                     ASSyntax.createNumber(jail.y));
             environment.addPercept(agentType + (localId + 1), jailPercept);
         }

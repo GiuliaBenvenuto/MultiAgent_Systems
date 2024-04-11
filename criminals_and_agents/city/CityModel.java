@@ -233,7 +233,7 @@ public class CityModel extends GridWorldModel {
         city_model.setPoliceAgentPos(1, 34, 35);
         city_model.setPoliceAgentPos(2, 34, 34);
 
-        city_model.setCriminalAgentPos(3, 10, 10);
+        city_model.setCriminalAgentPos(3, 10, 12);
         city_model.setCriminalAgentPos(4, 15, 25);
 
         city_model.setClueAgentPos(5, 5, 5);
@@ -461,15 +461,21 @@ public class CityModel extends GridWorldModel {
         }
     }
 
-    // Update the position of the criminal agent following the path
+    /* Update the position of the criminal agent following the path
     public void updateCriminalAgentPosition(int agId, int x, int y) {
+        int id = 0;
+        if (agId == 0) {
+            id = 3;
+        } else {
+            id = 4;
+        }
         if (isFree(x, y)) {
-            Location currentLoc = getAgPos(agId);
+            Location currentLoc = getAgPos(id);
             remove(CRIMINAL_AGENT, currentLoc.x, currentLoc.y);
-            setAgPos(agId, x, y);
+            setAgPos(id, x, y);
             add(CRIMINAL_AGENT, x, y);
         }
-    }
+    }*/
 
     public int getAgentId(int agentType, int x, int y) {
         // using agentLocationMap
