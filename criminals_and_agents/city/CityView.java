@@ -80,6 +80,7 @@ public class CityView extends GridWorldView {
 
         icon = new ImageIcon("images/police_escorting.png");
         policeEscortingImage = icon.getImage();
+
         
         setVisible(true);
         repaint();

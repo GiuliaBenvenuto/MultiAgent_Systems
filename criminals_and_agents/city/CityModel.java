@@ -495,6 +495,25 @@ public class CityModel extends GridWorldModel {
     }
 
 
+    // Criminal arrested so remove it from the grid and from the agentLocationMap
+    public void arrestCriminal(int criminalId, int x, int y) {
+        // Here, you should add logic to ensure that the criminal at (x, y) is indeed the one with criminalId
+        // This is to ensure consistency between the ID and the coordinates
+        // Criminal id here is 0 or 1 but I have to map them to 3 and 4
+//        int id = 0;
+//        if (criminalId == 0) {
+//            id = 3;
+//        } else {
+//            id = 4;
+//        }
+//        Location loc = getAgPos(criminalId);
+        remove(AGENT, x, y);
+        remove(CRIMINAL_AGENT, x, y);
+        Location loc = new Location(x, y);
+        agentLocationMap.remove(new Pair<>(loc, CRIMINAL_AGENT));
+            // Update any necessary state or data structures to reflect the removal
+        
+    }
 
 
 }

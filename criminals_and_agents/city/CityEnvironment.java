@@ -145,7 +145,6 @@ public class CityEnvironment extends jason.environment.Environment {
                 instance.addPercept("police" + (agId + 1), newStartPos);
                 instance.addPercept("police" + (agId + 1), newEndPos);
 
-
             });
 
         }).start();

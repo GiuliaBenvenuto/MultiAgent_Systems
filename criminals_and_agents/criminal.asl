@@ -21,10 +21,17 @@
 //+foundYouAt(X,Y)[source(AgentId)] : true <-
 //    .print("Found at: ", X, ",", Y, " from agent: ", AgentId).
 
+
 +foundYouAt(X,Y)[source(AgentId)] : true <-
     .print("CRIMINAL found at: ", X, ",", Y, " from agent: ", AgentId);
     ?at(Xc,Yc);
+    +arrestedAt(X,Y);
     .send(AgentId, tell, arrestedCriminal(Xc,Yc)).
+
+
++arrestedAt(X,Y) : myId(ID) & at(Xc,Yc) <-
+    .print("CRIMINAL INTERNAL ACTION: ", Xc, ",", Yc);
+    path.Arrested(ID, Xc, Yc).
 
 
 /*

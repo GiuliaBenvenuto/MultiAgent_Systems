@@ -50,8 +50,15 @@ public class LookAround {
                         foundAgents.add("Police Agent");
                     }
                     if(cityModel.hasObject(CityModel.JAIL, nx, ny)){
-                        AgentPercept.jailWithCriminal(CityEnvironment.getInstance(), policeId, x, y);
                         foundAgents.add("FOUND THE JAIL");
+
+                        // If the police agent is escorting a criminal agent, jail them.
+                        // The icon of the police agent will return the policeImage icon since the criminal agent is jailed.
+                        boolean escorting = cityModel.isEscorting(policeId);
+                        if (escorting) {
+                            AgentPercept.jailWithCriminal(CityEnvironment.getInstance(), policeId, x, y);
+                        }
+
                     }
                 }
             }

@@ -89,15 +89,15 @@
 // Police arrested a criminal
 +arrestedCriminal(Xc, Yc) : myId(ID) <-
     .print("YOU ARE A CRIMINAL AND YOU ARE UNDER ARREST AT: ", Xc, ", ", Yc);
-    +escorting;
+    +escorting(ID);
     path.Escorting(ID, true).
 
 
 // Jail reached
-+reachedJail(Xj, Yj) : escorting & myId(ID) <-
-    .print("+++++++ARRIVED AT JAIL at: ", Xj, ", ", Yj);
++reachedJail(T,K) : myId(ID) & arrestedCriminal(Xc,Yc) <-
+    .print("+++++++ARRIVED AT JAIL+++++++");
     path.Escorting(ID, false); // To stop escorting
-    -escorting.
+    -arrestedCriminal(Xc,Yc).
 
 
 +arrivedAtDestination : true <-
