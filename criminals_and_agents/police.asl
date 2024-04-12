@@ -24,6 +24,7 @@
     +arrivedAtDestination.
 */
 
+
 +!explore : startPos(A,B) & endPos(C,D) & myId(ID) <-
     .print("Starting exploration.");
     if (haveClue(X,Y) & not arrestedCriminal(X, Y)) {
@@ -56,7 +57,7 @@
 //+currentPos(A,B) : true <-
 //    .print("#############Current position : currentPos(", A, ",", B, ").").
 
-// +myId(ID) : true <- .print("My ID is: ", ID).
++myId(ID) : true <- .print("My ID is: ", ID).
 
 
 +startPos(A,B) : true <-
@@ -86,8 +87,17 @@
 
 
 // Police arrested a criminal
-+arrestedCriminal(Xc, Yc) : true <-
-    .print("ARRESTED CRIMINAL at position: ", Xc, ", ", Yc).
++arrestedCriminal(Xc, Yc) : myId(ID) <-
+    .print("YOU ARE A CRIMINAL AND YOU ARE UNDER ARREST AT: ", Xc, ", ", Yc);
+    +escorting;
+    path.Escorting(ID, true).
+
+
+// Jail reached
++reachedJail(Xj, Yj) : escorting & myId(ID) <-
+    .print("+++++++ARRIVED AT JAIL at: ", Xj, ", ", Yj);
+    path.Escorting(ID, false); // To stop escorting
+    -escorting.
 
 
 +arrivedAtDestination : true <-

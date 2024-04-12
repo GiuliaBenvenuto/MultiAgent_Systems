@@ -32,6 +32,8 @@ public class CityModel extends GridWorldModel {
     Location jail;
 
     private Map<Pair<Location, Integer>, Integer> agentLocationMap = new HashMap<>();
+    // declaration of policeEscortingState
+    private Map<Integer, Boolean> policeEscortingState = new HashMap<>();
 
     private static class Pair<L, R> {
         private final L left;
@@ -204,30 +206,6 @@ public class CityModel extends GridWorldModel {
     //  --------------- City 1 ---------------
     static CityModel city1() throws Exception {
         CityModel city_model = CityModel.create(40, 40, 13);
-
-//        // ----- Set police location -----
-//        city_model.setPoliceAgentPos(0, 35, 34);
-//        city_model.setPoliceAgentPos(1, 34, 35);
-//        city_model.setPoliceAgentPos(2, 34, 34);
-//
-//        // ----- Set civilians location -----
-//        city_model.setCivilianAgentPos(3, 1, 1);
-//        city_model.setCivilianAgentPos(4, 1, 29);
-//        city_model.setCivilianAgentPos(5, 29, 1);
-//        city_model.setCivilianAgentPos(6, 29, 29);
-//
-//
-//        // ----- Set criminals location -----
-//        city_model.setCriminalAgentPos(7, 10, 10);
-//        city_model.setCriminalAgentPos(8, 10, 20);
-//        //city_model.setCriminalAgentPos(7, 25, 33);
-//        //city_model.setCriminalAgentPos(8, 35, 32);
-//
-//        // ----- Set clues location -----
-//        city_model.setClueAgentPos(9, 5, 5);
-//        city_model.setClueAgentPos(10, 5, 35);
-//        city_model.setClueAgentPos(11, 35, 5);
-//        city_model.setClueAgentPos(12, 35, 30);
 
         city_model.setPoliceAgentPos(0, 35, 34);
         city_model.setPoliceAgentPos(1, 34, 35);
@@ -498,6 +476,22 @@ public class CityModel extends GridWorldModel {
             }
         }
         return closestClue;
+    }
+
+    // Police agent escorting a criminal to jail
+    public void startEscorting(int policeId) {
+        // Add logic to mark the police agent as escorting
+        // This could be a simple boolean flag or a more complex state management
+        // For example, you could add a Map<Integer, Boolean> to track the escorting state of each police agent
+        policeEscortingState.put(policeId, true);
+    }
+
+    public void stopEscorting(int policeId) {
+        policeEscortingState.put(policeId, false);
+    }
+
+    public boolean isEscorting(int policeId) {
+        return policeEscortingState.getOrDefault(policeId, false);
     }
 
 

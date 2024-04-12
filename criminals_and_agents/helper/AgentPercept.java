@@ -121,6 +121,18 @@ public class AgentPercept {
         environment.addPercept(agentType + (localPoliceId + 1), positionPercept);
     }
 
+    public static void jailWithCriminal(CityEnvironment environment, int globalPoliceId, int x, int y) {
+        System.out.println("JAIL WITH CRIMINAL");
+        AgentIdMapper mapper = new AgentIdMapper();
+        String agentType = mapper.getType(globalPoliceId);
+        int localPoliceId = mapper.getLocalId(globalPoliceId);
+
+        Location jail = environment.getCityModel().getJail();
+        Literal jailPercept = ASSyntax.createLiteral("reachedJail",
+                ASSyntax.createNumber(jail.x - 1),
+                ASSyntax.createNumber(jail.y));
+        environment.addPercept(agentType + (localPoliceId + 1), jailPercept);
+    }
 
 
 

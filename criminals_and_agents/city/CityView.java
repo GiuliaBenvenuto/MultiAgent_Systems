@@ -58,6 +58,7 @@ public class CityView extends GridWorldView {
     private Image criminalImage;
     private Image jailImage;
     private Image obstacleImage;
+    private Image policeEscortingImage;
 
 
     public CityView(CityModel model) {
@@ -76,6 +77,9 @@ public class CityView extends GridWorldView {
         jailImage = icon.getImage();
         icon = new ImageIcon("images/brick-wall.png");
         obstacleImage = icon.getImage();
+
+        icon = new ImageIcon("images/police_escorting.png");
+        policeEscortingImage = icon.getImage();
         
         setVisible(true);
         repaint();
@@ -198,7 +202,10 @@ public class CityView extends GridWorldView {
             // POLICE_AGENT
             //g.setColor(Color.ORANGE);
             //g.fillOval(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
-            g.drawImage(policeImage, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
+            // get if of the agent
+            Image agentImage = city_model.isEscorting(id) ? policeEscortingImage : policeImage;
+            g.drawImage(agentImage, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
+            //g.drawImage(policeImage, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
         } else if (city_model.hasObject(city_model.CIVILIAN_AGENT, x, y)) {
             // CIVILIANL_AGENT
             //g.setColor(Color.BLUE);

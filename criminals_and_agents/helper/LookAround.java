@@ -49,6 +49,10 @@ public class LookAround {
                     if (cityModel.hasObject(CityModel.POLICE_AGENT, nx, ny)) {
                         foundAgents.add("Police Agent");
                     }
+                    if(cityModel.hasObject(CityModel.JAIL, nx, ny)){
+                        AgentPercept.jailWithCriminal(CityEnvironment.getInstance(), policeId, x, y);
+                        foundAgents.add("FOUND THE JAIL");
+                    }
                 }
             }
         }
