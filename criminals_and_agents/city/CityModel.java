@@ -35,6 +35,8 @@ public class CityModel extends GridWorldModel {
     // declaration of policeEscortingState
     private Map<Integer, Boolean> policeEscortingState = new HashMap<>();
 
+    public int n_arrested_criminals = 0;
+
     private static class Pair<L, R> {
         private final L left;
         private final R right;
@@ -82,7 +84,6 @@ public class CityModel extends GridWorldModel {
         data[i][j] = JAIL;
         // Print location
         // logger.info("Jail location: " + jail);
-
     }
 
     public Location getJail() {
@@ -115,6 +116,10 @@ public class CityModel extends GridWorldModel {
                 }
             }
         }
+    }
+
+    public int getArrestedCriminals() {
+        return n_arrested_criminals;
     }
 
     public boolean isInGrid(int x, int y) {
@@ -488,6 +493,7 @@ public class CityModel extends GridWorldModel {
 
     public void stopEscorting(int policeId) {
         policeEscortingState.put(policeId, false);
+        n_arrested_criminals++;
     }
 
     public boolean isEscorting(int policeId) {

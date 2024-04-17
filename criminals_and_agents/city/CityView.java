@@ -57,6 +57,8 @@ public class CityView extends GridWorldView {
     private Image clueImage;
     private Image criminalImage;
     private Image jailImage;
+    private Image jailImage_1;
+    private Image jailImage_2;
     private Image obstacleImage;
     private Image policeEscortingImage;
 
@@ -75,6 +77,10 @@ public class CityView extends GridWorldView {
         criminalImage = icon.getImage();
         icon = new ImageIcon("images/jail.png");
         jailImage = icon.getImage();
+        icon = new ImageIcon("images/jail_1_criminal.png");
+        jailImage_1 = icon.getImage();
+        icon = new ImageIcon("images/jail_2_criminal.png");
+        jailImage_2 = icon.getImage();
         icon = new ImageIcon("images/brick-wall.png");
         obstacleImage = icon.getImage();
 
@@ -178,7 +184,16 @@ public class CityView extends GridWorldView {
     public void drawJail(Graphics g, int x, int y) {
         //g.setColor(Color.red);
         //g.fillRect(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
-        g.drawImage(jailImage, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
+        int arrested_criminals = city_model.getArrestedCriminals();
+        if (arrested_criminals == 1) {
+            g.drawImage(jailImage_1, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
+        }
+        else if (arrested_criminals == 2) {
+            g.drawImage(jailImage_2, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
+        }
+        else {
+            g.drawImage(jailImage, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
+        }
     }
 
     public void drawObstacle(Graphics g, int x, int y) {
