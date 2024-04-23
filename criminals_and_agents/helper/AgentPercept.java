@@ -15,6 +15,7 @@ import java.util.List;
 
 public class AgentPercept {
 
+
     public static void updateAgentPercepts(CityEnvironment environment, int globalId, int x, int y) {
         AgentIdMapper mapper = new AgentIdMapper();
         String agentType = mapper.getType(globalId);
@@ -33,6 +34,7 @@ public class AgentPercept {
     }
 
 
+    // ----------- Police Percepts ------------
     public static void addPolicePercept(CityEnvironment environment, int globalId, int x, int y) {
         AgentIdMapper mapper = new AgentIdMapper();
         String agentType = mapper.getType(globalId);
@@ -73,6 +75,7 @@ public class AgentPercept {
     }
 
 
+    // ----------- Civilian Percepts about closest clue ------------
     public static void addCivilianPercept(CityEnvironment environment, int civilianId, int x, int y, int clueId, int i, int j, CityModel cityModel) {
         // x,y civilian agent position
         // i,j clue agent position
@@ -100,6 +103,8 @@ public class AgentPercept {
 
     }
 
+
+    // ----------- Clue Percepts about criminal position X or Y ------------
     public static void addCluePerceptX(CityEnvironment environment, int clueId, int clueX, int clueY, int criminalID, int criminalX) {
         AgentIdMapper mapper = new AgentIdMapper();
         String agentType = mapper.getType(clueId);
@@ -108,7 +113,7 @@ public class AgentPercept {
         // X coord of criminal agent
         Literal criminalXpercept = ASSyntax.createLiteral("criminalXcoord",
                 ASSyntax.createNumber(criminalID),
-                ASSyntax.createNumber(criminalX));
+                ASSyntax.createNumber(criminalX + 1));
         environment.addPercept(agentType + (localId + 1), criminalXpercept);
     }
 
@@ -125,6 +130,7 @@ public class AgentPercept {
     }
 
 
+    // ----------- Close agent found by police ------------
     public static void foundAgent(CityEnvironment environment, int globalPoliceId, int globalAgentId, int x, int y) {
         AgentIdMapper mapper = new AgentIdMapper();
         String agentType = mapper.getType(globalPoliceId);
@@ -145,8 +151,9 @@ public class AgentPercept {
         environment.addPercept(agentType + (localPoliceId + 1), positionPercept);
     }
 
+
+    // ----------- Arrived at jail escorting a criminal ------------
     public static void jailWithCriminal(CityEnvironment environment, int globalPoliceId, int x, int y) {
-        System.out.println("JAIL WITH CRIMINAL");
         AgentIdMapper mapper = new AgentIdMapper();
         String agentType = mapper.getType(globalPoliceId);
         int localPoliceId = mapper.getLocalId(globalPoliceId);
@@ -159,6 +166,7 @@ public class AgentPercept {
     }
 
 
+    // ----------- Stop exploring ------------
     public static void stopExploring(CityEnvironment environment, int globalId) {
 //        AgentIdMapper mapper = new AgentIdMapper();
 //        String agentType = mapper.getType(globalId);

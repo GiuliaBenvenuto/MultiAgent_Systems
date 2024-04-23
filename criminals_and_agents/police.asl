@@ -43,7 +43,22 @@
         path.FindPath(ID, A, B, Xj, Yj, Path);
         .print("PATH TO JAIL: ", Path);
         -arrestedCriminal(Xc, Yc);
-    } else {
+    }
+
+    /* ABOUT HAVING CLUES
+    elif (foundClueX(CIDX,CX) & foundClueY(CIDY,CY)) {
+        // check if CIDX and CIDY are equal
+        .print("----- POLICE HAS BOTH CLUES ------ ");
+        if (CIDX == CIDY) {
+            .print("----- GOING TOWORDS CRIMINAL ------ ");
+            // call to FindPath internal action towards the clue and print the path
+            path.FindPath(ID, A, B, CX, CY, Path);
+            -haveClueX(CIDX,CX); // Remove the clue after moving towards it
+            -haveClueY(CIDY,CY);
+        }
+    }*/
+
+     else {
         .print("--WARNING--> No path found.");
     }
     .print("Path found: ", Path);
@@ -104,12 +119,25 @@
     .print("Arrived at the destination, generating new path.").
 
 
-// Stop exploration
+/* Stop exploration
 +stopExploring : true <-
    .print("()()()()()()()()()()()()()()()Stopping exploration.");
    -startPos(A,B);
    -endPos(C,D);
    -myId(ID).
+   */
+
+
+// _____ CLUES ______
++foundClueX(CIDX,CX) : true <-
+    .print("POLICE ------> Found clue X: ", CX, " with ID: ", CIDX);
+    +haveClueX(CIDX,CX).
+
++foundClueY(CIDY,CY) : true <-
+    .print("POLICE ------> Found clue Y: ", CY, " with ID: ", CIDY);
+    +haveClueY(CIDY,CY).
+
+
 
 
 
