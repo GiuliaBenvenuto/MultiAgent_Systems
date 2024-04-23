@@ -37,6 +37,8 @@ public class CityModel extends GridWorldModel {
 
     public int n_arrested_criminals = 0;
 
+    private int clueAgentPosCallCount = 0;
+
     private static class Pair<L, R> {
         private final L left;
         private final R right;
@@ -137,6 +139,35 @@ public class CityModel extends GridWorldModel {
             //CityEnvironment.getInstance().updateAgentPercepts(agId, x, y);
             AgentPercept.updateAgentPercepts(CityEnvironment.getInstance(), agId, x, y);
 
+            // add percept of criminal x or y position to clues
+            // get criminal position
+//            for (int i = 0; i < getWidth(); i++) {
+//                for (int j = 0; j < getHeight(); j++) {
+//                    if (hasObject(CRIMINAL_AGENT, i, j)) {
+//                        // find the criminal agent id
+//                        int criminalId = getAgentId(CRIMINAL_AGENT, i, j);
+//                        System.out.println("---------> Criminal agent found at " + i + ", " + j + " with id: " + criminalId);
+//                        // AgentPercept.addCluePercept(CityEnvironment.getInstance(), agId, x, y, criminalId, i, j, city_model);
+//                    }
+//                }
+//            }
+
+            clueAgentPosCallCount++;  // Increment the counter
+            System.out.println("Clue agent position call count: " + clueAgentPosCallCount);
+            // Determine which criminal info to use based on the counter
+            if (clueAgentPosCallCount % 4 == 1) {
+                AgentPercept.addCluePerceptY(CityEnvironment.getInstance(), agId, x, y, 3, 12);
+                System.out.println("1");
+            } else if (clueAgentPosCallCount % 4 == 2) {
+                AgentPercept.addCluePerceptX(CityEnvironment.getInstance(), agId, x, y, 3, 10);
+                System.out.println("2");
+            } else if (clueAgentPosCallCount % 4 == 3) {
+                AgentPercept.addCluePerceptY(CityEnvironment.getInstance(), agId, x, y, 4, 21);
+                System.out.println("3");
+            } else if (clueAgentPosCallCount % 4 == 0) {
+                AgentPercept.addCluePerceptX(CityEnvironment.getInstance(), agId, x, y, 4, 26);
+                System.out.println("4");
+            }
 
             return true;
         }
@@ -173,8 +204,7 @@ public class CityModel extends GridWorldModel {
             AgentPercept.updateAgentPercepts(CityEnvironment.getInstance(), agId, x, y);
 
             // for this civlian agent at position x, y find the closest clue agent
-
-
+            // add it as a percept in the agent
             for (int i = 0; i < getWidth(); i++) {
                 for (int j = 0; j < getHeight(); j++) {
                     if (hasObject(CLUE_AGENT, i, j)) {
@@ -217,7 +247,7 @@ public class CityModel extends GridWorldModel {
         city_model.setPoliceAgentPos(2, 34, 34);
 
         city_model.setCriminalAgentPos(3, 10, 12);
-        city_model.setCriminalAgentPos(4, 15, 25);
+        city_model.setCriminalAgentPos(4, 26, 21);
 
         city_model.setClueAgentPos(5, 5, 5);
         city_model.setClueAgentPos(6, 5, 35);
@@ -494,6 +524,27 @@ public class CityModel extends GridWorldModel {
     public void stopEscorting(int policeId) {
         policeEscortingState.put(policeId, false);
         n_arrested_criminals++;
+        System.out.println("POLICE ID:" + policeId);
+        // get x and y from policeId
+        // Retrieve the current location of the police agent
+        Location policeLocation = getAgPos(policeId);
+
+        if (policeLocation != null) {
+            // Remove the police agent from the grid
+            remove(POLICE_AGENT, policeLocation.x, policeLocation.y);
+            // Also clear the general AGENT marker if necessary
+            remove(AGENT, policeLocation.x, policeLocation.y);
+
+            // Remove the police agent from the agent location map
+            agentLocationMap.remove(new Pair<>(policeLocation, POLICE_AGENT));
+
+            AgentPercept.stopExploring(CityEnvironment.getInstance(), policeId);
+            // set continue exploration in city environment
+            CityEnvironment.getInstance().setContinueExploration(false);
+            // remove icon of police agent
+
+
+        }
     }
 
     public boolean isEscorting(int policeId) {

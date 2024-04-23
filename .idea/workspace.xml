@@ -15,9 +15,19 @@
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/.gradle/8.0.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/.gradle/8.0.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/helper/LookAround.class" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/helper/LookAround.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/city/CityEnvironment.class" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/city/CityEnvironment.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/city/CityModel$Pair.class" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/city/CityModel$Pair.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/city/CityModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/city/CityModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/helper/AgentPercept.class" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/helper/AgentPercept.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/path/Arrested.class" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/path/Arrested.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/path/FindPath.class" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/path/FindPath.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/city/CityEnvironment.java" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/city/CityEnvironment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/city/CityModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/city/CityModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/criminals_and_agents/city/CityView.java" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/city/CityView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/clue.asl" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/clue.asl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/helper/AgentPercept.java" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/helper/AgentPercept.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/path/Arrested.java" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/path/Arrested.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/path/FindPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/path/FindPath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/police.asl" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/police.asl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,7 +35,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DarkyenusTimeTracker">
-    <option name="totalTimeSeconds" value="9877" />
+    <option name="totalTimeSeconds" value="20123" />
     <option name="gitIntegration" value="true" />
     <option name="naggedAbout" value="1" />
   </component>
@@ -150,7 +160,8 @@
       <workItem from="1712843832122" duration="601000" />
       <workItem from="1712905824176" duration="58000" />
       <workItem from="1712905885012" duration="10476000" />
-      <workItem from="1713340935085" duration="1706000" />
+      <workItem from="1713340935085" duration="8131000" />
+      <workItem from="1713860161514" duration="6514000" />
     </task>
     <task id="LOCAL-00001" summary="Commit from Intellij">
       <option name="closed" value="true" />

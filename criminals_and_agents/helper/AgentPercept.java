@@ -100,6 +100,30 @@ public class AgentPercept {
 
     }
 
+    public static void addCluePerceptX(CityEnvironment environment, int clueId, int clueX, int clueY, int criminalID, int criminalX) {
+        AgentIdMapper mapper = new AgentIdMapper();
+        String agentType = mapper.getType(clueId);
+        int localId = mapper.getLocalId(clueId);
+
+        // X coord of criminal agent
+        Literal criminalXpercept = ASSyntax.createLiteral("criminalXcoord",
+                ASSyntax.createNumber(criminalID),
+                ASSyntax.createNumber(criminalX));
+        environment.addPercept(agentType + (localId + 1), criminalXpercept);
+    }
+
+    public static void addCluePerceptY(CityEnvironment environment, int clueId, int clueX, int clueY, int criminalID, int criminalY) {
+        AgentIdMapper mapper = new AgentIdMapper();
+        String agentType = mapper.getType(clueId);
+        int localId = mapper.getLocalId(clueId);
+
+        // Y coord of criminal agent
+        Literal criminalYpercept = ASSyntax.createLiteral("criminalYcoord",
+                ASSyntax.createNumber(criminalID),
+                ASSyntax.createNumber(criminalY));
+        environment.addPercept(agentType + (localId + 1), criminalYpercept);
+    }
+
 
     public static void foundAgent(CityEnvironment environment, int globalPoliceId, int globalAgentId, int x, int y) {
         AgentIdMapper mapper = new AgentIdMapper();
@@ -132,6 +156,17 @@ public class AgentPercept {
                 ASSyntax.createNumber(jail.x - 1),
                 ASSyntax.createNumber(jail.y));
         environment.addPercept(agentType + (localPoliceId + 1), jailPercept);
+    }
+
+
+    public static void stopExploring(CityEnvironment environment, int globalId) {
+//        AgentIdMapper mapper = new AgentIdMapper();
+//        String agentType = mapper.getType(globalId);
+//        int localId = mapper.getLocalId(globalId);
+
+        // Position
+        Literal positionPercept = ASSyntax.createLiteral("stopExploring");
+        environment.addPercept("police" + (globalId + 1), positionPercept);
     }
 
 

@@ -20,3 +20,11 @@
 
 +foundYouAt(X,Y)[source(AgentId)] : true <-
     .print("Found at: ", X, ",", Y, " from agent: ", AgentId).
+
+
++criminalXcoord(CID,CX) : true <-
+    .print("############# Criminal ", CID, " is at X: ", CX).
+
+
++criminalYcoord(CID,CY) : true <-
+    .print("############# Criminal ", CID, " is at Y: ", CY).

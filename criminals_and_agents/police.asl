@@ -104,6 +104,12 @@
     .print("Arrived at the destination, generating new path.").
 
 
+// Stop exploration
++stopExploring : true <-
+   .print("()()()()()()()()()()()()()()()Stopping exploration.");
+   -startPos(A,B);
+   -endPos(C,D);
+   -myId(ID).
 
 
 

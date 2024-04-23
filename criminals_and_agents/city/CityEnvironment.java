@@ -21,6 +21,8 @@ public class CityEnvironment extends jason.environment.Environment {
     CityModel city_model;
     CityView city_view;
 
+    boolean continueExploration = true;
+
     // Type of city 
     int cityType;
     boolean gui = true;
@@ -44,6 +46,10 @@ public class CityEnvironment extends jason.environment.Environment {
 
     public CityModel getCityModel() {
         return this.city_model;
+    }
+
+    public void setContinueExploration(boolean continueEpxloration) {
+        this.continueExploration = continueExploration;
     }
 
 
@@ -119,33 +125,36 @@ public class CityEnvironment extends jason.environment.Environment {
                 }
             }
 
-            // ------- RECURSION OF EXPLORATION -------
-            SwingUtilities.invokeLater(() -> {
-                // add percept to inform that the police agent has arrived at the destination
-                instance.addPercept("police" + (agId + 1) , ASSyntax.createLiteral("arrivedAtDestination"));
-                // take last location in path as the current location
-                Location currentLocation = path.get(path.size() - 1);
-                // add percept to inform the current location in the new startPos removing the one already present in the agent
-                Literal newStartPos = ASSyntax.createLiteral("startPos",
-                        ASSyntax.createNumber(currentLocation.x),
-                        ASSyntax.createNumber(currentLocation.y));
 
-                // new end position for police agents
-                Random random = new Random();
-                int endX, endY;
-                do {
-                    endX = random.nextInt(39) + 1; // Generates a number between 1 and 39
-                    endY = random.nextInt(39) + 1;
-                } while (!instance.getCityModel().isFree(endX, endY));
+            if (continueExploration) {
+                // ------- RECURSION OF EXPLORATION -------
+                SwingUtilities.invokeLater(() -> {
+                    // add percept to inform that the police agent has arrived at the destination
+                    instance.addPercept("police" + (agId + 1), ASSyntax.createLiteral("arrivedAtDestination"));
+                    // take last location in path as the current location
+                    Location currentLocation = path.get(path.size() - 1);
+                    // add percept to inform the current location in the new startPos removing the one already present in the agent
+                    Literal newStartPos = ASSyntax.createLiteral("startPos",
+                            ASSyntax.createNumber(currentLocation.x),
+                            ASSyntax.createNumber(currentLocation.y));
 
-                Literal newEndPos = ASSyntax.createLiteral("endPos",
-                        ASSyntax.createNumber(endX),
-                        ASSyntax.createNumber(endY));
+                    // new end position for police agents
+                    Random random = new Random();
+                    int endX, endY;
+                    do {
+                        endX = random.nextInt(39) + 1; // Generates a number between 1 and 39
+                        endY = random.nextInt(39) + 1;
+                    } while (!instance.getCityModel().isFree(endX, endY));
 
-                instance.addPercept("police" + (agId + 1), newStartPos);
-                instance.addPercept("police" + (agId + 1), newEndPos);
+                    Literal newEndPos = ASSyntax.createLiteral("endPos",
+                            ASSyntax.createNumber(endX),
+                            ASSyntax.createNumber(endY));
 
-            });
+                    instance.addPercept("police" + (agId + 1), newStartPos);
+                    instance.addPercept("police" + (agId + 1), newEndPos);
+
+                });
+            }
 
         }).start();
     }

@@ -30,7 +30,7 @@ public class Arrested extends DefaultInternalAction {
         int x = (int)((NumberTerm) args[1]).solve();
         int y = (int)((NumberTerm) args[2]).solve();
 
-        System.out.println("INTERNAL: " + criminalId + " at (" + x + ", " + y + ")");
+        //System.out.println("INTERNAL: " + criminalId + " at (" + x + ", " + y + ")");
 
         // criminal at 10,12 -> ID = 0 -> In the CityModel ID = 3
         // criminal at 15,25 -> ID = 1 -> In the CityModel ID = 4
