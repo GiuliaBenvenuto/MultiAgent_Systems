@@ -170,7 +170,7 @@ public class AgentPercept {
     public static void stopExploring(CityEnvironment environment, int globalId) {
 //        AgentIdMapper mapper = new AgentIdMapper();
 //        String agentType = mapper.getType(globalId);
-//        int localId = mapper.getLocalId(globalId);
+//        int localId = mapper.getLocalId(globalId);arrestedCrim
 
         // Position
         Literal positionPercept = ASSyntax.createLiteral("stopExploring");

@@ -29,6 +29,7 @@ public class Escorting extends DefaultInternalAction {
         // Extract the police agent ID and the criminal agent ID
         int policeId = (int)((NumberTerm) args[0]).solve();
         boolean isEscorting = ((Atom)args[1]).getFunctor().equals("true");
+        System.out.println("_____Police ID: _____" + policeId);
 
         // Access the CityEnvironment to call methods related to escorting
         CityEnvironment env = CityEnvironment.getInstance();

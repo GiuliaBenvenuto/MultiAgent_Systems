@@ -64,7 +64,7 @@ public class CityView extends GridWorldView {
 
 
     public CityView(CityModel model) {
-        super(model, "City", 700);
+        super(model, "City", 500);
         this.city_model = model;
 
         icon = new ImageIcon("images/police.png");
