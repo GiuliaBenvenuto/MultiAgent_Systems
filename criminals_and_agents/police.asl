@@ -91,6 +91,7 @@
             -endPos(C,D);
             -myId(ID);
             .drop_all_intentions;
+            .drop_all_events;
         } else {
             // Directly calculate alternative positions without internal actions
             path.FindPath(ID, A, B, (Xj+1), (Yj-1), Path);
@@ -101,6 +102,7 @@
             -endPos(C,D);
             -myId(ID);
             .drop_all_intentions;
+            .drop_all_events;
         }
 
     }
@@ -178,11 +180,11 @@
     path.Escorting(ID, false); // To stop escorting
     -escorting(ID);
     +jailOccupied(T,K);
-    -arrestedCriminal(Xc,Yc).
+    -arrestedCriminal(Xc,Yc);
     //-reachedJail(T,K);
-    //-myId(ID);
-    //-startPos(A,B);
-    //-endPos(C,D).
+    -myId(ID);
+    -startPos(A,B);
+    -endPos(C,D).
 
 
 +arrivedAtDestination : true <-
