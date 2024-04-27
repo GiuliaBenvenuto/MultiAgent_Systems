@@ -52,6 +52,11 @@ public class CityEnvironment extends jason.environment.Environment {
         this.continueExploration = continueExploration;
     }
 
+    // get view
+    public CityView getView() {
+        return city_view;
+    }
+
 
     public void initCity(int x) {
         cityType = x;

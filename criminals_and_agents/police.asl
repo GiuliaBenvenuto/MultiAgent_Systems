@@ -79,7 +79,7 @@
         -arrestedCriminal(Xc, Yc);
     }*/
 
-    // ___Priority 2___: If a criminal has been arrested, move to jail
+    /* ___Priority 3___: If a criminal has been arrested, move to jail
     elif (arrestedCriminal(Xc, Yc) & jailPos(Xj, Yj)) {
         .print("----- POLICE HAS A CRIMINAL ------");
         if (not jailOccupied(T,K)) {
@@ -104,8 +104,16 @@
             .drop_all_intentions;
             .drop_all_events;
         }
-
+    }*/
+    elif (arrestedCriminal(Xc, Yc) & jailPos(Xj, Yj)) {
+        .print("----- POLICE HAS A CRIMINAL ------");
+        path.FindPath(ID, A, B, Xj, Yj, Path);
+        .print("PATH TO JAIL: ", Path);
+        -arrestedCriminal(Xc, Yc);
+        -myId(ID);
+        path.EnterJail(ID, Xj, Yj);
     }
+
 
     // ___Priority 3___: If the police has a clue and no criminal has been arrested, move to the clue
     elif (haveClue(X,Y) & not arrestedCriminal(X, Y)) {
@@ -191,15 +199,21 @@
     .print("Arrived at the destination, generating new path.").
 
 
-// Stop exploration
+/* Stop exploration
 +stopExploring : true <-
    .print("()()()()()()()()()()()()()()()Stopping exploration.");
    -reachedJail(T,K);
    -startPos(A,B);
    -endPos(C,D);
-   -myId(ID).
+   -myId(ID);
    .drop_all_intentions.
+*/
 
+/*
++destroyMe(NAME) : true <-
+    .print("________________-Destroying agent: _________________", NAME);
+    .kill_agent(NAME).
+*/
 
 
 

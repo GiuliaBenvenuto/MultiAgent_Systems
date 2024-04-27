@@ -35,6 +35,9 @@ public class CityModel extends GridWorldModel {
     // declaration of policeEscortingState
     private Map<Integer, Boolean> policeEscortingState = new HashMap<>();
 
+    private Map<Integer, Boolean> policeAtJailMap = new HashMap<>();
+
+
     public int n_arrested_criminals = 0;
 
     private int clueAgentPosCallCount = 0;
@@ -552,24 +555,46 @@ public class CityModel extends GridWorldModel {
     }
 
 
+    // Inside CityModel class
+//    public void setPoliceAtJail(int agId, boolean atJail) {
+//        policeAtJailMap.put(agId, atJail);
+//    }
+    public void setPoliceAtJail(int agId, boolean atJail) {
+        this.policeAtJailMap.put(agId, atJail);
+        // If the agent is no longer at jail, it should be visible again.
+        if (!atJail) {
+            // Code to make the agent visible again.
+            // This could involve adding the POLICE_AGENT object back to the location it is supposed to be.
+        }
+    }
+
+    public boolean isPoliceAtJail(int agId) {
+        return policeAtJailMap.getOrDefault(agId, false);
+    }
+
+
     // Criminal arrested so remove it from the grid and from the agentLocationMap
     public void arrestCriminal(int criminalId, int x, int y) {
-        // Here, you should add logic to ensure that the criminal at (x, y) is indeed the one with criminalId
-        // This is to ensure consistency between the ID and the coordinates
-        // Criminal id here is 0 or 1 but I have to map them to 3 and 4
-//        int id = 0;
-//        if (criminalId == 0) {
-//            id = 3;
-//        } else {
-//            id = 4;
-//        }
-//        Location loc = getAgPos(criminalId);
         remove(AGENT, x, y);
         remove(CRIMINAL_AGENT, x, y);
         Location loc = new Location(x, y);
         agentLocationMap.remove(new Pair<>(loc, CRIMINAL_AGENT));
-            // Update any necessary state or data structures to reflect the removal
-        
+    }
+
+    // Police agent reached the jail so remove it from the grid and from the agentLocationMap
+    public void removePoliceAgent(int agId, int x, int y) {
+        if (hasObject(POLICE_AGENT, x, y)) {
+            city_model.setPoliceAtJail(agId, true);
+
+            remove(POLICE_AGENT, x, y); // Remove from the grid
+            remove(POLICE_AGENT, 34, 35);
+            agentLocationMap.remove(new Pair<>(new Location(x, y), POLICE_AGENT)); // Remove from the map
+            agentLocationMap.remove(new Pair<>(new Location(34, 35), POLICE_AGENT));
+            System.out.println("Police agent removed from location: " + x + ", " + y);
+
+            String agentName = "police" + (agId+1);
+            AgentPercept.destroyAgent(CityEnvironment.getInstance(), agentName);
+        }
     }
 
 

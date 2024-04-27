@@ -177,5 +177,16 @@ public class AgentPercept {
         environment.addPercept("police" + (globalId + 1), positionPercept);
     }
 
+    public static void destroyAgent(CityEnvironment environment, String agentName) {
+        Literal destroyPercept = ASSyntax.createLiteral("destroyMe",
+                ASSyntax.createAtom(agentName));
+        environment.addPercept(agentName, destroyPercept);
+
+        CityEnvironment env = CityEnvironment.getInstance();
+        CityView view = env.getView();
+        CityModel model = CityModel.getCityModel();
+        view.updateView(model);
+    }
+
 
 }

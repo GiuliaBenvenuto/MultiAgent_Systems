@@ -214,15 +214,56 @@ public class CityView extends GridWorldView {
             //g.setColor(Color.GREEN);
             //g.fillOval(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
             g.drawImage(clueImage, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
-        } else if (city_model.hasObject(city_model.POLICE_AGENT, x, y)) {
+        }
+
+        /*else if (city_model.hasObject(city_model.POLICE_AGENT, x, y)) {
             // POLICE_AGENT
             //g.setColor(Color.ORANGE);
             //g.fillOval(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
             // get if of the agent
+
             Image agentImage = city_model.isEscorting(id) ? policeEscortingImage : policeImage;
             g.drawImage(agentImage, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
+
             //g.drawImage(policeImage, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
-        } else if (city_model.hasObject(city_model.CIVILIAN_AGENT, x, y)) {
+        }*/
+
+        /* ------ QUESTO POTREBBE ESSERE UNA SOLUZIONE ---------
+        else if (city_model.hasObject(city_model.POLICE_AGENT, x, y)) {
+            boolean isEscorting = city_model.isEscorting(id);
+            boolean atJail = city_model.isPoliceAtJail(id);
+
+            if (!isEscorting && !atJail) {
+                g.drawImage(policeImage, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
+            } else if (isEscorting && !atJail) {
+                g.drawImage(policeEscortingImage, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
+            } else if (isEscorting && atJail) {
+                g.setColor(getBackground());
+                g.fillRect(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
+            }
+        }*/
+
+        else if (city_model.hasObject(city_model.POLICE_AGENT, x, y)) {
+            boolean isEscorting = city_model.isEscorting(id);
+            boolean atJail = city_model.isPoliceAtJail(id);
+
+            // If the agent is at jail and not escorting, do not draw it (make it invisible)
+            if (atJail && !isEscorting) {
+                g.setColor(getBackground());
+                g.fillRect(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
+            }
+            // If the agent is escorting and not at jail, draw the escorting image
+            else if (isEscorting && !atJail) {
+                g.drawImage(policeEscortingImage, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
+            }
+            // If the agent is not at jail and not escorting, draw the normal police image
+            else if (!atJail) {
+                g.drawImage(policeImage, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
+            }
+        }
+
+
+        else if (city_model.hasObject(city_model.CIVILIAN_AGENT, x, y)) {
             // CIVILIANL_AGENT
             //g.setColor(Color.BLUE);
             //g.fillOval(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
@@ -235,8 +276,10 @@ public class CityView extends GridWorldView {
         }
         else {
             // Default agent
-            g.setColor(c);
-            g.fillOval(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
+            //g.setColor(c);
+            //g.fillOval(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
+            g.setColor(getBackground());
+            g.fillRect(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
         }
     }
 
