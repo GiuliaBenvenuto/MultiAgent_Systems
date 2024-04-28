@@ -142,19 +142,6 @@ public class CityModel extends GridWorldModel {
             //CityEnvironment.getInstance().updateAgentPercepts(agId, x, y);
             AgentPercept.updateAgentPercepts(CityEnvironment.getInstance(), agId, x, y);
 
-            // add percept of criminal x or y position to clues
-            // get criminal position
-//            for (int i = 0; i < getWidth(); i++) {
-//                for (int j = 0; j < getHeight(); j++) {
-//                    if (hasObject(CRIMINAL_AGENT, i, j)) {
-//                        // find the criminal agent id
-//                        int criminalId = getAgentId(CRIMINAL_AGENT, i, j);
-//                        System.out.println("---------> Criminal agent found at " + i + ", " + j + " with id: " + criminalId);
-//                        // AgentPercept.addCluePercept(CityEnvironment.getInstance(), agId, x, y, criminalId, i, j, city_model);
-//                    }
-//                }
-//            }
-
             clueAgentPosCallCount++;  // Increment the counter
             System.out.println("Clue agent position call count: " + clueAgentPosCallCount);
             // Determine which criminal info to use based on the counter
@@ -242,6 +229,7 @@ public class CityModel extends GridWorldModel {
 
 
     //  --------------- City 1 ---------------
+
     static CityModel city1() throws Exception {
         CityModel city_model = CityModel.create(40, 40, 13);
 
@@ -266,36 +254,63 @@ public class CityModel extends GridWorldModel {
         // ----- Set jail location -----
         city_model.setJail(35, 35);
 
-        // ----- Set walls -----
-        for (int i = 4; i <= 11; i++) {
+        // Top left corner
+        for (int i = 3; i <= 9; i++) {
             city_model.add(CityModel.OBSTACLE, 4, i);
         }
+
+        // Single obstacles
+        city_model.add(CityModel.OBSTACLE, 4, 13);
+        city_model.add(CityModel.OBSTACLE, 4, 15);
+        // Vertical wall left bottom corener
+        for (int i = 4; i < 9; i++) {
+            city_model.add(CityModel.OBSTACLE, i, 14);
+        }
+
+        for (int i = 19; i < 22; i++) {
+            city_model.add(CityModel.OBSTACLE, 4, i);
+        }
+
+        for (int i = 5; i < 9; i++) {
+            city_model.add(CityModel.OBSTACLE, i, 20);
+        }
+
+        for (int i = 25; i <= 35; i++) {
+            city_model.add(CityModel.OBSTACLE, 4, i);
+        }
+
         // Diagonal wall
         for (int i = 0; i < 5; i++) {
-            city_model.add(CityModel.OBSTACLE, 10 + i, 10 + i);
+            city_model.add(CityModel.OBSTACLE, 11 + i, 10 + i);
         }
+
         // Horizontal wall
         for (int i = 5; i < 25; i++) {
             city_model.add(CityModel.OBSTACLE, 20, i);
         }
+
         // Vertical wall
         for (int i = 15; i < 25; i++) {
             city_model.add(CityModel.OBSTACLE, i, 20);
         }
+
         // Cross wall
         for (int i = 22; i < 29; i++) {
             city_model.add(CityModel.OBSTACLE, i, 25);
             city_model.add(CityModel.OBSTACLE, 25, i);
         }
-        // Additional single obstacles
-        city_model.add(CityModel.OBSTACLE, 2, 15);
-        city_model.add(CityModel.OBSTACLE, 2, 16);
+        city_model.add(CityModel.OBSTACLE, 32, 25);
+        city_model.add(CityModel.OBSTACLE, 33, 25);
+        city_model.add(CityModel.OBSTACLE, 37, 25);
+        city_model.add(CityModel.OBSTACLE, 38, 25);
+
+
         city_model.add(CityModel.OBSTACLE, 27, 14);
         city_model.add(CityModel.OBSTACLE, 27, 13);
         city_model.add(CityModel.OBSTACLE, 15, 2);
         city_model.add(CityModel.OBSTACLE, 14, 2);
-        city_model.add(CityModel.OBSTACLE, 16, 27);
-        city_model.add(CityModel.OBSTACLE, 15, 27);
+        //city_model.add(CityModel.OBSTACLE, 16, 27);
+        //city_model.add(CityModel.OBSTACLE, 15, 27);
 
         return city_model;
     }

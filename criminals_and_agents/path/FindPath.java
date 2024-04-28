@@ -40,7 +40,7 @@ public class FindPath extends DefaultInternalAction {
                 // Execute the pathfinding
                 List<Location> path = aStar.findPath(policeId, new Location(startX, startY), new Location(endX, endY));
                 // Process the path to move police agents icons
-                // Add the case where path is <no vale>
+                // Add the case where path is <no value>
                 if (path == null || path.isEmpty() || path.size() == 0) {
                     // return un.unifies(ASSyntax.createList(), args[5]); // Return an empty list if no path is found
                     // If a path can't be found to the left of the agent find the path that arrives to the right of the agent

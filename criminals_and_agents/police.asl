@@ -55,22 +55,6 @@
 +!explore : startPos(A,B) & endPos(C,D) & myId(ID) <-
     .print("Starting exploration.");
 
-    // ___Priority 1___: Check if both clues are found and move towards the criminal
-    if (haveClueX(CIDX,CX) & haveClueY(CIDY,CY) & jailPos(Xj, Yj)) {
-        // check if CIDX and CIDY are equal
-        .print("----- POLICE HAS BOTH CLUES ------ ");
-        if (CIDX == CIDY) {
-            .print("----- GOING TOWORDS CRIMINAL ------ ");
-            // call to FindPath internal action towards the clue and print the path
-            path.FindPath(ID, A, B, CX, CY, Path);
-            -haveClueX(CIDX,CX); // Remove the clue after moving towards it
-            -haveClueY(CIDY,CY);
-            //-foundClueX(CIDX,CX);
-            //-foundClueY(CIDY,CY);
-            -haveClue(X,Y);
-        }
-    }
-
     /* ___Priority 2___: If a criminal has been arrested, move to jail
     elif (arrestedCriminal(Xc, Yc) & jailPos(Xj, Yj)) {
         .print("----- POLICE HAS A CRIMINAL ------");
@@ -105,13 +89,31 @@
             .drop_all_events;
         }
     }*/
-    elif (arrestedCriminal(Xc, Yc) & jailPos(Xj, Yj)) {
+
+    // ___Priority 1___: If a criminal has been arrested, move to jail
+    if (arrestedCriminal(Xc, Yc) & jailPos(Xj, Yj)) {
         .print("----- POLICE HAS A CRIMINAL ------");
         path.FindPath(ID, A, B, Xj, Yj, Path);
         .print("PATH TO JAIL: ", Path);
         -arrestedCriminal(Xc, Yc);
         -myId(ID);
         path.EnterJail(ID, Xj, Yj);
+    }
+
+    // ___Priority 2___: Check if both clues are found and move towards the criminal
+    elif (haveClueX(CIDX,CX) & haveClueY(CIDY,CY) & jailPos(Xj, Yj)) {
+        // check if CIDX and CIDY are equal
+        .print("----- POLICE HAS BOTH CLUES ------ ");
+        if (CIDX == CIDY) {
+            .print("----- GOING TOWORDS CRIMINAL ------ ");
+            // call to FindPath internal action towards the clue and print the path
+            path.FindPath(ID, A, B, CX, CY, Path);
+            -haveClueX(CIDX,CX); // Remove the clue after moving towards it
+            -haveClueY(CIDY,CY);
+            //-foundClueX(CIDX,CX);
+            //-foundClueY(CIDY,CY);
+            -haveClue(X,Y);
+        }
     }
 
 
@@ -140,10 +142,10 @@
 
 
 // Plan triggered when the agent's position is updated
-// +at(X,Y) : true <- .print("---> Updated position: at(", X, ",", Y, ").").
+// +at(X,Y) : true <- .print("Updated position: at(", X, ",", Y, ").").
 
 //+currentPos(A,B) : true <-
-//    .print("#############Current position : currentPos(", A, ",", B, ").").
+//    .print("Current position : currentPos(", A, ",", B, ").").
 
 +myId(ID) : true <- .print("My ID is: ", ID).
 
@@ -189,7 +191,6 @@
     -escorting(ID);
     +jailOccupied(T,K);
     -arrestedCriminal(Xc,Yc);
-    //-reachedJail(T,K);
     -myId(ID);
     -startPos(A,B);
     -endPos(C,D).
@@ -214,7 +215,6 @@
     .print("________________-Destroying agent: _________________", NAME);
     .kill_agent(NAME).
 */
-
 
 
 // _____ CLUES ______
