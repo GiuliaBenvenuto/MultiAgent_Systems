@@ -28,9 +28,7 @@ public class Arrested extends DefaultInternalAction {
         // Extract the criminal agent ID and coordinates
         int criminalId = (int)((NumberTerm) args[0]).solve();
         int x = (int)((NumberTerm) args[1]).solve();
-        int y = (int)((NumberTerm) args[2]).solve();
-
-        //System.out.println("INTERNAL: " + criminalId + " at (" + x + ", " + y + ")");
+        int y = (int)((NumberTerm) args[2]).solve();;
 
         // criminal at 10,12 -> ID = 0 -> In the CityModel ID = 3
         // criminal at 15,25 -> ID = 1 -> In the CityModel ID = 4
