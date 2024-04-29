@@ -210,9 +210,10 @@
    .drop_all_intentions.
 */
 
-/*
+
+/* Destroy agent
 +destroyMe(NAME) : true <-
-    .print("________________-Destroying agent: _________________", NAME);
+    .print("________________ Destroying agent: _________________", NAME);
     .kill_agent(NAME).
 */
 

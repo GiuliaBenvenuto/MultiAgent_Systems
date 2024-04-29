@@ -248,6 +248,8 @@ public class CityView extends GridWorldView {
             boolean atJail = city_model.isPoliceAtJail(id);
 
             // If the agent is at jail and not escorting, do not draw it (make it invisible)
+            System.out.println("----> Police agent " + id + " is at jail: " + atJail);
+            System.out.println("----> Police agent " + id + " is escorting: " + isEscorting);
             if (atJail && !isEscorting) {
                 g.setColor(getBackground());
                 g.fillRect(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
