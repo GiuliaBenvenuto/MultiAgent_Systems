@@ -136,11 +136,11 @@
 */
 
 
-/* Destroy agent
+// Destroy agent
 +destroyMe(NAME) : true <-
     .print("________________ Destroying agent: _________________", NAME);
     .kill_agent(NAME).
-*/
+
 
 
 // _____ CLUES ______

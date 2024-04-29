@@ -492,21 +492,6 @@ public class CityModel extends GridWorldModel {
         }
     }
 
-    /* Update the position of the criminal agent following the path
-    public void updateCriminalAgentPosition(int agId, int x, int y) {
-        int id = 0;
-        if (agId == 0) {
-            id = 3;
-        } else {
-            id = 4;
-        }
-        if (isFree(x, y)) {
-            Location currentLoc = getAgPos(id);
-            remove(CRIMINAL_AGENT, currentLoc.x, currentLoc.y);
-            setAgPos(id, x, y);
-            add(CRIMINAL_AGENT, x, y);
-        }
-    }*/
 
     public int getAgentId(int agentType, int x, int y) {
         // using agentLocationMap
@@ -531,6 +516,7 @@ public class CityModel extends GridWorldModel {
         }
         return closestClue;
     }
+
 
     // Police agent escorting a criminal to jail
     public void startEscorting(int policeId) {

@@ -110,7 +110,7 @@ public class CityEnvironment extends jason.environment.Environment {
         new Thread(() -> {
             for (Location step : path) {
                 try {
-                    Thread.sleep(300); // Delay for visualization
+                    Thread.sleep(500); // Delay for visualization
                     SwingUtilities.invokeLater(() -> {
                         city_model.updatePoliceAgentPosition(agId, step.x, step.y);
                         city_view.updateView(city_model);
