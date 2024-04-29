@@ -58,6 +58,15 @@ public class EnterJail extends DefaultInternalAction {
             // nothing to do
         }
 
+        // Get number of arrested criminals
+        int numArrestedCriminals = model.getArrestedCriminals();
+        System.out.println("****** Number of arrested criminals: " + numArrestedCriminals);
+        if (numArrestedCriminals == 2) {
+            // All criminals have been arrested
+            // Stop all the agents calling the agent percept method
+            AgentPercept.stopAllAgents();
+        }
+
         // Returns true because the action has been executed successfully
         return true;
     }

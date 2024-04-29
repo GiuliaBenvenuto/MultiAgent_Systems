@@ -535,20 +535,7 @@ public class CityModel extends GridWorldModel {
         Location policeLocation = getAgPos(policeId);
 
         if (policeLocation != null) {
-            // Remove the police agent from the grid
-            //remove(POLICE_AGENT, policeLocation.x, policeLocation.y);
-            // Also clear the general AGENT marker if necessary
-            //remove(AGENT, policeLocation.x, policeLocation.y);
-
-            // Remove the police agent from the agent location map
-            //agentLocationMap.remove(new Pair<>(policeLocation, POLICE_AGENT));
-
-            AgentPercept.stopExploring(CityEnvironment.getInstance(), policeId);
-            // set continue exploration in city environment
             CityEnvironment.getInstance().setContinueExploration(false);
-            // remove icon of police agent
-
-
         }
     }
 

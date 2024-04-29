@@ -125,16 +125,6 @@
     .print("Arrived at the destination, generating new path.").
 
 
-/* Stop exploration
-+stopExploring : true <-
-   .print("()()()()()()()()()()()()()()()Stopping exploration.");
-   -reachedJail(T,K);
-   -startPos(A,B);
-   -endPos(C,D);
-   -myId(ID);
-   .drop_all_intentions.
-*/
-
 
 // Destroy agent
 +destroyMe(NAME) : true <-
@@ -142,11 +132,11 @@
     .kill_agent(NAME).
 
 
-
 // _____ CLUES ______
 +foundClueX(CIDX,CX) : true <-
     .print("POLICE ------> Found clue X: ", CX, " with ID: ", CIDX);
     +haveClueX(CIDX,CX).
+
 
 +foundClueY(CIDY,CY) : true <-
     .print("POLICE ------> Found clue Y: ", CY, " with ID: ", CIDY);

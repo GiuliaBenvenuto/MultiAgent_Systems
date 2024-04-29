@@ -166,16 +166,6 @@ public class AgentPercept {
     }
 
 
-    // ----------- Stop exploring ------------
-    public static void stopExploring(CityEnvironment environment, int globalId) {
-//        AgentIdMapper mapper = new AgentIdMapper();
-//        String agentType = mapper.getType(globalId);
-//        int localId = mapper.getLocalId(globalId);arrestedCrim
-
-        // Position
-        Literal positionPercept = ASSyntax.createLiteral("stopExploring");
-        environment.addPercept("police" + (globalId + 1), positionPercept);
-    }
 
     public static void destroyAgent(CityEnvironment environment, String agentName) {
         Literal destroyPercept = ASSyntax.createLiteral("destroyMe",
@@ -186,6 +176,13 @@ public class AgentPercept {
         CityView view = env.getView();
         CityModel model = CityModel.getCityModel();
         view.updateView(model);
+    }
+
+
+    public static void stopAllAgents(CityEnvironment environment) {
+        Literal stopPercept = ASSyntax.createLiteral("stopAllAgents");
+        //environment.addPercept("police1", stopPercept);
+
     }
 
 
