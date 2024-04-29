@@ -20,9 +20,8 @@ public class EnterJail extends DefaultInternalAction {
     public Object execute(TransitionSystem ts, Unifier un, Term[] args) throws Exception {
         // Check the number of arguments
         if (args.length != 3) {
-            throw new JasonException("The 'escorting' internal action requires two arguments.");
+            throw new JasonException("This internal action requires two arguments.");
         }
-
 
         // Extract the police agent ID and the criminal agent ID
         int policeId = (int)((NumberTerm) args[0]).solve();
@@ -32,38 +31,32 @@ public class EnterJail extends DefaultInternalAction {
         System.out.println("--------> Police id: " + policeId + " is entering jail at (" + Xj + ", " + Yj + ")");
 
         // string agentName
-        String agentName = "police" + (policeId+1);
+        String agentName = "police" + (policeId + 1);
         System.out.println("--------> Agent name: " + agentName);
 
         // Access the CityEnvironment to call methods related to escorting
         CityEnvironment env = CityEnvironment.getInstance();
         CityModel model = CityModel.getCityModel();
 
-        // Remove the police agent
-        // get the actual position of the police agent
-        //Location policePosition = model.getPolicePosition(policeId);
-        Location currentPoliceLoc = model.getAgPos(policeId);
-
-        //Location currentPoliceLoc = model.getAgentLocation("police", policeId);
 
 
-        // HERE
         //model.removePoliceAgent(policeId, Xj, Yj);
 
-        if (currentPoliceLoc.x == Xj && currentPoliceLoc.y == Yj) {
+        // Remove the police agent
+        // get the actual position of the police agent
+        Location currentPoliceLoc = model.getAgPos(policeId);
+        //if (currentPoliceLoc.x == Xj && currentPoliceLoc.y == Yj ) {
+        if (currentPoliceLoc.x == Xj && currentPoliceLoc.y == Yj || currentPoliceLoc.x == Xj+1 && currentPoliceLoc.y == Yj || currentPoliceLoc.x == Xj-1 && currentPoliceLoc.y == Yj || currentPoliceLoc.x == Xj && currentPoliceLoc.y == Yj+1 || currentPoliceLoc.x == Xj && currentPoliceLoc.y == Yj-1 || currentPoliceLoc.x == Xj+1 && currentPoliceLoc.y == Yj+1 || currentPoliceLoc.x == Xj-1 && currentPoliceLoc.y == Yj-1 || currentPoliceLoc.x == Xj+1 && currentPoliceLoc.y == Yj-1 || currentPoliceLoc.x == Xj-1 && currentPoliceLoc.y == Yj+1) {
+        //if (currentPoliceLoc.x == Xj && currentPoliceLoc.y == Yj ) {
             // Only execute removePoliceAgent if the police agent is at the specified location
-            model.removePoliceAgent(policeId, Xj, Yj);
+            // model.removePoliceAgent(policeId, Xj, Yj);
+            model.removePoliceAgent(policeId, currentPoliceLoc.x, currentPoliceLoc.y);
             System.out.println("--------> Removing police agent at: (" + Xj + ", " + Yj + ")");
         } else {
-            System.out.println("--------> Police agent not at the specified position, no removal executed.");
+            // nothing to do
         }
 
-        // get view
-        //CityView view = env.getView();
-        //view.updateView(model);
-
-
-        // Returns true because the action was executed successfully
+        // Returns true because the action has been executed successfully
         return true;
     }
 }

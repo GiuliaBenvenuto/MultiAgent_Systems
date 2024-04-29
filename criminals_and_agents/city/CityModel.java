@@ -514,37 +514,6 @@ public class CityModel extends GridWorldModel {
     }
 
 
-    public Location getAgentLocation(String typePrefix, int agentId) {
-        int agentType;
-        switch (typePrefix.toLowerCase()) {
-            case "police":
-                agentType = POLICE_AGENT;
-                break;
-            case "criminal":
-                agentType = CRIMINAL_AGENT;
-                break;
-            case "clue":
-                agentType = CLUE_AGENT;
-                break;
-            case "civilian":
-                agentType = CIVILIAN_AGENT;
-                break;
-            default:
-                logger.warning("Unknown agent type: " + typePrefix);
-                return null;
-        }
-
-        for (Map.Entry<Pair<Location, Integer>, Integer> entry : agentLocationMap.entrySet()) {
-            if (entry.getValue() == agentId && entry.getKey().right == agentType) {
-                return entry.getKey().left; // Return the location associated with the agent ID and type
-            }
-        }
-
-        logger.warning("Location for agent type " + typePrefix + " with ID " + agentId + " not found.");
-        return null; // Return null if the agent's location is not found
-    }
-
-
     // Find closest clue agent
     public Location findClosestClueAgent(int x, int y) {
         Location closestClue = null;
