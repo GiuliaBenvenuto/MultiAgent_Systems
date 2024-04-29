@@ -211,37 +211,8 @@ public class CityView extends GridWorldView {
         // Color of agents based on their type
         if (city_model.hasObject(city_model.CLUE_AGENT, x, y)) {
             // CLUE_AGENT
-            //g.setColor(Color.GREEN);
-            //g.fillOval(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
             g.drawImage(clueImage, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
         }
-
-        /*else if (city_model.hasObject(city_model.POLICE_AGENT, x, y)) {
-            // POLICE_AGENT
-            //g.setColor(Color.ORANGE);
-            //g.fillOval(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
-            // get if of the agent
-
-            Image agentImage = city_model.isEscorting(id) ? policeEscortingImage : policeImage;
-            g.drawImage(agentImage, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
-
-            //g.drawImage(policeImage, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
-        }*/
-
-        /* ------ QUESTO POTREBBE ESSERE UNA SOLUZIONE ---------
-        else if (city_model.hasObject(city_model.POLICE_AGENT, x, y)) {
-            boolean isEscorting = city_model.isEscorting(id);
-            boolean atJail = city_model.isPoliceAtJail(id);
-
-            if (!isEscorting && !atJail) {
-                g.drawImage(policeImage, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
-            } else if (isEscorting && !atJail) {
-                g.drawImage(policeEscortingImage, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
-            } else if (isEscorting && atJail) {
-                g.setColor(getBackground());
-                g.fillRect(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
-            }
-        }*/
 
         else if (city_model.hasObject(city_model.POLICE_AGENT, x, y)) {
             boolean isEscorting = city_model.isEscorting(id);
@@ -267,19 +238,13 @@ public class CityView extends GridWorldView {
 
         else if (city_model.hasObject(city_model.CIVILIAN_AGENT, x, y)) {
             // CIVILIANL_AGENT
-            //g.setColor(Color.BLUE);
-            //g.fillOval(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
             g.drawImage(civilianImage, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
         } else if (city_model.hasObject(city_model.CRIMINAL_AGENT, x, y)) {
             // CRIMINAL_AGENT
-            //g.setColor(Color.CYAN);
-            //g.fillOval(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
             g.drawImage(criminalImage, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
         }
         else {
             // Default agent
-            //g.setColor(c);
-            //g.fillOval(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
             g.setColor(getBackground());
             g.fillRect(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
         }

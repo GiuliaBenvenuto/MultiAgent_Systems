@@ -72,19 +72,15 @@ public class CityEnvironment extends jason.environment.Environment {
             switch (x) {
             case 1:
                 city_model = CityModel.city1();
-                //System.out.println("City 1");
                 break;
             case 2:
                 city_model = CityModel.city2();
-                //System.out.println("City 2");
                 break;
             case 3:
                 city_model = CityModel.city3();
-                //System.out.println("City 3");
                 break;
             case 4:
                 city_model = CityModel.city4();
-                //System.out.println("City 4");
                 break;
             default:
                 logger.info("Invalid city type");
@@ -110,7 +106,7 @@ public class CityEnvironment extends jason.environment.Environment {
         new Thread(() -> {
             for (Location step : path) {
                 try {
-                    Thread.sleep(500); // Delay for visualization
+                    Thread.sleep(200); // Delay for visualization
                     SwingUtilities.invokeLater(() -> {
                         city_model.updatePoliceAgentPosition(agId, step.x, step.y);
                         city_view.updateView(city_model);
@@ -121,9 +117,6 @@ public class CityEnvironment extends jason.environment.Environment {
 
                         // Look around at the new position
                         List<String> agentsAround = LookAround.checkSurroundings(city_model, step.x, step.y, agId);
-//                        if (!agentsAround.isEmpty()) {
-//                            System.out.println("Police Agent " + agId + " at (" + step.x + ", " + step.y + ") found: " + String.join(", ", agentsAround));
-//                        }
                     });
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -164,32 +157,6 @@ public class CityEnvironment extends jason.environment.Environment {
         }).start();
     }
 
-    /*
-    public void processCriminalEscape(int agId, List<Location> path) {
-        new Thread(() -> {
-            for (Location step : path) {
-                try {
-                    Thread.sleep(300); // Delay for visualization
-                    SwingUtilities.invokeLater(() -> {
-                        city_model.updateCriminalAgentPosition(agId, step.x, step.y);
-                        System.out.println("????????? CRIMINAL ID: " + agId);
-                        city_view.updateView(city_model);
-
-                        instance.removePercept("criminal" + (agId + 1), Literal.parseLiteral("currentPos(_,_)"));
-                        instance.addPercept("criminal" + (agId + 1), Literal.parseLiteral("currentPos(" + step.x + "," + step.y + ")"));
-                        instance.removePercept("criminal" + (agId + 1), Literal.parseLiteral("at(_,_)"));
-                        instance.addPercept("criminal" + (agId + 1), Literal.parseLiteral("at(" + step.x + "," + step.y + ")"));
-
-
-                        // Look around at the new position
-                        //List<String> agentsAround = LookAround.checkSurroundings(city_model, step.x, step.y, agId);
-                        });
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }).start();
-    }*/
 
 
 } //CityEnvironment

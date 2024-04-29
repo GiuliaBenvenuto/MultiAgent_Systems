@@ -316,7 +316,7 @@ public class CityModel extends GridWorldModel {
     }
 
 
-    //  --------------- City 2 ---------------
+    /*  --------------- City 2 ---------------
     static CityModel city2() throws Exception {
         CityModel city_model = CityModel.create(40, 40, 4);
         // ----- Set jail location -----
@@ -450,7 +450,7 @@ public class CityModel extends GridWorldModel {
             }
         }
         return city_model;
-    }
+    }*/
 
 
 
@@ -544,10 +544,6 @@ public class CityModel extends GridWorldModel {
     }
 
 
-    // Inside CityModel class
-//    public void setPoliceAtJail(int agId, boolean atJail) {
-//        policeAtJailMap.put(agId, atJail);
-//    }
     public void setPoliceAtJail(int agId, boolean atJail) {
         this.policeAtJailMap.put(agId, atJail);
         // If the agent is no longer at jail, it should be visible again.
@@ -571,29 +567,6 @@ public class CityModel extends GridWorldModel {
     }
 
     // Police agent reached the jail so remove it from the grid and from the agentLocationMap
-//    public void removePoliceAgent(int agId, int x, int y) {
-//        if (hasObject(POLICE_AGENT, x, y)) {
-//            city_model.setPoliceAtJail(agId, true);
-//
-//            remove(POLICE_AGENT, x, y); // Remove from the grid
-//            remove(POLICE_AGENT, 34, 35);
-//            agentLocationMap.remove(new Pair<>(new Location(x, y), POLICE_AGENT)); // Remove from the map
-//            agentLocationMap.remove(new Pair<>(new Location(34, 35), POLICE_AGENT));
-//            System.out.println("Police agent removed from location: " + x + ", " + y);
-//
-//            String agentName = "police" + (agId+1);
-//            System.out.println("REMOVE POLICE AGENT WITH --> Agent name: " + agentName);
-//
-//            // check if 34,35 isFree
-//            if (isFree(34, 35)) {
-//                System.out.println("34,35 is free");
-//            } else {
-//                System.out.println("34,35 is not free");
-//            }
-//            AgentPercept.destroyAgent(CityEnvironment.getInstance(), agentName);
-//        }
-//    }
-
     public void removePoliceAgent(int agId, int x, int y) {
         // x --> currentPoliceLoc.x
         // y --> currentPoliceLoc.y
@@ -612,6 +585,17 @@ public class CityModel extends GridWorldModel {
 
             AgentPercept.destroyAgent(CityEnvironment.getInstance(), agentName);
         }
+    }
+
+
+    // Method to get all the agents active in the grid
+    public List<Integer> getActiveAgents() {
+        // get the id of the agents from the agentLocationMap
+        List<Integer> activeAgents = new ArrayList<>();
+        for (Map.Entry<Pair<Location, Integer>, Integer> entry : agentLocationMap.entrySet()) {
+            activeAgents.add(entry.getValue());
+        }
+        return activeAgents;
     }
 
 

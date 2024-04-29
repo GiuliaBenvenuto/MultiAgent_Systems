@@ -176,12 +176,20 @@ public class AgentPercept {
         CityView view = env.getView();
         CityModel model = CityModel.getCityModel();
         view.updateView(model);
+
     }
 
 
-    public static void stopAllAgents(CityEnvironment environment) {
-        Literal stopPercept = ASSyntax.createLiteral("stopAllAgents");
+    public static void destroyAllAgents(CityEnvironment environment) {
+        // get active agents
+        // get instance of model
+        CityModel model = CityModel.getCityModel();
+
+        List<Integer> agents = model.getActiveAgents();
+        System.out.println("AGENTS: " + agents);
+        // Literal stopPercept = ASSyntax.createLiteral("stopAllAgents");
         //environment.addPercept("police1", stopPercept);
+
 
     }
 

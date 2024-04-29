@@ -20,7 +20,7 @@ public class EnterJail extends DefaultInternalAction {
     public Object execute(TransitionSystem ts, Unifier un, Term[] args) throws Exception {
         // Check the number of arguments
         if (args.length != 3) {
-            throw new JasonException("This internal action requires two arguments.");
+            throw new JasonException("This internal action requires three arguments.");
         }
 
         // Extract the police agent ID and the criminal agent ID
@@ -38,10 +38,6 @@ public class EnterJail extends DefaultInternalAction {
         CityEnvironment env = CityEnvironment.getInstance();
         CityModel model = CityModel.getCityModel();
 
-
-
-        //model.removePoliceAgent(policeId, Xj, Yj);
-
         // Remove the police agent
         // get the actual position of the police agent
         Location currentPoliceLoc = model.getAgPos(policeId);
@@ -56,15 +52,6 @@ public class EnterJail extends DefaultInternalAction {
             System.out.println("--------> Removing police agent at: (" + Xj + ", " + Yj + ")");
         } else {
             // nothing to do
-        }
-
-        // Get number of arrested criminals
-        int numArrestedCriminals = model.getArrestedCriminals();
-        System.out.println("****** Number of arrested criminals: " + numArrestedCriminals);
-        if (numArrestedCriminals == 2) {
-            // All criminals have been arrested
-            // Stop all the agents calling the agent percept method
-            AgentPercept.stopAllAgents();
         }
 
         // Returns true because the action has been executed successfully

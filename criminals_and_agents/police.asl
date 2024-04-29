@@ -58,7 +58,9 @@
     }
 
      else {
-        .print("WARNING: no path found.");
+        path.FindPath(ID, A, B, C, D, Path);
+        .print("QUESTO CASOOOOOOOOOOOOOOOOOOO");
+        //.print("WARNING: no path found.");
     }
 
     .print("Path found: ", Path);
@@ -125,23 +127,20 @@
     .print("Arrived at the destination, generating new path.").
 
 
-
-// Destroy agent
-+destroyMe(NAME) : true <-
-    .print("________________ Destroying agent: _________________", NAME);
-    .kill_agent(NAME).
-
-
-// _____ CLUES ______
+// _____ X and Y Clues ______
 +foundClueX(CIDX,CX) : true <-
     .print("POLICE ------> Found clue X: ", CX, " with ID: ", CIDX);
     +haveClueX(CIDX,CX).
-
 
 +foundClueY(CIDY,CY) : true <-
     .print("POLICE ------> Found clue Y: ", CY, " with ID: ", CIDY);
     +haveClueY(CIDY,CY).
 
+
+// _____Destroy agent_____
++destroyMe(NAME) : true <-
+    .print("________________ Destroying agent: _________________", NAME);
+    .kill_agent(NAME).
 
 
 
