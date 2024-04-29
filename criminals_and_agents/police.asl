@@ -1,94 +1,16 @@
-// Agent police in project criminals_and_agents
+// ---------- POLICE AGENT in project criminals_and_agents ----------
+
 /* Initial beliefs and rules */
+// Start the agent lifecycle
 !start.
 
 
 /* Plans */
 +!start : true <- .print("I'm a police agent.").
 
-/* ------ OLD -------
+// Explore the environment
 +!explore : startPos(A,B) & endPos(C,D) & myId(ID) <-
     .print("Starting exploration.");
-    if (haveClue(X,Y) & not arrestedCriminal(X, Y)) {
-        .print("----- POLICE GOING TO CLUE ------ ", ID, " from (", A, ", ", B, ") to (", X, ", ", Y, ")");
-        // call to FindPath internal action towards the clue and print the path
-        path.FindPath(ID, A, B, X, Y, Path);
-        -haveClue(X,Y); // Remove the clue after moving towards it
-    }
-    elif (not haveClue(X,Y) & not arrestedCriminal(Xc, Yc)) {
-        .print("Finding path for police ", ID, " from (", A, ", ", B, ") to (", C, ", ", D, ")");
-        // call to FindPath internal action for normal exploration and print the path
-        path.FindPath(ID, A, B, C, D, Path);
-    }
-    elif (arrestedCriminal(Xc, Yc) & jailPos(Xj, Yj)) {
-        .print("----- POLICE HAS A CRIMINAL ------");
-        path.FindPath(ID, A, B, Xj, Yj, Path);
-        .print("PATH TO JAIL: ", Path);
-        -arrestedCriminal(Xc, Yc);
-    }
-
-    // ABOUT HAVING CLUES
-    elif (foundClueX(CIDX,CX) & foundClueY(CIDY,CY)) {
-        // check if CIDX and CIDY are equal
-        .print("----- POLICE HAS BOTH CLUES ------ ");
-        if (CIDX == CIDY) {
-            .print("----- GOING TOWORDS CRIMINAL ------ ");
-            // call to FindPath internal action towards the clue and print the path
-            path.FindPath(ID, A, B, CX, CY, Path);
-            -haveClueX(CIDX,CX); // Remove the clue after moving towards it
-            -haveClueY(CIDY,CY);
-        }
-    }
-     else {
-        .print("--WARNING--> No path found.");
-    }
-    .print("Path found: ", Path);
-    // Create a new belief "arrivedAtDestination" to signal the agent has arrived at the destination
-    +arrivedAtDestination.
-*/
-
-
-
-
-
-// ------- PROVA --------
-+!explore : startPos(A,B) & endPos(C,D) & myId(ID) <-
-    .print("Starting exploration.");
-
-    /* ___Priority 2___: If a criminal has been arrested, move to jail
-    elif (arrestedCriminal(Xc, Yc) & jailPos(Xj, Yj)) {
-        .print("----- POLICE HAS A CRIMINAL ------");
-        path.FindPath(ID, A, B, Xj, Yj, Path);
-        .print("PATH TO JAIL: ", Path);
-        -arrestedCriminal(Xc, Yc);
-    }*/
-
-    /* ___Priority 3___: If a criminal has been arrested, move to jail
-    elif (arrestedCriminal(Xc, Yc) & jailPos(Xj, Yj)) {
-        .print("----- POLICE HAS A CRIMINAL ------");
-        if (not jailOccupied(T,K)) {
-            path.FindPath(ID, A, B, Xj, Yj, Path);
-            .print("PATH TO JAIL: ", Path);
-            -arrestedCriminal(Xc, Yc);
-            +jailOccupied(T,K);
-            -startPos(A,B);
-            -endPos(C,D);
-            -myId(ID);
-            .drop_all_intentions;
-            .drop_all_events;
-        } else {
-            // Directly calculate alternative positions without internal actions
-            path.FindPath(ID, A, B, (Xj+1), (Yj-1), Path);
-            .print("PATH TO ALTERNATIVE JAIL: ", Path);
-            -arrestedCriminal(Xc, Yc);
-            +jailOccupied(newX, newY);
-            -startPos(A,B);
-            -endPos(C,D);
-            -myId(ID);
-            .drop_all_intentions;
-            .drop_all_events;
-        }
-    }*/
 
     // ___Priority 1___: If a criminal has been arrested, move to jail
     if (arrestedCriminal(Xc, Yc) & jailPos(Xj, Yj)) {
@@ -103,8 +25,9 @@
     // ___Priority 2___: Check if both clues are found and move towards the criminal
     elif (haveClueX(CIDX,CX) & haveClueY(CIDY,CY) & jailPos(Xj, Yj)) {
         // check if CIDX and CIDY are equal
-        .print("----- POLICE HAS BOTH CLUES ------ ");
+
         if (CIDX == CIDY) {
+            .print("----- POLICE HAS BOTH CLUES ------ ");
             .print("----- GOING TOWORDS CRIMINAL ------ ");
             // call to FindPath internal action towards the clue and print the path
             path.FindPath(ID, A, B, CX, CY, Path);
@@ -113,6 +36,8 @@
             //-foundClueX(CIDX,CX);
             //-foundClueY(CIDY,CY);
             -haveClue(X,Y);
+        } else {
+            path.FindPath(ID, A, B, C, D, Path);
         }
     }
 
@@ -132,10 +57,10 @@
         path.FindPath(ID, A, B, C, D, Path);
     }
 
-
      else {
-        .print("--WARNING--> No path found.");
+        .print("WARNING: no path found.");
     }
+
     .print("Path found: ", Path);
     // Create a new belief "arrivedAtDestination" to signal the agent has arrived at the destination
     +arrivedAtDestination.

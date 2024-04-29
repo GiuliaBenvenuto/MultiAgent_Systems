@@ -1,4 +1,5 @@
-// Agent criminal in project criminals_and_agents
+// ---------- CRIMINAL AGENT in project criminals_and_agents ----------
+
 /* Initial beliefs and rules */
 /* Initial goals */
 

@@ -1,4 +1,4 @@
-// Agent clue in project criminals_and_agents
+// ---------- CLUE AGENT in project criminals_and_agents ----------
 
 /* Initial beliefs and rules */
 

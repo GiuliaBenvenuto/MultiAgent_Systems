@@ -19,7 +19,11 @@
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/path/EnterJail.class" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/build/classes/java/main/path/EnterJail.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/city/CityModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/city/CityModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/city/CityView.java" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/city/CityView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/civilian.asl" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/civilian.asl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/clue.asl" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/clue.asl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/criminal.asl" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/criminal.asl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/path/EnterJail.java" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/path/EnterJail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/police.asl" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/police.asl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +31,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DarkyenusTimeTracker">
-    <option name="totalTimeSeconds" value="57439" />
+    <option name="totalTimeSeconds" value="59021" />
     <option name="gitIntegration" value="true" />
     <option name="naggedAbout" value="1" />
   </component>
@@ -158,7 +162,7 @@
       <workItem from="1713963508197" duration="15000" />
       <workItem from="1714140952510" duration="17329000" />
       <workItem from="1714315529964" duration="4008000" />
-      <workItem from="1714376903384" duration="6795000" />
+      <workItem from="1714376903384" duration="9274000" />
     </task>
     <task id="LOCAL-00001" summary="Commit from Intellij">
       <option name="closed" value="true" />
