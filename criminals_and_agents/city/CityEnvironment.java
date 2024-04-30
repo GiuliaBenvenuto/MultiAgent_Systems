@@ -6,13 +6,23 @@ import helper.AgentIdMapper;
 import java.util.logging.*;
 import java.util.List;
 import java.util.Random;
-
 import javax.swing.SwingUtilities;
 
 import jason.asSyntax.*;
 import jason.environment.grid.Location;
 
-
+/** ---------- CITY ENVIRONMENT CLASS ----------
+ * This class manages the environment (the city) where the agents of the multi-agent system navigate and interact.
+ * In particular this class is responsible for the following:
+ * - Initialize the city environment
+ * - Initialize the city model
+ * - Initialize the city view
+ *
+ * Furthermore this class is responsible for the processing of the path of the police agents
+ * which are the only agents moving in the city, exploring it.
+ * This movement of the police agents is managed by using threads such that is possible to
+ * visualize the steps of the agents, cell after cell, in the GUI by updating the position of the police icon.
+ */
 
 public class CityEnvironment extends jason.environment.Environment {
     private static CityEnvironment instance;
@@ -20,87 +30,51 @@ public class CityEnvironment extends jason.environment.Environment {
 
     CityModel city_model;
     CityView city_view;
-
     boolean continueExploration = true;
-
-    // Type of city 
     int cityType;
     boolean gui = true;
 
-    public CityEnvironment() {
-        instance = this;
-    }
 
-    public static CityEnvironment getInstance() {
-        return instance;
-    }
-
+    // Override the init method to initialize the city
     @Override
     public void init(String[] args) {
         initCity(Integer.parseInt(args[0]));
     }
 
+    // Method to initialize an instance of the city environment
+    public CityEnvironment() {
+        instance = this;
+    }
+
+    // Method to gen an instance of the city environment
+    public static CityEnvironment getInstance() {
+        return instance;
+    }
+
+    // Method to get the city type
+    // Actually right now the city type is always 1 but the original idea was to have different types of cities
+    // so this method could be useful in the future
     public int getCityType() {
         return cityType;
     }
 
+    // Method to get the city model
     public CityModel getCityModel() {
         return this.city_model;
     }
 
-    public void setContinueExploration(boolean continueEpxloration) {
-        this.continueExploration = continueExploration;
-    }
-
-    // get view
+    // Method to get the city view
     public CityView getView() {
         return city_view;
     }
 
+    // Method to set the continue exploration flag
+    public void setContinueExploration(boolean continueEpxloration) {
+        this.continueExploration = continueExploration;
+    }
 
-    /*
-    public void initCity(int x) {
-        cityType = x;
-        //logger.info("Initializing city type  INITCITY" + x);
-        try {
-            // Clear obstacles if city_model is already initialized
-            if (city_model != null) {
-                city_model.clearObstacles();
-                city_model.clearAgents();
-                city_model.clearJail();
-            }
 
-            switch (x) {
-            case 1:
-                city_model = CityModel.city1();
-                break;
-            case 2:
-                city_model = CityModel.city2();
-                break;
-            case 3:
-                city_model = CityModel.city3();
-                break;
-            case 4:
-                city_model = CityModel.city4();
-                break;
-            default:
-                logger.info("Invalid city type");
-                return;
-            }
-
-            if(city_view == null) {
-                city_view = new CityView(city_model);
-                city_view.setEnv(this);
-            } else {
-                // Before to update the view clear the obstacles
-                // city_view.clearObstacles();
-                city_view.updateView(city_model);
-                city_view.repaint();
-            }
-        } catch (Exception e) {
-            logger.log(Level.SEVERE, "Error initializing city: " + e.getMessage(), e);
-        }
-    }*/
+    // Method to initialize the city
     public void initCity(int x) {
         cityType = x;
 
@@ -112,7 +86,7 @@ public class CityEnvironment extends jason.environment.Environment {
                 city_model.clearJail();
             }
 
-            // Always initialize CityModel as city1
+            // Initialize CityModel as city1
             city_model = CityModel.city1();
 
             // Initialize or update the city view
@@ -129,7 +103,14 @@ public class CityEnvironment extends jason.environment.Environment {
     }
 
 
-
+    /**
+     * Method to process the path of the police agent called by FindPath.java (internal action).
+     * Responsible for the visualization of the police agent movement in the city by updating the position of the icon.
+     * It also implement the recursive exploration of the city by computing randomly the X and the Y of the new end position.
+     *
+     * @param agId: the ID of the police agent
+     * @param path: the path to be processed
+     */
     public void processPath(int agId, List<Location> path) {
         new Thread(() -> {
             for (Location step : path) {
@@ -150,7 +131,6 @@ public class CityEnvironment extends jason.environment.Environment {
                     e.printStackTrace();
                 }
             }
-
 
             if (continueExploration) {
                 // ------- RECURSION OF EXPLORATION -------
@@ -183,8 +163,6 @@ public class CityEnvironment extends jason.environment.Environment {
             }
 
         }).start();
-    }
+    } // processPath
 
-
-
-} //CityEnvironment
+} // CityEnvironment

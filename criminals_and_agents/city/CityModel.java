@@ -7,16 +7,34 @@ import jason.environment.grid.GridWorldModel;
 import jason.environment.grid.Location;
 import jason.environment.*;
 import jason.asSyntax.*;
-
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.logging.*;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+
+
+/** ---------- CITY MODEL CLASS ----------
+ * This class manages the creation, the state and the evolution of the city.
+ *
+ * In this class there are all the data structures that represent the city and the agents in it, such as:
+ * - The grid of the city (40 x 40 cells)
+ * - The obstacles in the city (walls, houses)
+ * - The agents in the city (police, civilians, criminals, clue agents)
+ * - The jail in the city
+ *
+ * Then in the class there are all the methods to place the agents and add the percpets to them.
+ * (setPoliceAgentPos, setCivilianAgentPos, setCriminalAgentPos, setClueAgentPos)
+ *
+ * Furthermore in this class there are the methods to:
+ * - Move agents without going through obstacles (isFree)
+ * - Updating agent percepts based on their current positions and interactions
+ * - Arresting criminals, discovering clues, and escorting criminals to jail
+ */
 
 public class CityModel extends GridWorldModel {
 
@@ -27,21 +45,20 @@ public class CityModel extends GridWorldModel {
     public static final int POLICE_AGENT = 512;
     public static final int CIVILIAN_AGENT = 1024;
     public static final int CRIMINAL_AGENT = 2048;
-
     protected static CityModel city_model = null;
+    public int n_arrested_criminals = 0;
+    private int clueAgentPosCallCount = 0;
+
     Location jail;
-
+    // Map to store the agent location
     private Map<Pair<Location, Integer>, Integer> agentLocationMap = new HashMap<>();
-    // declaration of policeEscortingState
+    // Map to store the police escorting state depending on the police agent id
     private Map<Integer, Boolean> policeEscortingState = new HashMap<>();
-
+    // Map to store the police at jail state depeding on the police agent id
     private Map<Integer, Boolean> policeAtJailMap = new HashMap<>();
 
 
-    public int n_arrested_criminals = 0;
-
-    private int clueAgentPosCallCount = 0;
-
+    // Pair class to store the agent location and type
     private static class Pair<L, R> {
         private final L left;
         private final R right;
@@ -66,8 +83,7 @@ public class CityModel extends GridWorldModel {
         }
     }
 
-
-    // Create the city model
+    // Methods to create the city model
     synchronized public static CityModel create(int width, int height, int agents_number) {
         if (city_model == null) {
             city_model = new CityModel(width, height, agents_number);
@@ -79,27 +95,28 @@ public class CityModel extends GridWorldModel {
         super(width, height, agents_number);
     }
 
+    // Method to get the city model
     public static CityModel getCityModel() {
         return city_model;
     }
 
-    // Set the jail location
+    // Method to set the jail location
     private void setJail(int i, int j) {
         jail = new Location(i, j);
         data[i][j] = JAIL;
-        // Print location
-        // logger.info("Jail location: " + jail);
     }
 
+    // Method to get the jail location
     public Location getJail() {
         return jail;
     }
 
-    // Clear jail
+    // Method to clear the jail
     public void clearJail() {
         remove(JAIL, jail.x, jail.y);
     }
 
+    // Method to clear the obstacles
     public void clearObstacles() {
         // Iterate over the entire grid and remove OBSTACLE at each position
         for (int i = 0; i < 40; i++) {
@@ -111,7 +128,7 @@ public class CityModel extends GridWorldModel {
         }
     }
 
-    // Clear agents from the grid
+    // Method to clear the agents
     public void clearAgents() {
         for (int i = 0; i < 40; i++) {
             for (int j = 0; j < 40; j++) {
@@ -123,103 +140,104 @@ public class CityModel extends GridWorldModel {
         }
     }
 
+    // Method to get the number of arrested criminals
     public int getArrestedCriminals() {
         return n_arrested_criminals;
     }
 
+    // Method to verify if a position is within the grid
     public boolean isInGrid(int x, int y) {
         return x >= 0 && x < 40 && y >= 0 && y < 40;
     }
 
-    // Set position of the clue agent
+    // Method to set the position of the clue agents and to add them the percepts about
+    // their own position and id and about criminal position X or Y
     public boolean setClueAgentPos(int agId, int x, int y) {
         if (isInGrid(x, y) && !hasObject(OBSTACLE, x, y) && !hasObject(JAIL, x, y) && !hasObject(AGENT, x, y)) {
-
-            //System.out.println("Clue id: " + agId);
+            // Set the position of the clue agent
             setAgPos(agId, x, y);
-            add(CLUE_AGENT, x, y); // Mark the cell with the CLUE_AGENT identifier
+            add(CLUE_AGENT, x, y);
             agentLocationMap.put(new Pair<>(new Location(x, y), CLUE_AGENT), agId);
-            //CityEnvironment.getInstance().updateAgentPercepts(agId, x, y);
+
+            // Add percepts about the clue agent position and id
             AgentPercept.updateAgentPercepts(CityEnvironment.getInstance(), agId, x, y);
 
-            clueAgentPosCallCount++;  // Increment the counter
+            // Add percepts about criminal position X or Y
+            clueAgentPosCallCount++;
             System.out.println("Clue agent position call count: " + clueAgentPosCallCount);
             // Determine which criminal info to use based on the counter
             if (clueAgentPosCallCount % 4 == 1) {
                 AgentPercept.addCluePerceptY(CityEnvironment.getInstance(), agId, x, y, 3, 12);
-                System.out.println("1");
             } else if (clueAgentPosCallCount % 4 == 2) {
                 AgentPercept.addCluePerceptX(CityEnvironment.getInstance(), agId, x, y, 3, 10);
-                System.out.println("2");
             } else if (clueAgentPosCallCount % 4 == 3) {
                 AgentPercept.addCluePerceptY(CityEnvironment.getInstance(), agId, x, y, 4, 21);
-                System.out.println("3");
             } else if (clueAgentPosCallCount % 4 == 0) {
                 AgentPercept.addCluePerceptX(CityEnvironment.getInstance(), agId, x, y, 4, 26);
-                System.out.println("4");
             }
-
             return true;
         }
         return false;
     }
 
-    // Set position of the police agent
+    // Method to set the position of the police agents and to add them the percepts about
+    // their own position and id and about start - end positions and jail position
     public boolean setPoliceAgentPos(int agId, int x, int y) {
         if (isInGrid(x, y) && !hasObject(OBSTACLE, x, y) && !hasObject(JAIL, x, y) && !hasObject(AGENT, x, y)) {
-
-            //System.out.println("Police id: " + agId);
+            // Set the position of the police agent
             setAgPos(agId, x, y);
-            add(POLICE_AGENT, x, y); // Mark the cell with the POLICE_AGENT identifier
+            add(POLICE_AGENT, x, y);
             agentLocationMap.put(new Pair<>(new Location(x, y), POLICE_AGENT), agId);
-            //CityEnvironment.getInstance().updateAgentPercepts(agId, x, y);
+
+            // Add percepts about the police agent position and id
             AgentPercept.updateAgentPercepts(CityEnvironment.getInstance(), agId, x, y);
+
+            // Add start - end positions and jail position percept
             AgentPercept.addPolicePercept(CityEnvironment.getInstance(), agId, x, y);
-            //policeAgentPercept
 
             return true;
         }
         return false;
     }
 
-    // Set position of the civilian agent
+    // Method to set the position of the civilian agents and to add them the percepts about
+    // their own position and id and about the closest clue agent
     public boolean setCivilianAgentPos(int agId, int x, int y) {
         if (isInGrid(x, y) && !hasObject(OBSTACLE, x, y) && !hasObject(JAIL, x, y) && !hasObject(AGENT, x, y)) {
-
-            // System.out.println("Civilian id: " + agId);
+            // Set the position of the civilian agent
             setAgPos(agId, x, y);
-            add(CIVILIAN_AGENT, x, y);  // Mark the cell with the POLICE_AGENT identifier
+            add(CIVILIAN_AGENT, x, y);
             agentLocationMap.put(new Pair<>(new Location(x, y), CIVILIAN_AGENT), agId);
-            // CityEnvironment.getInstance().updateAgentPercepts(agId, x, y);
+
+            // Add percepts about the civilian agent position and id
             AgentPercept.updateAgentPercepts(CityEnvironment.getInstance(), agId, x, y);
 
-            // for this civlian agent at position x, y find the closest clue agent
-            // add it as a percept in the agent
+            // Find the closest clue agent and add it as a percept to the civilian agent
             for (int i = 0; i < getWidth(); i++) {
                 for (int j = 0; j < getHeight(); j++) {
                     if (hasObject(CLUE_AGENT, i, j)) {
-                        // find the clue agent id
+                        // Find the clue agent id
                         int clueId = getAgentId(CLUE_AGENT, i, j);
-                        //System.out.println("Clue agent found at " + i + ", " + j + " with id: " + clueId);
+                        // Add the closest clue agent as a percept
                         AgentPercept.addCivilianPercept(CityEnvironment.getInstance(), agId, x, y, clueId, i, j, city_model);
                     }
                 }
             }
-
             return true;
         }
         return false;
     }
 
-    // Set position of the criminal agent
+    // Method to set the position of the criminal agents and to add them the percepts about
+    // their own position and id
     public boolean setCriminalAgentPos(int agId, int x, int y) {
         if (isInGrid(x, y) && !hasObject(OBSTACLE, x, y) && !hasObject(JAIL, x, y) && !hasObject(AGENT, x, y)) {
-
-            //System.out.println("Criminal id: " + agId);
+            // Set the position of the criminal agent
             setAgPos(agId, x, y);
-            add(CRIMINAL_AGENT, x, y);  // Mark the cell with the POLICE_AGENT identifier
+            add(CRIMINAL_AGENT, x, y);
             agentLocationMap.put(new Pair<>(new Location(x, y), CRIMINAL_AGENT), agId);
-            //CityEnvironment.getInstance().updateAgentPercepts(agId, x, y);
+
+            // Add percepts about the criminal agent position and id
             AgentPercept.updateAgentPercepts(CityEnvironment.getInstance(), agId, x, y);
 
             return true;
@@ -228,39 +246,40 @@ public class CityModel extends GridWorldModel {
     }
 
 
-    //  --------------- City 1 ---------------
+    // Method to create the city model with the agents and the obstacles positioned in it
     static CityModel city1() throws Exception {
         CityModel city_model = CityModel.create(40, 40, 13);
-
+        // Police agents
         city_model.setPoliceAgentPos(0, 35, 34);
         city_model.setPoliceAgentPos(1, 34, 35);
         city_model.setPoliceAgentPos(2, 34, 34);
-
+        // Criminal agents
         city_model.setCriminalAgentPos(3, 10, 12);
         city_model.setCriminalAgentPos(4, 26, 21);
-
+        // Clue agents
         city_model.setClueAgentPos(5, 5, 5);
         city_model.setClueAgentPos(6, 5, 35);
         city_model.setClueAgentPos(7, 35, 5);
         city_model.setClueAgentPos(8, 35, 30);
-
+        // Civilian agents
         city_model.setCivilianAgentPos(9, 9, 4);
         city_model.setCivilianAgentPos(10, 10, 35);
         city_model.setCivilianAgentPos(11, 31, 9);
         city_model.setCivilianAgentPos(12, 29, 29);
-
-
-        // ----- Set jail location -----
+        // Jail
         city_model.setJail(35, 35);
 
+        // Obstacles
         // Top left corner
         for (int i = 3; i <= 9; i++) {
             city_model.add(CityModel.OBSTACLE, 4, i);
         }
-
         // Single obstacles
         city_model.add(CityModel.OBSTACLE, 4, 13);
         city_model.add(CityModel.OBSTACLE, 4, 15);
+        city_model.add(CityModel.OBSTACLE, 15, 2);
+        city_model.add(CityModel.OBSTACLE, 14, 2);
+
         // Vertical wall left bottom corener
         for (int i = 4; i < 9; i++) {
             city_model.add(CityModel.OBSTACLE, i, 14);
@@ -278,12 +297,12 @@ public class CityModel extends GridWorldModel {
             city_model.add(CityModel.OBSTACLE, 4, i);
         }
 
-        // Diagonal wall
+        // Diagonal wall top left corner
         for (int i = 0; i < 5; i++) {
             city_model.add(CityModel.OBSTACLE, 11 + i, 10 + i);
         }
 
-        // Diagonal wall in (14,36) (15,35) (16,34) (17,33)
+        // Diagonal wall bottom left corner
         for (int i = 0; i < 5; i++) {
             city_model.add(CityModel.OBSTACLE, 14 + i, 35 - i);
         }
@@ -304,7 +323,7 @@ public class CityModel extends GridWorldModel {
             city_model.add(CityModel.OBSTACLE, 25, i);
         }
 
-        // Right up corner
+        // Right up corner walls
         for (int i  = 26; i < 31; i++) {
             city_model.add(CityModel.OBSTACLE, i, 2);
         }
@@ -318,204 +337,31 @@ public class CityModel extends GridWorldModel {
             city_model.add(CityModel.OBSTACLE, 37, i);
         }
 
-
-
+        // Right middle walls
         city_model.add(CityModel.OBSTACLE, 32, 25);
         city_model.add(CityModel.OBSTACLE, 33, 25);
         city_model.add(CityModel.OBSTACLE, 37, 25);
         city_model.add(CityModel.OBSTACLE, 38, 25);
 
-
+        // Houses
         int[] xCoords = {25, 27, 29};
         int[] yCoords = {14, 12, 10};
-
         for (int x : xCoords) {
             for (int y : yCoords) {
                 city_model.add(CityModel.OBSTACLE, x, y);
             }
         }
 
-        city_model.add(CityModel.OBSTACLE, 15, 2);
-        city_model.add(CityModel.OBSTACLE, 14, 2);
-
         return city_model;
     }
 
-
-    //  --------------- City 2 ---------------
-    static CityModel city2() throws Exception {
-        CityModel city_model = CityModel.create(40, 40, 4);
-        // ----- Set jail location -----
-        city_model.setJail(20, 20);
-        // ----- Set civilians location -----
-        city_model.setAgPos(0, 2, 2);
-        city_model.setAgPos(1, 2, 37);
-        city_model.setAgPos(2, 37, 2);
-        city_model.setAgPos(3, 37, 37);
-
-        // ----- Set walls -----
-        // Vertical wall near the left edge
-        for (int i = 5; i <= 15; i++) {
-            city_model.add(CityModel.OBSTACLE, 5, i);
-        }
-        // Horizontal wall near the bottom
-        for (int i = 10; i < 30; i++) {
-            city_model.add(CityModel.OBSTACLE, i, 30);
-        }
-        // L-shaped wall
-        for (int i = 25; i <= 35; i++) {
-            city_model.add(CityModel.OBSTACLE, 25, i);
-        }
-
-        // T-shaped wall
-        for (int i = 20; i < 35; i++) {
-            city_model.add(CityModel.OBSTACLE, i, 10);
-        }
-
-        // Additional single obstacles
-        city_model.add(CityModel.OBSTACLE, 10, 20);
-        city_model.add(CityModel.OBSTACLE, 10, 19);
-        city_model.add(CityModel.OBSTACLE, 35, 5);
-        city_model.add(CityModel.OBSTACLE, 34, 5);
-        city_model.add(CityModel.OBSTACLE, 20, 37);
-        city_model.add(CityModel.OBSTACLE, 21, 37);
-        city_model.add(CityModel.OBSTACLE, 38, 25);
-        city_model.add(CityModel.OBSTACLE, 38, 26);
-
-        return city_model;
-    }
-
-
-    // --------------- City 3 ---------------
-    static CityModel city3() throws Exception {
-        CityModel city_model = CityModel.create(40, 40, 4);
-        // Set jail location
-        city_model.setJail(10, 10);
-        // Set civilians' locations
-        city_model.setAgPos(0, 3, 3);
-        city_model.setAgPos(1, 3, 36);
-        city_model.setAgPos(2, 36, 3);
-        city_model.setAgPos(3, 36, 36);
-
-        // Set walls
-        // Horizontal wall near the top, with a gap in the middle
-        for (int i = 5; i < 15; i++) {
-            if (i != 10) { // Leave a gap
-                city_model.add(CityModel.OBSTACLE, i, 5);
-            }
-        }
-        for (int i = 25; i < 35; i++) {
-            if (i != 30) { // Leave a gap
-                city_model.add(CityModel.OBSTACLE, i, 5);
-            }
-        }
-
-        // Vertical wall near the right edge, with a gap
-        for (int i = 5; i < 35; i++) {
-            if (i != 20) { // Leave a gap
-                city_model.add(CityModel.OBSTACLE, 35, i);
-            }
-        }
-
-        for (int i = 20; i < 35; i++) {
-            city_model.add(CityModel.OBSTACLE, i, 10);
-        }
-
-        // create a cross wall in the left bottom corner
-        for (int i = 5; i < 15; i++) {
-            city_model.add(CityModel.OBSTACLE, 5, i);
-            city_model.add(CityModel.OBSTACLE, i, 5);
-        }
-
-        for (int i = 10; i < 30; i++) {
-            city_model.add(CityModel.OBSTACLE, i, 30);
-        }
-
-        for (int i = 20; i <= 35; i++) {
-            city_model.add(CityModel.OBSTACLE, 15, i);
-        }
-
-        // Single obstacles
-        city_model.add(CityModel.OBSTACLE, 8, 30);
-        city_model.add(CityModel.OBSTACLE, 9, 30);
-        city_model.add(CityModel.OBSTACLE, 31, 10);
-        city_model.add(CityModel.OBSTACLE, 31, 9);
-        city_model.add(CityModel.OBSTACLE, 15, 35);
-        city_model.add(CityModel.OBSTACLE, 15, 34);
-        city_model.add(CityModel.OBSTACLE, 25, 3);
-        city_model.add(CityModel.OBSTACLE, 26, 3);
-
-        return city_model;
-    }
-
-
-    // --------------- City 4 ---------------
-    static CityModel city4() throws Exception {
-        CityModel city_model = CityModel.create(40, 40, 4);
-        // Set the jail location
-        city_model.setJail(18, 18);
-
-        city_model.setAgPos(0, 2, 2);
-        city_model.setAgPos(1, 2, 37);
-        city_model.setAgPos(2, 37, 2);
-        city_model.setAgPos(3, 37, 37);
-
-        for (int i = 0; i < 40; i++) {
-            if (i != 17 && i != 18 && i != 19 && i != 20 && i != 21 && i != 22) { // Leave space around the jail
-                city_model.add(CityModel.OBSTACLE, 19, i);
-                city_model.add(CityModel.OBSTACLE, i, 19);
-            }
-        }
-
-        for (int i = 7; i <= 12; i += 2) {
-            for (int j = 7; j <= 12; j += 2) {
-                city_model.add(CityModel.OBSTACLE, i, j);
-                city_model.add(CityModel.OBSTACLE, i, 40 - 1 - j);
-                city_model.add(CityModel.OBSTACLE, 40 - 1 - i, j);
-                city_model.add(CityModel.OBSTACLE, 40 - 1 - i, 40 - 1 - j);
-            }
-        }
-        return city_model;
-    }
-
-
-
-    // ---------- Methods for A* algorithm ----------
-    public List<Location> getNeighbors(Location loc) {
-        List<Location> neighbors = new ArrayList<>();
-
-        int[] dx = {-1, 1, 0, 0}; // Change in x (left, right)
-        int[] dy = {0, 0, -1, 1}; // Change in y (up, down)
-
-        for (int i = 0; i < dx.length; i++) {
-            int newX = loc.x + dx[i];
-            int newY = loc.y + dy[i];
-
-            // Check if new location is within grid bounds and not an obstacle
-            if (isInGrid(newX, newY) && isFree(newX, newY)) {
-                neighbors.add(new Location(newX, newY));
-            }
-        }
-        return neighbors;
-    }
 
     // Method to check if a location is free of obstacles and agents
     public boolean isFree(int x, int y) {
-        // Chek over OBSTACLE, JAIL, or any AGENT types.
+        // Chek over obstacle, jail, or any agent type
         return isInGrid(x, y) && !(hasObject(OBSTACLE, x, y) || hasObject(JAIL, x, y) ||
                 hasObject(CLUE_AGENT, x, y) || hasObject(POLICE_AGENT, x, y) ||
                 hasObject(CIVILIAN_AGENT, x, y) || hasObject(CRIMINAL_AGENT, x, y));
-    }
-
-
-    // Update the position of the police agent following the path
-    public void updatePoliceAgentPosition(int agId, int x, int y) {
-        if (isFree(x, y)) {
-            Location currentLoc = getAgPos(agId);
-            remove(POLICE_AGENT, currentLoc.x, currentLoc.y);
-            setAgPos(agId, x, y);
-            add(POLICE_AGENT, x, y);
-        }
     }
 
 
@@ -543,6 +389,16 @@ public class CityModel extends GridWorldModel {
         return closestClue;
     }
 
+
+    // Update the position of the police agent following the path
+    public void updatePoliceAgentPosition(int agId, int x, int y) {
+        if (isFree(x, y)) {
+            Location currentLoc = getAgPos(agId);
+            remove(POLICE_AGENT, currentLoc.x, currentLoc.y);
+            setAgPos(agId, x, y);
+            add(POLICE_AGENT, x, y);
+        }
+    }
 
     // Police agent escorting a criminal to jail
     public void startEscorting(int policeId) {
@@ -583,15 +439,6 @@ public class CityModel extends GridWorldModel {
         return policeAtJailMap.getOrDefault(agId, false);
     }
 
-
-    // Criminal arrested so remove it from the grid and from the agentLocationMap
-    public void arrestCriminal(int criminalId, int x, int y) {
-        remove(AGENT, x, y);
-        remove(CRIMINAL_AGENT, x, y);
-        Location loc = new Location(x, y);
-        agentLocationMap.remove(new Pair<>(loc, CRIMINAL_AGENT));
-    }
-
     // Police agent reached the jail so remove it from the grid and from the agentLocationMap
     public void removePoliceAgent(int agId, int x, int y) {
         // x --> currentPoliceLoc.x
@@ -611,6 +458,36 @@ public class CityModel extends GridWorldModel {
 
             AgentPercept.destroyAgent(CityEnvironment.getInstance(), agentName);
         }
+    }
+
+
+    // Criminal arrested so remove it from the grid and from the agentLocationMap
+    public void arrestCriminal(int criminalId, int x, int y) {
+        remove(AGENT, x, y);
+        remove(CRIMINAL_AGENT, x, y);
+        Location loc = new Location(x, y);
+        agentLocationMap.remove(new Pair<>(loc, CRIMINAL_AGENT));
+    }
+
+
+
+    // ---------- Methods for A* algorithm ----------
+    public List<Location> getNeighbors(Location loc) {
+        List<Location> neighbors = new ArrayList<>();
+
+        int[] dx = {-1, 1, 0, 0}; // Change in x (left, right)
+        int[] dy = {0, 0, -1, 1}; // Change in y (up, down)
+
+        for (int i = 0; i < dx.length; i++) {
+            int newX = loc.x + dx[i];
+            int newY = loc.y + dy[i];
+
+            // Check if new location is within grid bounds and not an obstacle
+            if (isInGrid(newX, newY) && isFree(newX, newY)) {
+                neighbors.add(new Location(newX, newY));
+            }
+        }
+        return neighbors;
     }
 
 
