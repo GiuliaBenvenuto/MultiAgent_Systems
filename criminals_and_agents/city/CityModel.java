@@ -326,16 +326,6 @@ public class CityModel extends GridWorldModel {
         city_model.add(CityModel.OBSTACLE, 38, 25);
 
 
-        // convert the following in a for loop
-//        city_model.add(CityModel.OBSTACLE, 25, 14);
-//        city_model.add(CityModel.OBSTACLE, 25, 12);
-//        city_model.add(CityModel.OBSTACLE, 27, 14);
-//        city_model.add(CityModel.OBSTACLE, 27, 14);
-//        city_model.add(CityModel.OBSTACLE, 27, 12);
-//        city_model.add(CityModel.OBSTACLE, 27, 10);
-//        city_model.add(CityModel.OBSTACLE, 29, 14);
-//        city_model.add(CityModel.OBSTACLE, 29, 12);
-//        city_model.add(CityModel.OBSTACLE, 29, 10);
         int[] xCoords = {25, 27, 29};
         int[] yCoords = {14, 12, 10};
 
@@ -345,14 +335,9 @@ public class CityModel extends GridWorldModel {
             }
         }
 
-
-
-
         city_model.add(CityModel.OBSTACLE, 15, 2);
         city_model.add(CityModel.OBSTACLE, 14, 2);
-        //city_model.add(CityModel.OBSTACLE, 16, 27);
-        //city_model.add(CityModel.OBSTACLE, 15, 27);
-
+        
         return city_model;
     }
 
