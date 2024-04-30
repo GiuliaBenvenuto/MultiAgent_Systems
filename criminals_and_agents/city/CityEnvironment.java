@@ -58,6 +58,7 @@ public class CityEnvironment extends jason.environment.Environment {
     }
 
 
+    /*
     public void initCity(int x) {
         cityType = x;
         //logger.info("Initializing city type  INITCITY" + x);
@@ -99,14 +100,41 @@ public class CityEnvironment extends jason.environment.Environment {
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Error initializing city: " + e.getMessage(), e);
         }
+    }*/
+    public void initCity(int x) {
+        cityType = x;
+
+        try {
+            // Clear obstacles if city_model is already initialized
+            if (city_model != null) {
+                city_model.clearObstacles();
+                city_model.clearAgents();
+                city_model.clearJail();
+            }
+
+            // Always initialize CityModel as city1
+            city_model = CityModel.city1();
+
+            // Initialize or update the city view
+            if (city_view == null) {
+                city_view = new CityView(city_model);
+                city_view.setEnv(this);
+            } else {
+                city_view.updateView(city_model);
+                city_view.repaint();
+            }
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "Error initializing city: " + e.getMessage(), e);
+        }
     }
+
 
 
     public void processPath(int agId, List<Location> path) {
         new Thread(() -> {
             for (Location step : path) {
                 try {
-                    Thread.sleep(200); // Delay for visualization
+                    Thread.sleep(400); // Delay for visualization
                     SwingUtilities.invokeLater(() -> {
                         city_model.updatePoliceAgentPosition(agId, step.x, step.y);
                         city_view.updateView(city_model);

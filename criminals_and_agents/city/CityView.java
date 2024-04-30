@@ -124,7 +124,7 @@ public class CityView extends GridWorldView {
     }
 
 
-    // RadioButtons for city selection
+    /* RadioButtons for city selection
     @Override
     public void initComponents(int width) {
         super.initComponents(width);
@@ -181,7 +181,7 @@ public class CityView extends GridWorldView {
 
         city1Button.setSelected(true);
         getContentPane().add(BorderLayout.NORTH, p);
-    }
+    }*/
 
 
 

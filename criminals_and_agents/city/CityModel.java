@@ -337,7 +337,7 @@ public class CityModel extends GridWorldModel {
 
         city_model.add(CityModel.OBSTACLE, 15, 2);
         city_model.add(CityModel.OBSTACLE, 14, 2);
-        
+
         return city_model;
     }
 
