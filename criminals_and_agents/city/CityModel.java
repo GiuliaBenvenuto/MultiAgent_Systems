@@ -229,7 +229,6 @@ public class CityModel extends GridWorldModel {
 
 
     //  --------------- City 1 ---------------
-
     static CityModel city1() throws Exception {
         CityModel city_model = CityModel.create(40, 40, 13);
 
@@ -284,6 +283,11 @@ public class CityModel extends GridWorldModel {
             city_model.add(CityModel.OBSTACLE, 11 + i, 10 + i);
         }
 
+        // Diagonal wall in (14,36) (15,35) (16,34) (17,33)
+        for (int i = 0; i < 5; i++) {
+            city_model.add(CityModel.OBSTACLE, 14 + i, 35 - i);
+        }
+
         // Horizontal wall
         for (int i = 5; i < 25; i++) {
             city_model.add(CityModel.OBSTACLE, 20, i);
@@ -299,14 +303,51 @@ public class CityModel extends GridWorldModel {
             city_model.add(CityModel.OBSTACLE, i, 25);
             city_model.add(CityModel.OBSTACLE, 25, i);
         }
+
+        // Right up corner
+        for (int i  = 26; i < 31; i++) {
+            city_model.add(CityModel.OBSTACLE, i, 2);
+        }
+        for (int i  = 34; i < 38; i++) {
+            city_model.add(CityModel.OBSTACLE, i, 2);
+        }
+        for (int i = 3; i < 6; i++) {
+             city_model.add(CityModel.OBSTACLE, 37, i);
+        }
+        for (int i = 9; i < 14; i++) {
+            city_model.add(CityModel.OBSTACLE, 37, i);
+        }
+
+
+
         city_model.add(CityModel.OBSTACLE, 32, 25);
         city_model.add(CityModel.OBSTACLE, 33, 25);
         city_model.add(CityModel.OBSTACLE, 37, 25);
         city_model.add(CityModel.OBSTACLE, 38, 25);
 
 
-        city_model.add(CityModel.OBSTACLE, 27, 14);
-        city_model.add(CityModel.OBSTACLE, 27, 13);
+        // convert the following in a for loop
+//        city_model.add(CityModel.OBSTACLE, 25, 14);
+//        city_model.add(CityModel.OBSTACLE, 25, 12);
+//        city_model.add(CityModel.OBSTACLE, 27, 14);
+//        city_model.add(CityModel.OBSTACLE, 27, 14);
+//        city_model.add(CityModel.OBSTACLE, 27, 12);
+//        city_model.add(CityModel.OBSTACLE, 27, 10);
+//        city_model.add(CityModel.OBSTACLE, 29, 14);
+//        city_model.add(CityModel.OBSTACLE, 29, 12);
+//        city_model.add(CityModel.OBSTACLE, 29, 10);
+        int[] xCoords = {25, 27, 29};
+        int[] yCoords = {14, 12, 10};
+
+        for (int x : xCoords) {
+            for (int y : yCoords) {
+                city_model.add(CityModel.OBSTACLE, x, y);
+            }
+        }
+
+
+
+
         city_model.add(CityModel.OBSTACLE, 15, 2);
         city_model.add(CityModel.OBSTACLE, 14, 2);
         //city_model.add(CityModel.OBSTACLE, 16, 27);
@@ -585,17 +626,6 @@ public class CityModel extends GridWorldModel {
 
             AgentPercept.destroyAgent(CityEnvironment.getInstance(), agentName);
         }
-    }
-
-
-    // Method to get all the agents active in the grid
-    public List<Integer> getActiveAgents() {
-        // get the id of the agents from the agentLocationMap
-        List<Integer> activeAgents = new ArrayList<>();
-        for (Map.Entry<Pair<Location, Integer>, Integer> entry : agentLocationMap.entrySet()) {
-            activeAgents.add(entry.getValue());
-        }
-        return activeAgents;
     }
 
 

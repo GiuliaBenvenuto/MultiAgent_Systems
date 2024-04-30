@@ -26,3 +26,6 @@
 +destroyAllAgents(NAME) : true <-
     .print("________________ Destroying ALLLL agents: _________________", NAME);
     .kill_agent(NAME).
+
++criminal_found_broadcast(Xc, Yc, ID)[source(AgentId)] : true <-
+    .print("I feel safer! Tank you agent: ", AgentId).

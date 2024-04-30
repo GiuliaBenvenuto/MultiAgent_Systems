@@ -107,7 +107,12 @@
 +arrestedCriminal(Xc, Yc) : myId(ID) <-
     .print("YOU ARE A CRIMINAL AND YOU ARE UNDER ARREST AT: ", Xc, ", ", Yc);
     +escorting(ID);
+    .broadcast(tell, criminal_found_broadcast(Xc, Yc, ID));
     path.Escorting(ID, true).
+
+
++criminal_found_broadcast(Xc, Yc, ID)[source(AgentId)] : true <-
+    .print("Well done colleague you did a great job ", AgentId).
 
 
 // Jail reached

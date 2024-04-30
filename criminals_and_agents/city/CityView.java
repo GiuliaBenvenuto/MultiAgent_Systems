@@ -35,6 +35,8 @@ import java.net.URL;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
+import java.util.HashSet;
 
 
 import city.CityEnvironment;
@@ -44,7 +46,6 @@ public class CityView extends GridWorldView {
 
     CityEnvironment city_env = null;
     CityModel city_model = null;
-
 
     private JComboBox city_selection;
     private JRadioButton city1Button, city2Button, city3Button, city4Button;
@@ -60,6 +61,7 @@ public class CityView extends GridWorldView {
     private Image jailImage_1;
     private Image jailImage_2;
     private Image obstacleImage;
+    private Image houseImage;
     private Image policeEscortingImage;
 
 
@@ -67,25 +69,39 @@ public class CityView extends GridWorldView {
         super(model, "City", 400);
         this.city_model = model;
 
+        // Police agent icon
         icon = new ImageIcon("images/police.png");
         policeImage = icon.getImage();
+        icon = new ImageIcon("images/police_escorting.png");
+        policeEscortingImage = icon.getImage();
+
+        // Civilian agent icon
         icon = new ImageIcon("images/man.png");
         civilianImage = icon.getImage();
+
+        // Clue agent icon
         icon = new ImageIcon("images/green_clue.png");
         clueImage = icon.getImage();
+
+        // Criminal agent icon
         icon = new ImageIcon("images/criminal.png");
         criminalImage = icon.getImage();
+
+        // Jail icons
         icon = new ImageIcon("images/jail.png");
         jailImage = icon.getImage();
         icon = new ImageIcon("images/jail_1_criminal.png");
         jailImage_1 = icon.getImage();
         icon = new ImageIcon("images/jail_2_criminal.png");
         jailImage_2 = icon.getImage();
+
+        // Obstacle icons
         icon = new ImageIcon("images/brick-wall.png");
         obstacleImage = icon.getImage();
+        icon = new ImageIcon("images/house.png");
+        houseImage = icon.getImage();
 
-        icon = new ImageIcon("images/police_escorting.png");
-        policeEscortingImage = icon.getImage();
+
 
         
         setVisible(true);
@@ -196,11 +212,32 @@ public class CityView extends GridWorldView {
         }
     }
 
+    // WITHOUT HOUSE IMAGE
+//    public void drawObstacle(Graphics g, int x, int y) {
+//        g.drawImage(obstacleImage, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
+//    }
+
+    // WITH HOUSE IMAGE
     public void drawObstacle(Graphics g, int x, int y) {
-        //g.setColor(Color.GRAY);
-        //g.fillRect(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
-        g.drawImage(obstacleImage, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
+        // Define special coordinates
+        int[] xCoords = {25, 27, 29};
+        int[] yCoords = {14, 12, 10};
+        Set<String> specialCoords = new HashSet<>();
+
+        // Populate the set with combined coordinates
+        for (int xCoord : xCoords) {
+            for (int yCoord : yCoords) {
+                specialCoords.add(xCoord + "," + yCoord);
+            }
+        }
+
+        // Determine which image to use
+        Image currentImage = specialCoords.contains(x + "," + y) ? houseImage : obstacleImage;
+
+        // Draw the appropriate image
+        g.drawImage(currentImage, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
     }
+
 
     @Override
     public void drawAgent(Graphics g, int x, int y, Color c, int id) {
@@ -244,7 +281,7 @@ public class CityView extends GridWorldView {
             g.drawImage(criminalImage, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
         }
         else {
-            // Default agent
+            // Default cell color
             g.setColor(getBackground());
             g.fillRect(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
         }
