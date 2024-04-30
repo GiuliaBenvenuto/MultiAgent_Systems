@@ -13,6 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
 
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+
+
+
 public class AgentPercept {
 
 
@@ -182,6 +187,14 @@ public class AgentPercept {
         int arrestedCriminals = model.getArrestedCriminals();
         if (arrestedCriminals == 2) {
             AgentPercept.destroyAllAgents(env);
+
+            // Display the message about the safety of the city if all the criminals have been arrested
+            SwingUtilities.invokeLater(() -> {
+                JOptionPane.showMessageDialog(null,
+                        "The city is safe: all criminals have been arrested",
+                        "City Safety Notification",
+                        JOptionPane.INFORMATION_MESSAGE);
+            });
         }
     }
 
