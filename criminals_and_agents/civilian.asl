@@ -22,3 +22,7 @@
     ?lastClueLocation(A, B, C, D);
     .send(AgentId, tell, clueInfo(A, B, C, D)).
 
+
++destroyAllAgents(NAME) : true <-
+    .print("________________ Destroying ALLLL agents: _________________", NAME);
+    .kill_agent(NAME).

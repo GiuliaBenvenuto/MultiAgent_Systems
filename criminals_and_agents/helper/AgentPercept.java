@@ -11,7 +11,7 @@ import jason.environment.grid.Location;
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Arrays;
 
 public class AgentPercept {
 
@@ -177,19 +177,27 @@ public class AgentPercept {
         CityModel model = CityModel.getCityModel();
         view.updateView(model);
 
+        // NEW PART TO DESTROY ALL THE AGENTS WHEN THE ARRESTED CRIMINALS ARE 2
+        // If I want to remove it, remove the following lines and the destroyAllAgents method
+        int arrestedCriminals = model.getArrestedCriminals();
+        if (arrestedCriminals == 2) {
+            AgentPercept.destroyAllAgents(env);
+        }
     }
 
 
     public static void destroyAllAgents(CityEnvironment environment) {
-        // get active agents
-        // get instance of model
-        CityModel model = CityModel.getCityModel();
-
-        List<Integer> agents = model.getActiveAgents();
-        System.out.println("AGENTS: " + agents);
-        // Literal stopPercept = ASSyntax.createLiteral("stopAllAgents");
-        //environment.addPercept("police1", stopPercept);
-
+        List<String> agents = Arrays.asList( "police1", "police2", "police3",
+                                "criminal1", "criminal2",
+                                "civilian1", "civilian2", "civilian3", "civilian4",
+                                "clue1", "clue2", "clue3", "clue4");
+        // agent names
+        for (int i = 0; i < agents.size(); i++) {
+            String agentName = agents.get(i);
+            Literal destroyPercept = ASSyntax.createLiteral("destroyAllAgents",
+                    ASSyntax.createAtom(agentName));
+            environment.addPercept(agentName, destroyPercept);
+        }
 
     }
 

@@ -35,8 +35,6 @@
     path.Arrested(ID, Xc, Yc).
 
 
-/*
-+!escape : at(A,B) & myId(ID) <-
-    .print("CRIMINAL ESCAPING");
-    path.Escape(ID, A, B, Path).
-*/
++destroyAllAgents(NAME) : true <-
+    .print("________________ Destroying ALLLL agents: _________________", NAME);
+    .kill_agent(NAME).

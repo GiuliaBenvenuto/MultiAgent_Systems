@@ -142,6 +142,9 @@
     .print("________________ Destroying agent: _________________", NAME);
     .kill_agent(NAME).
 
++destroyAllAgents(NAME) : true <-
+    .print("________________ Destroying ALLLL agents: _________________", NAME);
+    .kill_agent(NAME).
 
 
 

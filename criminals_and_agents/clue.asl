@@ -42,3 +42,8 @@
 
 +criminalYcoord(CIDY,CY) : true <-
     .print("############# Criminal ", CIDX, " is at Y: ", CY).
+
+
++destroyAllAgents(NAME) : true <-
+    .print("________________ Destroying ALLLL agents: _________________", NAME);
+    .kill_agent(NAME).

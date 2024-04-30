@@ -316,7 +316,7 @@ public class CityModel extends GridWorldModel {
     }
 
 
-    /*  --------------- City 2 ---------------
+    //  --------------- City 2 ---------------
     static CityModel city2() throws Exception {
         CityModel city_model = CityModel.create(40, 40, 4);
         // ----- Set jail location -----
@@ -450,7 +450,7 @@ public class CityModel extends GridWorldModel {
             }
         }
         return city_model;
-    }*/
+    }
 
 
 
