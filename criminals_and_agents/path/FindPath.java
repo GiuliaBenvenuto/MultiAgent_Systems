@@ -9,11 +9,14 @@ import jason.JasonException;
 import city.*;
 import java.util.*;
 
-
+/** ---------- FindPath Internal Action ----------
+ * This class represents the internal action that handles the logic of finding a path between two locations in the city.
+ * This internal action is used by all the police agents in the grid to find the shortest path from the start point to the end point,
+ * it is used in several situations: first of all it is used to explore randomly the city, then it is used to find the shortest path
+ * to the clue or criminal positions and finally it is used to find the shortest path to the jail.
+ */
 
 public class FindPath extends DefaultInternalAction {
-
-    //private static final long serialVersionUID = 1L;
 
     @Override
     public Object execute(TransitionSystem ts, Unifier un, Term[] args) throws Exception {
@@ -25,31 +28,26 @@ public class FindPath extends DefaultInternalAction {
             int endX = (int)((NumberTerm) args[3]).solve();         // Get end X coordinate
             int endY = (int)((NumberTerm) args[4]).solve();         // Get end Y coordinate
 
-            //System.out.println("Finding path for police " + policeId + " from (" + startX + ", " + startY + ") to (" + endX + ", " + endY + ")");
-
             // Get the city environment
             CityEnvironment env = CityEnvironment.getInstance();
-
             if (env instanceof CityEnvironment) {
                 // Get the city model
                 CityModel cityModel = env.getCityModel();
-
                 // Create an instance of AStar to perform pathfinding
                 AStar aStar = new AStar(cityModel);
 
-                // Execute the pathfinding
+                // Execute the pathfinding from start to end
                 List<Location> path = aStar.findPath(policeId, new Location(startX, startY), new Location(endX, endY));
+
                 // Process the path to move police agents icons
                 // Add the case where path is <no value>
                 if (path == null || path.isEmpty() || path.size() == 0) {
-                    // return un.unifies(ASSyntax.createList(), args[5]); // Return an empty list if no path is found
-                    // If a path can't be found to the left of the agent find the path that arrives to the right of the agent
-                    System.out.println("//////EMPTY PATH, GOING TO endX+2");
+                    // If a path can't be found to the left (endX-1) of the agent find the path that arrives to the right of the agent
+                    System.out.println("---> EMPTY PATH, GOING TO endX+2 to the right of the agent");
                     path = aStar.findPath(policeId, new Location(startX, startY), new Location(endX+2, endY));
                     CityEnvironment.getInstance().processPath(policeId, path);
                 } else {
                     // If a path is found, process it
-                    //System.out.println("Path found for police " + policeId + ": " + path.toString());
                     CityEnvironment.getInstance().processPath(policeId, path);
                 }
 

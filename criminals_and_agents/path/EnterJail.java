@@ -19,8 +19,6 @@ import helper.AgentPercept;
 
 public class EnterJail extends DefaultInternalAction {
 
-    private static final long serialVersionUID = 1L;
-
     @Override
     public Object execute(TransitionSystem ts, Unifier un, Term[] args) throws Exception {
         // Check the number of arguments

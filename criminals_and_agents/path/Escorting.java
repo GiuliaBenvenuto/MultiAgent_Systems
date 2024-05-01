@@ -9,10 +9,12 @@ import jason.JasonException;
 import city.*;
 import java.util.*;
 
+/** ---------- Escorting Internal Action ----------
+ * This class represents the internal action that handles the logic of a police agent escorting a criminal towards the jail.
+ * This action is simply used to set the escorting flag to true or false in the CityModel.
+ */
 
 public class Escorting extends DefaultInternalAction {
-
-    private static final long serialVersionUID = 1L;
 
     @Override
     public Object execute(TransitionSystem ts, Unifier un, Term[] args) throws Exception {
@@ -29,11 +31,9 @@ public class Escorting extends DefaultInternalAction {
         // Extract the police agent ID and the criminal agent ID
         int policeId = (int)((NumberTerm) args[0]).solve();
         boolean isEscorting = ((Atom)args[1]).getFunctor().equals("true");
-        System.out.println("_____Police ID: _____" + policeId);
 
         // Access the CityEnvironment to call methods related to escorting
         CityEnvironment env = CityEnvironment.getInstance();
-
         if (isEscorting) {
             // Start escorting
             env.getCityModel().startEscorting(policeId);
@@ -42,7 +42,6 @@ public class Escorting extends DefaultInternalAction {
             env.getCityModel().stopEscorting(policeId);
         }
 
-        // Returns true because the action was executed successfully
         return true;
     }
 }
