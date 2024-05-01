@@ -83,6 +83,7 @@ public class CityModel extends GridWorldModel {
         }
     }
 
+
     // Methods to create the city model
     synchronized public static CityModel create(int width, int height, int agents_number) {
         if (city_model == null) {
@@ -91,14 +92,17 @@ public class CityModel extends GridWorldModel {
         return city_model;
     }
 
+
     private CityModel(int width, int height, int agents_number) {
         super(width, height, agents_number);
     }
+
 
     // Method to get the city model
     public static CityModel getCityModel() {
         return city_model;
     }
+
 
     // Method to set the jail location
     private void setJail(int i, int j) {
@@ -106,15 +110,18 @@ public class CityModel extends GridWorldModel {
         data[i][j] = JAIL;
     }
 
+
     // Method to get the jail location
     public Location getJail() {
         return jail;
     }
 
+
     // Method to clear the jail
     public void clearJail() {
         remove(JAIL, jail.x, jail.y);
     }
+
 
     // Method to clear the obstacles
     public void clearObstacles() {
@@ -128,6 +135,7 @@ public class CityModel extends GridWorldModel {
         }
     }
 
+
     // Method to clear the agents
     public void clearAgents() {
         for (int i = 0; i < 40; i++) {
@@ -140,15 +148,18 @@ public class CityModel extends GridWorldModel {
         }
     }
 
+
     // Method to get the number of arrested criminals
     public int getArrestedCriminals() {
         return n_arrested_criminals;
     }
 
+
     // Method to verify if a position is within the grid
     public boolean isInGrid(int x, int y) {
         return x >= 0 && x < 40 && y >= 0 && y < 40;
     }
+
 
     // Method to set the position of the clue agents and to add them the percepts about
     // their own position and id and about criminal position X or Y
@@ -180,6 +191,7 @@ public class CityModel extends GridWorldModel {
         return false;
     }
 
+
     // Method to set the position of the police agents and to add them the percepts about
     // their own position and id and about start - end positions and jail position
     public boolean setPoliceAgentPos(int agId, int x, int y) {
@@ -199,6 +211,7 @@ public class CityModel extends GridWorldModel {
         }
         return false;
     }
+
 
     // Method to set the position of the civilian agents and to add them the percepts about
     // their own position and id and about the closest clue agent
@@ -227,6 +240,7 @@ public class CityModel extends GridWorldModel {
         }
         return false;
     }
+
 
     // Method to set the position of the criminal agents and to add them the percepts about
     // their own position and id
@@ -365,13 +379,14 @@ public class CityModel extends GridWorldModel {
     }
 
 
+    // Method to get the agent id based on the agent type and location
     public int getAgentId(int agentType, int x, int y) {
-        // using agentLocationMap
         return agentLocationMap.getOrDefault(new Pair<>(new Location(x, y), agentType), -1);
     }
 
 
-    // Find closest clue agent
+    // Method to find the closest clue agent to a civilian agent
+    // Called by AgentPercept.addCivilianPercept
     public Location findClosestClueAgent(int x, int y) {
         Location closestClue = null;
         double minDistance = Double.MAX_VALUE;
@@ -390,7 +405,7 @@ public class CityModel extends GridWorldModel {
     }
 
 
-    // Update the position of the police agent following the path
+    // Method to update the position of the police agent while moving following the path
     public void updatePoliceAgentPosition(int agId, int x, int y) {
         if (isFree(x, y)) {
             Location currentLoc = getAgPos(agId);
@@ -400,19 +415,19 @@ public class CityModel extends GridWorldModel {
         }
     }
 
-    // Police agent escorting a criminal to jail
+
+    // Methods to implement the logic to mark the police agent as escorting
+    // Method to set police agent escorting state to true
     public void startEscorting(int policeId) {
-        // Add logic to mark the police agent as escorting
-        // This could be a simple boolean flag or a more complex state management
-        // For example, you could add a Map<Integer, Boolean> to track the escorting state of each police agent
         policeEscortingState.put(policeId, true);
     }
 
+
+    // Method to set police agent escorting state to false
     public void stopEscorting(int policeId) {
         policeEscortingState.put(policeId, false);
         n_arrested_criminals++;
-        System.out.println("POLICE ID:" + policeId);
-        // get x and y from policeId
+
         // Retrieve the current location of the police agent
         Location policeLocation = getAgPos(policeId);
 
@@ -421,47 +436,48 @@ public class CityModel extends GridWorldModel {
         }
     }
 
+    // Method to check if a police agent is escorting
     public boolean isEscorting(int policeId) {
         return policeEscortingState.getOrDefault(policeId, false);
     }
 
 
+    // Method to set the police agent at jail state
     public void setPoliceAtJail(int agId, boolean atJail) {
         this.policeAtJailMap.put(agId, atJail);
         // If the agent is no longer at jail, it should be visible again.
-        if (!atJail) {
-            // Code to make the agent visible again.
-            // This could involve adding the POLICE_AGENT object back to the location it is supposed to be.
-        }
+        if (!atJail) {}
     }
 
+
+    // Method to check if a police agent is at jail
     public boolean isPoliceAtJail(int agId) {
         return policeAtJailMap.getOrDefault(agId, false);
     }
 
-    // Police agent reached the jail so remove it from the grid and from the agentLocationMap
+
+    // Method to remove the police agent from the grid and from the agentLocationMap if it reaches the jail
     public void removePoliceAgent(int agId, int x, int y) {
         // x --> currentPoliceLoc.x
         // y --> currentPoliceLoc.y
-
         if (hasObject(POLICE_AGENT, x, y)) {
+
             city_model.setPoliceAtJail(agId, true);
+            // Remove from the grid
+            remove(POLICE_AGENT, x, y);
+            // Remove from the map
+            agentLocationMap.remove(new Pair<>(new Location(x, y), POLICE_AGENT));
 
-            remove(POLICE_AGENT, x, y); // Remove from the grid
-            //remove(POLICE_AGENT, 34, 35);
-            agentLocationMap.remove(new Pair<>(new Location(x, y), POLICE_AGENT)); // Remove from the map
-            //agentLocationMap.remove(new Pair<>(new Location(34, 35), POLICE_AGENT));
-            System.out.println("Police agent removed from location: " + x + ", " + y);
+//            System.out.println("Police agent removed from location: " + x + ", " + y);
+//            System.out.println("REMOVE POLICE AGENT WITH --> Agent name: " + agentName);
 
-            String agentName = "police" + (agId+1);
-            System.out.println("REMOVE POLICE AGENT WITH --> Agent name: " + agentName);
-
+            String agentName = "police" + (agId + 1);
             AgentPercept.destroyAgent(CityEnvironment.getInstance(), agentName);
         }
     }
 
 
-    // Criminal arrested so remove it from the grid and from the agentLocationMap
+    // Method to arrest a criminal and remove it from the grid and from the agentLocationMap
     public void arrestCriminal(int criminalId, int x, int y) {
         remove(AGENT, x, y);
         remove(CRIMINAL_AGENT, x, y);
@@ -470,8 +486,8 @@ public class CityModel extends GridWorldModel {
     }
 
 
-
-    // ---------- Methods for A* algorithm ----------
+    // Method to get the neighbors of a location
+    // Called by FindPath.java
     public List<Location> getNeighbors(Location loc) {
         List<Location> neighbors = new ArrayList<>();
 
@@ -490,5 +506,4 @@ public class CityModel extends GridWorldModel {
         return neighbors;
     }
 
-
-}
+} // CityModel

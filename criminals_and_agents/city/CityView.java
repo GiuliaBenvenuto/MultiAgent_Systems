@@ -42,6 +42,10 @@ import java.util.HashSet;
 import city.CityEnvironment;
 
 
+
+/**  ---------- CITY VIEW CLASS ----------
+ *
+ */
 public class CityView extends GridWorldView {
 
     CityEnvironment city_env = null;
