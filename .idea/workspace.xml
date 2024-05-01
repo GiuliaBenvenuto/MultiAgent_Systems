@@ -32,6 +32,9 @@
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/helper/AgentIdMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/helper/AgentIdMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/helper/AgentPercept.java" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/helper/AgentPercept.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/helper/LookAround.java" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/helper/LookAround.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/path/AStar.java" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/path/AStar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/path/Arrested.java" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/path/Arrested.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/path/EnterJail.java" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/path/EnterJail.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +42,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DarkyenusTimeTracker">
-    <option name="totalTimeSeconds" value="82035" />
+    <option name="totalTimeSeconds" value="83097" />
     <option name="gitIntegration" value="true" />
     <option name="naggedAbout" value="1" />
   </component>
@@ -174,7 +177,7 @@
       <workItem from="1714421410949" duration="294000" />
       <workItem from="1714462371426" duration="9421000" />
       <workItem from="1714482576509" duration="6812000" />
-      <workItem from="1714557329500" duration="4602000" />
+      <workItem from="1714557329500" duration="5847000" />
     </task>
     <task id="LOCAL-00001" summary="Commit from Intellij">
       <option name="closed" value="true" />

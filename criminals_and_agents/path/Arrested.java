@@ -10,6 +10,10 @@ import city.*;
 import java.util.*;
 
 
+/** ---------- Arrested Internal Action ----------
+ * This class represents the internal action to arrest a criminal in the city.
+ * The action requires three arguments: the criminal agent ID and the coordinates (X, Y) of the criminal.
+ */
 
 public class Arrested extends DefaultInternalAction {
 
@@ -33,14 +37,10 @@ public class Arrested extends DefaultInternalAction {
         // criminal at 10,12 -> ID = 0 -> In the CityModel ID = 3
         // criminal at 15,25 -> ID = 1 -> In the CityModel ID = 4
 
-        // Access the CityEnvironment to call methods related to criminal arrest
         CityEnvironment env = CityEnvironment.getInstance();
-
         // Arrest the criminal and remove their icon from the grid
-        // Here, we assume the removal is based on the ID and the coordinates provided
         env.getCityModel().arrestCriminal(criminalId, x, y);
 
-        // Returns true because the action was executed successfully
         return true;
     }
 }
