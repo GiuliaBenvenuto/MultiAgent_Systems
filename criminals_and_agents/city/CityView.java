@@ -44,7 +44,6 @@ import city.CityEnvironment;
 
 
 /**  ---------- CITY VIEW CLASS ----------
- *
  * This class extends GridWorldView and provides the graphical user interface for visualizing
  * the simulation of the city environment.
  * This class is responsible for rendering the elements of the city, such as agents with their icons

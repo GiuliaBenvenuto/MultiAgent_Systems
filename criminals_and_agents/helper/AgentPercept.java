@@ -105,11 +105,10 @@ public class AgentPercept {
 
             environment.addPercept(agentType_civ + (localCivId + 1), cluePositionPercept);
         }
-
     }
 
 
-    // ----------- Clue Percepts about criminal position X or Y ------------
+    // Method to add the percepts to clue agents about the position of the X coordinate of criminal agents
     public static void addCluePerceptX(CityEnvironment environment, int clueId, int clueX, int clueY, int criminalID, int criminalX) {
         AgentIdMapper mapper = new AgentIdMapper();
         String agentType = mapper.getType(clueId);
@@ -122,6 +121,7 @@ public class AgentPercept {
         environment.addPercept(agentType + (localId + 1), criminalXpercept);
     }
 
+    // Method to add the percepts to clue agents about the position of the Y coordinate of criminal agents
     public static void addCluePerceptY(CityEnvironment environment, int clueId, int clueX, int clueY, int criminalID, int criminalY) {
         AgentIdMapper mapper = new AgentIdMapper();
         String agentType = mapper.getType(clueId);
@@ -135,7 +135,7 @@ public class AgentPercept {
     }
 
 
-    // ----------- Close agent found by police ------------
+    // Method to add the percepts to police agents about the position of the neighboring agents foud while exploring
     public static void foundAgent(CityEnvironment environment, int globalPoliceId, int globalAgentId, int x, int y) {
         AgentIdMapper mapper = new AgentIdMapper();
         String agentType = mapper.getType(globalPoliceId);
@@ -144,9 +144,7 @@ public class AgentPercept {
         String foundAgentType = mapper.getType(globalAgentId);
         int localAgentId = mapper.getLocalId(globalAgentId);
 
-        // System.out.println("FOUND AGENT TYPE: " + foundAgentType);
-
-        // Position
+        // Position of the found agent
         Literal positionPercept = ASSyntax.createLiteral("closeAgentAt",
                 ASSyntax.createNumber(x),
                 ASSyntax.createNumber(y),
@@ -157,7 +155,7 @@ public class AgentPercept {
     }
 
 
-    // ----------- Arrived at jail escorting a criminal ------------
+    // Method to add the percepts to police agents about the fact that they have reached the jail with a criminal
     public static void jailWithCriminal(CityEnvironment environment, int globalPoliceId, int x, int y) {
         AgentIdMapper mapper = new AgentIdMapper();
         String agentType = mapper.getType(globalPoliceId);
@@ -171,7 +169,7 @@ public class AgentPercept {
     }
 
 
-
+    // Method to destroy the police agent when at jail with a criminal
     public static void destroyAgent(CityEnvironment environment, String agentName) {
         Literal destroyPercept = ASSyntax.createLiteral("destroyMe",
                 ASSyntax.createAtom(agentName));
@@ -182,13 +180,13 @@ public class AgentPercept {
         CityModel model = CityModel.getCityModel();
         view.updateView(model);
 
-        // NEW PART TO DESTROY ALL THE AGENTS WHEN THE ARRESTED CRIMINALS ARE 2
-        // If I want to remove it, remove the following lines and the destroyAllAgents method
+        // Destory all agents if all criminals (2) have been arrested
         int arrestedCriminals = model.getArrestedCriminals();
         if (arrestedCriminals == 2) {
             AgentPercept.destroyAllAgents(env);
 
             // Display the message about the safety of the city if all the criminals have been arrested
+            // Dialog box to display the message
             SwingUtilities.invokeLater(() -> {
                 JOptionPane.showMessageDialog(null,
                         "The city is safe: all criminals have been arrested",
@@ -199,6 +197,7 @@ public class AgentPercept {
     }
 
 
+    // Method to destroy all agents
     public static void destroyAllAgents(CityEnvironment environment) {
         List<String> agents = Arrays.asList( "police1", "police2", "police3",
                                 "criminal1", "criminal2",
@@ -211,7 +210,6 @@ public class AgentPercept {
                     ASSyntax.createAtom(agentName));
             environment.addPercept(agentName, destroyPercept);
         }
-
     }
 
 
