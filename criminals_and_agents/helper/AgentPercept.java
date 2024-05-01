@@ -17,10 +17,15 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 
+/**  ---------- AgentPercept Class ----------
+ * This is a utility class used in the project to update the percepts of the agents in the environment.
+ * Through the addPercept used in all the methods of this class, the agents can perceive new information
+ * about the environment and other agents.
+ */
 
 public class AgentPercept {
 
-
+    // Method to add the percepts about the position and id of the agents
     public static void updateAgentPercepts(CityEnvironment environment, int globalId, int x, int y) {
         AgentIdMapper mapper = new AgentIdMapper();
         String agentType = mapper.getType(globalId);
@@ -39,13 +44,12 @@ public class AgentPercept {
     }
 
 
-    // ----------- Police Percepts ------------
+    // Method to add the percepts about the police agents, start position - end position and jail position
     public static void addPolicePercept(CityEnvironment environment, int globalId, int x, int y) {
         AgentIdMapper mapper = new AgentIdMapper();
         String agentType = mapper.getType(globalId);
         int localId = mapper.getLocalId(globalId);
 
-        // ------ Police agents' percepts ------
         environment.initCity(1);
         if (agentType.equals("police")) {
             // Add final end position for police agents
@@ -54,10 +58,8 @@ public class AgentPercept {
             do {
                 endX = random.nextInt(39) + 1; // Generates a number between 1 and 39
                 endY = random.nextInt(39) + 1;
-            } while (!environment.getCityModel().isFree(endX, endY));
-
-            System.out.println("POLICE " + localId + " MOVING TO: " + endX + ", " + endY);
-            System.out.println("");
+            }
+            while (!environment.getCityModel().isFree(endX, endY));
 
             Literal policeStart = ASSyntax.createLiteral("startPos",
                     ASSyntax.createNumber(x),
@@ -80,22 +82,20 @@ public class AgentPercept {
     }
 
 
-    // ----------- Civilian Percepts about closest clue ------------
+    // Method to add the percepts to civilian agents about the position of the clue agents
     public static void addCivilianPercept(CityEnvironment environment, int civilianId, int x, int y, int clueId, int i, int j, CityModel cityModel) {
         // x,y civilian agent position
         // i,j clue agent position
         AgentIdMapper mapper = new AgentIdMapper();
-
         String agentType_civ = mapper.getType(civilianId);
         int localCivId = mapper.getLocalId(civilianId);
 
         String agentType_clue = mapper.getType(clueId);
         int localClueId = mapper.getLocalId(clueId);
 
-
         Location closestClue = cityModel.findClosestClueAgent(x, y);
         if (closestClue != null) {
-            System.out.println("Closest clue agent to civilian " + localCivId + " is at " + closestClue.x + ", " + closestClue.y);
+            System.out.println("Closest clue agent to civilian: " + localCivId + " is at: " + closestClue.x + ", " + closestClue.y);
 
             Literal cluePositionPercept = ASSyntax.createLiteral("closeClueAgent",
                     ASSyntax.createNumber(closestClue.x + 1), // add +1 such that I'm moving in a neighboring cell

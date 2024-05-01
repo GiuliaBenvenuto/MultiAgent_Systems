@@ -29,6 +29,8 @@
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/build/tmp/compileJava/compileTransaction/stash-dir/Stop.class.uniqueId7" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/city/CityModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/city/CityModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/criminals_and_agents/city/CityView.java" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/city/CityView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/helper/AgentIdMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/helper/AgentIdMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/helper/AgentPercept.java" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/helper/AgentPercept.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +38,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DarkyenusTimeTracker">
-    <option name="totalTimeSeconds" value="79393" />
+    <option name="totalTimeSeconds" value="81095" />
     <option name="gitIntegration" value="true" />
     <option name="naggedAbout" value="1" />
   </component>
@@ -171,7 +173,7 @@
       <workItem from="1714421410949" duration="294000" />
       <workItem from="1714462371426" duration="9421000" />
       <workItem from="1714482576509" duration="6812000" />
-      <workItem from="1714557329500" duration="1843000" />
+      <workItem from="1714557329500" duration="3624000" />
     </task>
     <task id="LOCAL-00001" summary="Commit from Intellij">
       <option name="closed" value="true" />
