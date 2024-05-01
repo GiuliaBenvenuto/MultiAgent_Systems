@@ -45,19 +45,34 @@ import city.CityEnvironment;
 
 /**  ---------- CITY VIEW CLASS ----------
  *
+ * This class extends GridWorldView and provides the graphical user interface for visualizing
+ * the simulation of the city environment.
+ * This class is responsible for rendering the elements of the city, such as agents with their icons
+ * (police, civilians, criminals, clue agents), obstacles, and other structures like jails.
+ *
+ *
+ * The class has some responsibilities, including:
+ * - Drawing different types of agents with distinct icons to represent their roles within the simulation.
+ *   -> If a police agent is simply exploring the city, it is represented by a police icon.
+ *   -> If a police agent is escorting a criminal, it is represented by a different icon.
+ *
+ * - Representing environmental features like obstacles (wall icon) and jail, enhancing
+ *   the visual distinction between different cell types on the grid.
+ *
+ * - Dynamically updating the view based on changes in the model, ensuring that the state of the simulation
+ *   is reflected. This includes re-drawing the grid when agents move or the environment changes.
+ *   (This is the reason why sometimes there is flickering in the GUI)
  */
+
 public class CityView extends GridWorldView {
 
     CityEnvironment city_env = null;
     CityModel city_model = null;
 
-    private JComboBox city_selection;
-    private JRadioButton city1Button, city2Button, city3Button, city4Button;
-    private ButtonGroup cityGroup;
-
-    // Icons for agents
+    // Icons for agents, obstacles and jail
     ImageIcon icon;
     private Image policeImage;
+    private Image policeEscortingImage;
     private Image civilianImage;
     private Image clueImage;
     private Image criminalImage;
@@ -66,9 +81,8 @@ public class CityView extends GridWorldView {
     private Image jailImage_2;
     private Image obstacleImage;
     private Image houseImage;
-    private Image policeEscortingImage;
 
-
+    // Method to create the view
     public CityView(CityModel model) {
         super(model, "City", 400);
         this.city_model = model;
@@ -107,13 +121,12 @@ public class CityView extends GridWorldView {
         icon = new ImageIcon("images/house.png");
         houseImage = icon.getImage();
 
-
-
-        
         setVisible(true);
         repaint();
     }
 
+
+    // Method to set the environment
     public void setEnv(CityEnvironment env) {
         this.city_env = env;
         if (city_env != null) {
@@ -122,73 +135,15 @@ public class CityView extends GridWorldView {
         }
     }
 
+
+    // Method to update the view
     public void updateView(CityModel model) {
         this.city_model = model;
         repaint();
     }
 
 
-    /* RadioButtons for city selection
-    @Override
-    public void initComponents(int width) {
-        super.initComponents(width);
-        JPanel p = new JPanel();
-        p.setLayout(new FlowLayout());
-        p.add(new JLabel("City:"));
-
-        // ButtonGroup
-        ButtonGroup cityGroup = new ButtonGroup();
-
-        // RadioButton for each city
-        JRadioButton city1Button = new JRadioButton("City 1");
-        JRadioButton city2Button = new JRadioButton("City 2");
-        JRadioButton city3Button = new JRadioButton("City 3");
-        JRadioButton city4Button = new JRadioButton("City 4");
-
-        cityGroup.add(city1Button);
-        cityGroup.add(city2Button);
-        cityGroup.add(city3Button);
-        cityGroup.add(city4Button);
-
-        // ActionListener to the radio buttons
-        ActionListener actionListener = new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                JRadioButton source = (JRadioButton) e.getSource();
-
-                int index = -1;
-                if (source == city1Button) {
-                    index = 1;
-                } else if (source == city2Button) {
-                    index = 2;
-                } else if (source == city3Button) {
-                    index = 3;
-                } else if (source == city4Button) {
-                    index = 4;
-                }
-                if (index != -1 && city_env != null) {
-                    city_env.initCity(index);
-                    System.out.println("City selected CITYVIEW: " + index);
-                }
-            }
-        };
-
-        city1Button.addActionListener(actionListener);
-        city2Button.addActionListener(actionListener);
-        city3Button.addActionListener(actionListener);
-        city4Button.addActionListener(actionListener);
-
-        // Add RadioButtons to the panel
-        p.add(city1Button);
-        p.add(city2Button);
-        p.add(city3Button);
-        p.add(city4Button);
-
-        city1Button.setSelected(true);
-        getContentPane().add(BorderLayout.NORTH, p);
-    }*/
-
-
-
+    // Method to draw the grid and its elements
     @Override
     public void draw(Graphics g, int x, int y, int object) {
         super.draw(g, x, y, object);
@@ -203,67 +158,59 @@ public class CityView extends GridWorldView {
         }
     }
 
+
+    // Method to draw the jail
     public void drawJail(Graphics g, int x, int y) {
-        //g.setColor(Color.red);
-        //g.fillRect(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
         int arrested_criminals = city_model.getArrestedCriminals();
+        // One criminal arrested
         if (arrested_criminals == 1) {
             g.drawImage(jailImage_1, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
         }
+        // Two criminals arrested
         else if (arrested_criminals == 2) {
             g.drawImage(jailImage_2, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
         }
+        // No criminals arrested
         else {
             g.drawImage(jailImage, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
         }
     }
 
-    // WITHOUT HOUSE IMAGE
-//    public void drawObstacle(Graphics g, int x, int y) {
-//        g.drawImage(obstacleImage, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
-//    }
 
-    // WITH HOUSE IMAGE
+    // Method to draw the obstacles (walls and houses)
     public void drawObstacle(Graphics g, int x, int y) {
-        // Define special coordinates
+        // Define special coordinates in which to draw houses
         int[] xCoords = {25, 27, 29};
         int[] yCoords = {14, 12, 10};
         Set<String> specialCoords = new HashSet<>();
 
-        // Populate the set with combined coordinates
         for (int xCoord : xCoords) {
             for (int yCoord : yCoords) {
                 specialCoords.add(xCoord + "," + yCoord);
             }
         }
-
         // Determine which image to use
         Image currentImage = specialCoords.contains(x + "," + y) ? houseImage : obstacleImage;
-
-        // Draw the image
+        // Draw
         g.drawImage(currentImage, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
     }
 
 
+    // Method to draw the agents depending on their type and role
     @Override
     public void drawAgent(Graphics g, int x, int y, Color c, int id) {
-        // Remove default drawing of agents
         g.setColor(getBackground());
         g.fillRect(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
 
-        // Color of agents based on their type
+        // Draw clue agent
         if (city_model.hasObject(city_model.CLUE_AGENT, x, y)) {
-            // CLUE_AGENT
             g.drawImage(clueImage, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
         }
-
+        // Draw police agent
         else if (city_model.hasObject(city_model.POLICE_AGENT, x, y)) {
             boolean isEscorting = city_model.isEscorting(id);
             boolean atJail = city_model.isPoliceAtJail(id);
-
-            // If the agent is at jail and not escorting, do not draw it (make it invisible)
-            //System.out.println("----> Police agent " + id + " is at jail: " + atJail);
-            //System.out.println("----> Police agent " + id + " is escorting: " + isEscorting);
+            // If the agent is at jail and not escorting, draw cell background
             if (atJail && !isEscorting) {
                 g.setColor(getBackground());
                 g.fillRect(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
@@ -277,21 +224,19 @@ public class CityView extends GridWorldView {
                 g.drawImage(policeImage, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
             }
         }
-
-
+        // Draw civilian agent
         else if (city_model.hasObject(city_model.CIVILIAN_AGENT, x, y)) {
-            // CIVILIANL_AGENT
             g.drawImage(civilianImage, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
-        } else if (city_model.hasObject(city_model.CRIMINAL_AGENT, x, y)) {
-            // CRIMINAL_AGENT
+        }
+        // Draw criminal agent
+        else if (city_model.hasObject(city_model.CRIMINAL_AGENT, x, y)) {
             g.drawImage(criminalImage, x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH, this);
         }
+        // Default: draw cell background
         else {
-            // Default cell color
             g.setColor(getBackground());
             g.fillRect(x * cellSizeW, y * cellSizeH, cellSizeW, cellSizeH);
         }
     }
 
-
-}
+} // CityView
