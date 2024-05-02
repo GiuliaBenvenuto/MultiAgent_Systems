@@ -95,7 +95,7 @@ public class AgentPercept {
 
         Location closestClue = cityModel.findClosestClueAgent(x, y);
         if (closestClue != null) {
-            System.out.println("Closest clue agent to civilian: " + localCivId + " is at: " + closestClue.x + ", " + closestClue.y);
+            // System.out.println("Closest clue agent to civilian: " + localCivId + " is at: " + closestClue.x + ", " + closestClue.y);
 
             Literal cluePositionPercept = ASSyntax.createLiteral("closeClueAgent",
                     ASSyntax.createNumber(closestClue.x + 1), // add +1 such that I'm moving in a neighboring cell

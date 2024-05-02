@@ -13,33 +13,44 @@
  */
 
 
-/* Initial beliefs and rules */
+/* ----- Initial beliefs and rules ------ */
+// Start the agent lifecycle
 !start.
 
-/* Plans */
+
+/* ----- Plans ----- */
+// Plan triggered when the agent is created
 +!start : true <- .print("I'm a civilian.").
 
-// Plan triggered when the agent's position is updated
+// Belief about the agent's position
 // +at(X,Y) : true <- .print("---> Updated position: at(", X, ",", Y, ").").
-
+// Belief about the agent's ID
 // +myId(ID) : true <- .print("My ID is: ", ID).
 
-// Knowledge about clue location
+// Belief about closest clue position
 +closeClueAgent(A,B,C,D) : true <-
-    .print("I have a close clue at: ", A, ",", B, " with ID: ", C, " and type: ", D);
+    .print("I have a close clue at: (", A, ",", B, ")");
     +lastClueLocation(A, B, C, D).
 
-// Civilian found by a police and sends to him the clue location
+
+// Belief added when the sivilian is found by a police, civilian sends to him the clue location
 +foundYouAt(X,Y)[source(AgentId)] : true <-
-    .print("Found at: ", X, ",", Y, " from agent: ", AgentId);
+    .print("I'm a civilian and I was found by agent: ", AgentId, " at: ", X, ",", Y);
     ?lastClueLocation(A, B, C, D);
+    // Send the clue location to the police agent
+    .print("Sending position of a clue to agent: ", AgentId);
     .send(AgentId, tell, clueInfo(A, B, C, D)).
 
 
+// Belief added when police agent broadcasts that a criminal has been found
+// Civlian agent sends a message to the police agent thanking him
++criminal_found_broadcast(Xc, Yc, ID)[source(AgentId)] : true <-
+    .print("I feel safer! Tank you agent: ", AgentId).
+
+
+// Belief that triggers the agent destruction
 +destroyAllAgents(NAME) : true <-
-    .print("________________ Destroying ALLLL agents: _________________", NAME);
+    .print("Agent with name: ", NAME, " has been destroyed.");
     .kill_agent(NAME).
 
 
-+criminal_found_broadcast(Xc, Yc, ID)[source(AgentId)] : true <-
-    .print("I feel safer! Tank you agent: ", AgentId).

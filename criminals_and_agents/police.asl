@@ -112,7 +112,7 @@
     // Concatenate the agent's type and ID to send a message
     .concat(D, C, AgentName);
     // Send a message to the close agent
-    .print("Sending message to ", AgentName);
+    .print("Sending a message to: ", AgentName);
     .send(AgentName, tell, foundYouAt(A,B)).
 
 
