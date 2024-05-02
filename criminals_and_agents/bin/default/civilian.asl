@@ -1,4 +1,5 @@
-// Agent civilian in project criminals_and_agents
+// ---------- CIVILIAN AGENT in project criminals_and_agents ----------
+
 /* Initial beliefs and rules */
 !start.
 
@@ -8,7 +9,7 @@
 // Plan triggered when the agent's position is updated
 // +at(X,Y) : true <- .print("---> Updated position: at(", X, ",", Y, ").").
 
-//+myId(ID) : true <- .print("My ID is: ", ID).
+// +myId(ID) : true <- .print("My ID is: ", ID).
 
 // Knowledge about clue location
 +closeClueAgent(A,B,C,D) : true <-
@@ -21,3 +22,10 @@
     ?lastClueLocation(A, B, C, D);
     .send(AgentId, tell, clueInfo(A, B, C, D)).
 
+
++destroyAllAgents(NAME) : true <-
+    .print("________________ Destroying ALLLL agents: _________________", NAME);
+    .kill_agent(NAME).
+
++criminal_found_broadcast(Xc, Yc, ID)[source(AgentId)] : true <-
+    .print("I feel safer! Tank you agent: ", AgentId).

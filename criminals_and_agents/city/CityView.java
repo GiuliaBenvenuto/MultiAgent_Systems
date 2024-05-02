@@ -130,7 +130,7 @@ public class CityView extends GridWorldView {
         this.city_env = env;
         if (city_env != null) {
             int currentCityType = city_env.getCityType();
-            System.out.println("Current city type: " + currentCityType);
+            // System.out.println("Current city type: " + currentCityType);
         }
     }
 

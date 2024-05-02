@@ -1,4 +1,17 @@
-// ---------- CIVILIAN AGENT in project criminals_and_agents ----------
+/** ---------- CIVILIAN AGENT in project criminals_and_agents ----------
+ *  This is a particular type of agent that represents a civilian in the simulation.
+ *  Each civilian agent has the belief about its closest clue location:
+ *  - civilian0 has the belief of the clue at (5,5)
+ *  - civilian1 has the belief of the clue at (5,35)
+ *  - civilian2 has the belief of the clue at (35,5)
+ *  - civilian3 has the belief of the clue at (35,30)
+ *
+ * When a civilian agent is found by a police agent, it sends the clue location to the police agent.
+ * 
+ * Every time a police agent finds a criminal, the civilian agent is notified and sends a message to the police agent,
+ * thanking him for making the city safer.
+ */
+
 
 /* Initial beliefs and rules */
 !start.
@@ -26,6 +39,7 @@
 +destroyAllAgents(NAME) : true <-
     .print("________________ Destroying ALLLL agents: _________________", NAME);
     .kill_agent(NAME).
+
 
 +criminal_found_broadcast(Xc, Yc, ID)[source(AgentId)] : true <-
     .print("I feel safer! Tank you agent: ", AgentId).

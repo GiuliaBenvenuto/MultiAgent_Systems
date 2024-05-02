@@ -175,7 +175,7 @@ public class CityModel extends GridWorldModel {
 
             // Add percepts about criminal position X or Y
             clueAgentPosCallCount++;
-            System.out.println("Clue agent position call count: " + clueAgentPosCallCount);
+            // System.out.println("Clue agent position call count: " + clueAgentPosCallCount);
             // Determine which criminal info to use based on the counter
             if (clueAgentPosCallCount % 4 == 1) {
                 AgentPercept.addCluePerceptY(CityEnvironment.getInstance(), agId, x, y, 3, 12);
