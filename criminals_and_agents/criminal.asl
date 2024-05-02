@@ -23,7 +23,9 @@
 
 // Plan triggered when the agent's position is updated
 +at(Xc,Yc) : myId(ID) <- 
-    .print("-----> I'm the criminal: ", ID, " and I'm hiding at: (", Xc, ",", Yc, ").").
+    // ID = 0 --> Name: criminal1
+    // ID = 1 --> Name: criminal2
+    .print("-----> I'm the criminal: ", (ID + 1), " and I'm hiding at: (", Xc, ",", Yc, ").").
 
 // Belief about the agent's ID
 // +myId(ID) : true <- .print("My ID is: ", ID).

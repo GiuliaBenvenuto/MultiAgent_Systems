@@ -147,8 +147,8 @@
     .print("!!!! ARRIVED AT JAIL WITH A CRIMINAL !!!!");
     // Execute the Escorting internal action to set the police state to not escorting
     path.Escorting(ID, false); 
+    // Remove the belief that the agent is escorting the criminal
     -escorting(ID);
-    //+jailOccupied(T,K);
     -arrestedCriminal(Xc,Yc);
     -myId(ID);
     -startPos(A,B);
@@ -159,20 +159,31 @@
     .print("Arrived at the destination, generating new path.").
 
 
-// _____ X and Y Clues ______
+// Belief added when the police agent receives the X coordinate of a criminal
 +foundClueX(CIDX,CX) : true <-
-    .print("POLICE ------> Found clue X: ", CX, " with ID: ", CIDX);
+    if(CIDX == 3) {
+        .print("I obtained the X coordinate: ", CX, " of the [criminal 0]");
+    } else {
+        .print("I obtained the X coordinate: ", CX, " of the [criminal 1]");
+    }
     +haveClueX(CIDX,CX).
 
+
+// Belief added when the police agent receives the Y coordinate of a criminal
 +foundClueY(CIDY,CY) : true <-
-    .print("POLICE ------> Found clue Y: ", CY, " with ID: ", CIDY);
+    if(CIDY == 3) {
+        .print("I obtained the Y coordinate: ", CY, " of the [criminal 1]");
+    } else {
+        .print("I obtained the Y coordinate: ", CY, " of the [criminal 2]");
+    }
     +haveClueY(CIDY,CY).
 
 
-// _____Destroy agent_____
+// Beliefs that trigger the agent destruction
 +destroyMe(NAME) : true <-
     .print("Agent with name: ", NAME, " has been destroyed.");
     .kill_agent(NAME).
+
 
 +destroyAllAgents(NAME) : true <-
     .print("Agent with name: ", NAME, " has been destroyed.");

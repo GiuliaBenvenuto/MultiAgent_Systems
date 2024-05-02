@@ -172,9 +172,9 @@
 // Belief added when the police agent receives the Y coordinate of a criminal
 +foundClueY(CIDY,CY) : true <-
     if(CIDY == 3) {
-        .print("I obtained the Y coordinate: ", CY, " of the [criminal 0]");
-    } else {
         .print("I obtained the Y coordinate: ", CY, " of the [criminal 1]");
+    } else {
+        .print("I obtained the Y coordinate: ", CY, " of the [criminal 2]");
     }
     +haveClueY(CIDY,CY).
 

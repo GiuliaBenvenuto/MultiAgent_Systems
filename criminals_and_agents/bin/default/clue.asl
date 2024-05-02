@@ -64,9 +64,9 @@
     // criminal with CIDY = 3 is [criminal0]
     // criminal with CIDY = 4 is [criminal1]
     if (CIDY == 3) {
-        .print("I have the Y coordinate: ", CY, " of the [criminal 0]");
-    } else {
         .print("I have the Y coordinate: ", CY, " of the [criminal 1]");
+    } else {
+        .print("I have the Y coordinate: ", CY, " of the [criminal 2]");
     }.
 
 
