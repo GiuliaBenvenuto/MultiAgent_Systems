@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="00d8691c-ffb7-48ea-91eb-b8f0e1060a88" name="Changes" comment="Update">
-      <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/xd.lck" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/xd.lck" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/criminals_and_agents/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/criminals_and_agents/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/criminals_and_agents/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/criminals_and_agents/criminal.asl" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/criminal.asl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/criminals_and_agents/.gradle/8.0.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/criminals_and_agents/.gradle/8.0.2/executionHistory/executionHistory.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,7 +14,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DarkyenusTimeTracker">
-    <option name="totalTimeSeconds" value="88154" />
+    <option name="totalTimeSeconds" value="89328" />
     <option name="gitIntegration" value="true" />
     <option name="naggedAbout" value="1" />
   </component>
@@ -156,7 +151,7 @@
       <workItem from="1714482576509" duration="6812000" />
       <workItem from="1714557329500" duration="6974000" />
       <workItem from="1714632695111" duration="6445000" />
-      <workItem from="1714648297462" duration="360000" />
+      <workItem from="1714648297462" duration="2381000" />
     </task>
     <task id="LOCAL-00001" summary="Commit from Intellij">
       <option name="closed" value="true" />
