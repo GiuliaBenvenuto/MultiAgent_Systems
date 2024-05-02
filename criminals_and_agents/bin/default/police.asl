@@ -94,7 +94,7 @@
 // +currentPos(A,B) : true <- .print("Current position : currentPos(", A, ",", B, ").").
 
 // Belief about the agent's ID
-+myId(ID) : true <- .print("My ID is: ", ID).
+// +myId(ID) : true <- .print("My ID is: ", ID).
 
 // Belief about the agent's start position
 // +startPos(A,B) : true <- .print("Initial position : startPos(", A, ",", B, ").").
@@ -164,11 +164,11 @@
 
 // _____Destroy agent_____
 +destroyMe(NAME) : true <-
-    .print("________________ Destroying agent: _________________", NAME);
+    .print("Agent with name: ", NAME, " has been destroyed.");
     .kill_agent(NAME).
 
 +destroyAllAgents(NAME) : true <-
-    .print("________________ Destroying ALLLL agents: _________________", NAME);
+    .print("Agent with name: ", NAME, " has been destroyed.");
     .kill_agent(NAME).
 
 

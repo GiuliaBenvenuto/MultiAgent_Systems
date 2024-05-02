@@ -36,5 +36,5 @@
 
 
 +destroyAllAgents(NAME) : true <-
-    .print("________________ Destroying ALLLL agents: _________________", NAME);
+    .print("Agent with name: ", NAME, " has been destroyed.");
     .kill_agent(NAME).

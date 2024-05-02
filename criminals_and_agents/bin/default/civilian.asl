@@ -6,6 +6,10 @@
  *  - civilian2 has the belief of the clue at (35,5)
  *  - civilian3 has the belief of the clue at (35,30)
  *
+ *  --> Consider that the X coordinates are always incremented by 1, so 5 becomes 6, 35 becomes 36.
+ *      This is needed since it's impossible to reach the exact position of the clue since it's occupied by itself. 
+ *      Then when a clue is found the positon that will be reached by the police agent is (X+1, Y).
+ *
  * When a civilian agent is found by a police agent, it sends the clue location to the police agent.
  * 
  * Every time a police agent finds a criminal, the civilian agent is notified and sends a message to the police agent,
@@ -24,8 +28,10 @@
 
 // Belief about the agent's position
 // +at(X,Y) : true <- .print("---> Updated position: at(", X, ",", Y, ").").
+
 // Belief about the agent's ID
 // +myId(ID) : true <- .print("My ID is: ", ID).
+
 
 // Belief about closest clue position
 +closeClueAgent(A,B,C,D) : true <-
@@ -43,7 +49,7 @@
 
 
 // Belief added when police agent broadcasts that a criminal has been found
-// Civlian agent sends a message to the police agent thanking him for making the city safer
+// Civlian agent sends a message to the police agent thanking him
 +criminal_found_broadcast(Xc, Yc, ID)[source(AgentId)] : true <-
     .print("I feel safer! Tank you agent: ", AgentId).
 
