@@ -39,7 +39,7 @@
     +lastClueLocation(A, B, C, D).
 
 
-// Belief added when the sivilian is found by a police, civilian sends to him the clue location
+// Belief added when the civilian is found by a police, civilian sends to him the clue location
 +foundYouAt(X,Y)[source(AgentId)] : true <-
     .print("I'm a civilian and I was found by agent: ", AgentId, " at: ", X, ",", Y);
     ?lastClueLocation(A, B, C, D);

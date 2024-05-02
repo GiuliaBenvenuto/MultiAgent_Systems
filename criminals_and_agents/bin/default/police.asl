@@ -102,8 +102,10 @@
 // Belief about the agent's end position that triggers the exploration
 +endPos(A,B) : true <- !explore.
 
+
 // Belief about the jail position
 +jailPos(Xj,Yj) : true <- .print("------ JAIL POSITION: (", Xj, ",", Yj, ") ------").
+
 
 // Belief about a close agent that triggers the sending of a message
 +closeAgentAt(A,B,C,D) : not escorting(ID) <-
@@ -116,32 +118,37 @@
     .send(AgentName, tell, foundYouAt(A,B)).
 
 
-// Police agent got a clue from a civilian
+// Belief added when the police agent receives a clue from a civilian
 +clueInfo(X, Y, C, D) : true <-
     .print("A civilian gave me a clue.");
-    .print("Clue position: ", X, ", ", Y, " Agent ID: ", C, " Type: ", D);
+    .print("Clue position: (", X, ", ", Y, ") - Type: ", D, " ID: ", C);
+    // Add the clue to the agent's beliefs
     +haveClue(X, Y).
 
 
-// Police arrested a criminal
+// Belief added when a criminal is arrested
 +arrestedCriminal(Xc, Yc) : myId(ID) <-
-    .print("YOU ARE A CRIMINAL AND YOU ARE UNDER ARREST AT: ", Xc, ", ", Yc);
+    .print("----- YOU ARE A CRIMINAL AND YOU ARE UNDER ARREST AT: (", Xc, ", ", Yc, ") ------");
+    // Add the belief that the agent is escorting the criminal
     +escorting(ID);
+    // Send a broadcast message to all agents to signal the criminal has been arrested
     .broadcast(tell, criminal_found_broadcast(Xc, Yc, ID));
+    // Execute the Escorting internal action to set the police state to escorting
     path.Escorting(ID, true).
 
 
+// Belief added when a criminal is arrested and a broadcast message is received
 +criminal_found_broadcast(Xc, Yc, ID)[source(AgentId)] : true <-
-    .print("Well done colleague you did a great job ", AgentId).
+    .print("Well done collegue: ", AgentId, " you did a great job.").
 
 
-// Jail reached
+// Belief added when the police agent reaches the jail escorting a criminal
 +reachedJail(T,K) : myId(ID) & arrestedCriminal(Xc,Yc) <-
-    .print("X jail: " , T, " Y jail: ", K); // X jail: 34 Y jail: 35
-    .print("+++++++ARRIVED AT JAIL+++++++");
-    path.Escorting(ID, false); // To stop escorting
+    .print("!!!! ARRIVED AT JAIL WITH A CRIMINAL !!!!");
+    // Execute the Escorting internal action to set the police state to not escorting
+    path.Escorting(ID, false); 
     -escorting(ID);
-    +jailOccupied(T,K);
+    //+jailOccupied(T,K);
     -arrestedCriminal(Xc,Yc);
     -myId(ID);
     -startPos(A,B);
