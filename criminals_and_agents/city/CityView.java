@@ -83,7 +83,7 @@ public class CityView extends GridWorldView {
 
     // Method to create the view
     public CityView(CityModel model) {
-        super(model, "City", 400);
+        super(model, "City Environment", 700);
         this.city_model = model;
 
         // Police agent icon

@@ -286,6 +286,113 @@ public class CityModel extends GridWorldModel {
         // Obstacles
         // Top left corner
         for (int i = 3; i <= 9; i++) {
+            city_model.add(CityModel.OBSTACLE, 3, i);
+        }
+        // Single obstacles
+        city_model.add(CityModel.OBSTACLE, 3, 13);
+        city_model.add(CityModel.OBSTACLE, 3, 15);
+        city_model.add(CityModel.OBSTACLE, 15, 2);
+        city_model.add(CityModel.OBSTACLE, 14, 2);
+
+        // Vertical wall left bottom corener
+        for (int i = 3; i < 7; i++) {
+            city_model.add(CityModel.OBSTACLE, i, 14);
+        }
+        // Vertcial wall midde left
+        for (int i = 19; i < 22; i++) {
+            city_model.add(CityModel.OBSTACLE, 3, i);
+        }
+
+        for (int i = 4; i < 7; i++) {
+            city_model.add(CityModel.OBSTACLE, i, 20);
+        }
+
+        for (int i = 25; i <= 35; i++) {
+            city_model.add(CityModel.OBSTACLE, 3, i);
+        }
+
+        // Diagonal wall top left corner
+        for (int i = 0; i < 10; i++) {
+            city_model.add(CityModel.OBSTACLE, 10 + i, 9 + i);
+        }
+
+        // Diagonal wall bottom left corner
+        for (int i = 0; i < 5; i++) {
+            city_model.add(CityModel.OBSTACLE, 14 + i, 35 - i);
+        }
+
+        // Vertical wall big cross
+        for (int i = 5; i < 24; i++) {
+            city_model.add(CityModel.OBSTACLE, 20, i);
+        }
+        // Horzontal wall big cross
+        for (int i = 21; i < 26; i++) {
+            city_model.add(CityModel.OBSTACLE, i, 18);
+        }
+        // Cross wall
+        for (int i = 21; i < 29; i++) {
+            city_model.add(CityModel.OBSTACLE, i + 1, 23);     // horizontal
+            city_model.add(CityModel.OBSTACLE, 25, i - 1); // vertical
+        }
+
+        // Right up corner walls
+        for (int i  = 26; i < 31; i++) {
+            city_model.add(CityModel.OBSTACLE, i, 2);
+        }
+        for (int i  = 34; i < 38; i++) {
+            city_model.add(CityModel.OBSTACLE, i, 2);
+        }
+        for (int i = 3; i < 6; i++) {
+             city_model.add(CityModel.OBSTACLE, 37, i);
+        }
+        for (int i = 9; i < 14; i++) {
+            city_model.add(CityModel.OBSTACLE, 37, i);
+        }
+
+        // Right middle walls
+        city_model.add(CityModel.OBSTACLE, 32, 25);
+        city_model.add(CityModel.OBSTACLE, 33, 25);
+        city_model.add(CityModel.OBSTACLE, 37, 25);
+        city_model.add(CityModel.OBSTACLE, 38, 25);
+
+        // Houses
+        int[] xCoords = {25, 27, 29};
+        int[] yCoords = {14, 12, 10};
+        for (int x : xCoords) {
+            for (int y : yCoords) {
+                city_model.add(CityModel.OBSTACLE, x, y);
+            }
+        }
+
+        return city_model;
+    }
+
+    /* OLD CITY1 METHOD
+    * static CityModel city1() throws Exception {
+        CityModel city_model = CityModel.create(40, 40, 13);
+        // Police agents
+        city_model.setPoliceAgentPos(0, 35, 34);
+        city_model.setPoliceAgentPos(1, 34, 35);
+        city_model.setPoliceAgentPos(2, 34, 34);
+        // Criminal agents
+        city_model.setCriminalAgentPos(3, 10, 12);
+        city_model.setCriminalAgentPos(4, 26, 21);
+        // Clue agents
+        city_model.setClueAgentPos(5, 5, 5);
+        city_model.setClueAgentPos(6, 5, 35);
+        city_model.setClueAgentPos(7, 35, 5);
+        city_model.setClueAgentPos(8, 35, 30);
+        // Civilian agents
+        city_model.setCivilianAgentPos(9, 9, 4);
+        city_model.setCivilianAgentPos(10, 10, 35);
+        city_model.setCivilianAgentPos(11, 31, 9);
+        city_model.setCivilianAgentPos(12, 29, 29);
+        // Jail
+        city_model.setJail(35, 35);
+
+        // Obstacles
+        // Top left corner
+        for (int i = 3; i <= 9; i++) {
             city_model.add(CityModel.OBSTACLE, 4, i);
         }
         // Single obstacles
@@ -367,7 +474,7 @@ public class CityModel extends GridWorldModel {
         }
 
         return city_model;
-    }
+    }*/
 
 
     // Method to check if a location is free of obstacles and agents

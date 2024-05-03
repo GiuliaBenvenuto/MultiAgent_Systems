@@ -43,7 +43,7 @@ public class FindPath extends DefaultInternalAction {
                 // Add the case where path is <no value>
                 if (path == null || path.isEmpty() || path.size() == 0) {
                     // If a path can't be found to the left (endX-1) of the agent find the path that arrives to the right of the agent
-                    System.out.println("---> EMPTY PATH, GOING TO endX+2 to the right of the agent");
+                    System.out.println("---> Going to the right of the agent");
                     path = aStar.findPath(policeId, new Location(startX, startY), new Location(endX+2, endY));
                     CityEnvironment.getInstance().processPath(policeId, path);
                 } else {
