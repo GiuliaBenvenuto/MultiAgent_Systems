@@ -107,10 +107,8 @@ public class CityView extends GridWorldView {
         // Jail icons
         icon = new ImageIcon("images/jail.png");
         jailImage = icon.getImage();
-        //icon = new ImageIcon("images/jail_1_criminal.png");
         icon = new ImageIcon("images/1_criminal_jail.png");
         jailImage_1 = icon.getImage();
-        //icon = new ImageIcon("images/jail_2_criminal.png");
         icon = new ImageIcon("images/2_criminal_jail.png");
         jailImage_2 = icon.getImage();
 
