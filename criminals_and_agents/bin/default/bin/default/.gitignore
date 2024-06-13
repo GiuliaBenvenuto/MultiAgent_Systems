@@ -1,0 +1,9 @@
+/.gradle/
+/bin/
+/build/
+/.DS_Store
+/civilian.asl
+/clue.asl
+/criminal.asl
+/criminals_and_agents.mas2j
+/police.asl
